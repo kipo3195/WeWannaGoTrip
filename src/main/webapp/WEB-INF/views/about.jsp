@@ -10,6 +10,7 @@
    h2, h3{
         font-family: 'Yusei Magic', sans-serif;
     }
+    
 </style>
 
 <body>
