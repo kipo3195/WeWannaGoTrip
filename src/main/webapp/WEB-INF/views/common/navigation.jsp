@@ -4,8 +4,9 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a  class="navbar-brand" href="${pageContext.request.contextPath}">
-    	 <img src="resources/img/airplane.png" width="35px"/> 
-      &nbsp; Bon Voyage</a>
+    	     <img src="${pageContext.request.contextPath}/resources/img/airplane.png" width="35px"/> 
+             &nbsp; Bon Voyage 
+       </a>
        
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,15 +14,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">회원가입</a>
-            			<!-- 정원 -->
+            <a class="nav-link" href="${pageContext.request.contextPath}/member/signup">회원가입</a>
+            			<!-- 정원 ${pageContext.request.contextPath}/member/join-->
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="#">로그인</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/member/signin">로그인</a>
                         <!-- 정원 -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="services">기획전</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/services">기획전</a>
             			<!-- 훈 -->
           </li>
          <li class="nav-item dropdown">
@@ -29,8 +30,8 @@
              	커뮤니티
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">공지사항</a>
-              <a class="dropdown-item" href="#">자유게시판</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/">공지사항</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/">자유게시판</a>
             </div>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -51,9 +52,9 @@
               Blog
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="blog-home-1 ">Blog Home 1</a>
-              <a class="dropdown-item" href="blog-home-2 ">Blog Home 2</a>
-              <a class="dropdown-item" href="blog-post ">Blog Post</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-home-1 ">Blog Home 1</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-home-2 ">Blog Home 2</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post ">Blog Post</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -61,12 +62,12 @@
               Other Pages
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="about">회사소개</a>
-              <a class="dropdown-item" href="contact">오시는 길</a>
-              <a class="dropdown-item" href="full-width">Full Width Page</a>
-              <a class="dropdown-item" href="sidebar">Sidebar Page</a>
-              <a class="dropdown-item" href="faq">FAQ</a>
-              <a class="dropdown-item" href="pricing">Pricing Table</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/about">회사소개</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/contact">오시는 길</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/full-width">Full Width Page</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/sidebar">Sidebar Page</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/faq">FAQ</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/pricing">Pricing Table</a>
             </div>
           </li>
         </ul>
