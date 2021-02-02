@@ -4,8 +4,9 @@
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
       <a  class="navbar-brand" href="${pageContext.request.contextPath}">
-    	 <img src="resources/img/airplane.png" width="35px"/> 
-      &nbsp; Bon Voyage</a>
+    	     <img src="${pageContext.request.contextPath}/resources/img/airplane.png" width="35px"/> 
+             &nbsp; Bon Voyage 
+       </a>
        
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -13,15 +14,15 @@
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto">
           <li class="nav-item">
-            <a class="nav-link" href="#">회원가입</a>
-            			<!-- 정원 -->
+            <a class="nav-link" href="member/signup">회원가입</a>
+            			<!-- 정원 ${pageContext.request.contextPath}/member/join-->
           </li>
            <li class="nav-item">
             <a class="nav-link" href="#">로그인</a>
                         <!-- 정원 -->
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="services">기획전</a>
+            <a class="nav-link" href="${pageContext.request.contextPath}/services">기획전</a>
             			<!-- 훈 -->
           </li>
          <li class="nav-item dropdown">
@@ -29,8 +30,8 @@
              	커뮤니티
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">공지사항</a>
-              <a class="dropdown-item" href="#">자유게시판</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/">공지사항</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/">자유게시판</a>
             </div>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

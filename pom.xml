@@ -188,6 +188,15 @@
 		    <version>2.12.1</version>
 		</dependency>
 		
+		<!-- interceptor을 사용하려고 -->
+		<!-- https://mvnrepository.com/artifact/org.aspectj/aspectjtools -->
+		<dependency>
+    		<groupId>org.aspectj</groupId>
+    		<artifactId>aspectjtools</artifactId>
+    		<version>${org.aspectj-version}</version>
+		</dependency>
+		
+		
 	</dependencies>
     <build>
         <plugins>
