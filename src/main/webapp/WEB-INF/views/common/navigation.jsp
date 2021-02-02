@@ -18,7 +18,7 @@
             			<!-- 정원 ${pageContext.request.contextPath}/member/join-->
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/member/signin">로그인</a>
+            <a class="nav-link" href="#">로그인</a>
                         <!-- 정원 -->
           </li>
           <li class="nav-item">
@@ -52,9 +52,9 @@
               Blog
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownBlog">
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-home-1 ">Blog Home 1</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-home-2 ">Blog Home 2</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post ">Blog Post</a>
+              <a class="dropdown-item" href="blog-home-1 ">Blog Home 1</a>
+              <a class="dropdown-item" href="blog-home-2 ">Blog Home 2</a>
+              <a class="dropdown-item" href="blog-post ">Blog Post</a>
             </div>
           </li>
           <li class="nav-item dropdown">
@@ -62,12 +62,12 @@
               Other Pages
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/about">회사소개</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/contact">오시는 길</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/full-width">Full Width Page</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/sidebar">Sidebar Page</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/faq">FAQ</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/pricing">Pricing Table</a>
+              <a class="dropdown-item" href="about">회사소개</a>
+              <a class="dropdown-item" href="contact">오시는 길</a>
+              <a class="dropdown-item" href="full-width">Full Width Page</a>
+              <a class="dropdown-item" href="sidebar">Sidebar Page</a>
+              <a class="dropdown-item" href="faq">FAQ</a>
+              <a class="dropdown-item" href="pricing">Pricing Table</a>
             </div>
           </li>
         </ul>

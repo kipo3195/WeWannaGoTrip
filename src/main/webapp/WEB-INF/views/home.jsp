@@ -99,10 +99,10 @@
     <div class="row">
       <div class="col-lg-4 col-sm-6 portfolio-item">
         <div class="card h-100">
-          <a href="#"><img class="card-img-top" src="resources/img/local/jejudo.jpg" alt="" height="230px"></a>
+          <a href="local/jeju"><img class="card-img-top" src="resources/img/local/jejudo.jpg" alt="" height="230px"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">제주도</a>
+              <a href="local/jeju">제주도</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
           </div>
@@ -113,7 +113,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/busan.png" alt="" height="230px"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">부산</a>
+              <a href="local/busan">부산</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
           </div>
@@ -124,7 +124,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/seoul.jpg" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">서울</a>
+              <a href="local/seoul">서울</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos quisquam, error quod sed cumque, odio distinctio velit nostrum temporibus necessitatibus et facere atque iure perspiciatis mollitia recusandae vero vel quam!</p>
           </div>
@@ -135,7 +135,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/kangwon.jpeg" alt="" height="230px"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">강원도</a>
+              <a href="local/kangwon">강원도</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
           </div>
@@ -146,7 +146,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/choongchung.jpeg" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">충청도</a>
+              <a href="local/choongchung">충청도</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam viverra euismod odio, gravida pellentesque urna varius vitae.</p>
           </div>
@@ -157,7 +157,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/kyeongsang.jpeg" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">경상도</a>
+              <a href="local/kyeongsang">경상도</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
           </div>
@@ -169,7 +169,7 @@
           <a href="#"><img class="card-img-top" src="resources/img/local/junju.jpg" alt="" height="230px"></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">전라도</a>
+              <a href="local/junla">전라도</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque earum nostrum suscipit ducimus nihil provident, perferendis rem illo, voluptate atque, sit eius in voluptates, nemo repellat fugiat excepturi! Nemo, esse.</p>
           </div>
