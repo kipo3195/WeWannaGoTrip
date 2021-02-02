@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("member/")
 public class MemberController {
-
+    //회원가입
 	@RequestMapping("signup")
 	String showJoin() {
 		
