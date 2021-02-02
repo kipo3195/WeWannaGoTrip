@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,6 +31,7 @@
 
 
     <!-- Project One -->
+
     <div class="row">
       <div class="col-md-7">
         <a href="#">
@@ -38,9 +39,10 @@
         </a>
       </div>
       <div class="col-md-5">
-        <h3>Project One</h3>
+        
+        <h3></h3>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
-        <a class="btn btn-primary" href="#">View Project
+        <a class="btn btn-primary" href="jejuHotel/Detail">호텔 상세보기
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </div>
@@ -108,7 +110,7 @@
     <hr>
 
     <!-- Pagination -->
-    <ul class="pagination justify-content-center">
+  <!--   <ul class="pagination justify-content-center">
       <li class="page-item">
         <a class="page-link" href="#" aria-label="Previous">
           <span aria-hidden="true">&laquo;</span>
@@ -130,7 +132,7 @@
           <span class="sr-only">Next</span>
         </a>
       </li>
-    </ul>
+    </ul> -->
 
   </div>
   <!-- /.container -->
@@ -141,6 +143,23 @@
   <!-- Bootstrap core JavaScript -->
   <script src="resources/vendor/jquery/jquery.min.js"></script>
   <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script>
+  
+  function printList(list){
+  var str = "";
+  $(list).each(function(){
+	  var hno = this.hno;
+	  var hname = this.hname;
+	  var haddress = this.haddress;
+	  var hregistdate = this.hregistdate;
+	  var hgrade = this.hgrade;
+	  var hscore = this.hscore;
+	  console.log(hno);
+  });
+  }
+  
+  </script>
+
 
 </body>
 
