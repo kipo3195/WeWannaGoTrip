@@ -105,9 +105,9 @@
    <!-- Footer -->
    <%@ include file="common/footer.jsp" %>
 
-  <!-- Bootstrap core JavaScript -->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+   <!-- Bootstrap core JavaScript -->
+  <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Contact form JavaScript -->
   <!-- Do not edit these files! In order to set the email address and subject line for the contact form go to the bin/contact_me.php file. -->
