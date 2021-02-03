@@ -11,7 +11,8 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>ⓦⓔ Wanna Go Trip :D</title>
+  <!-- <title>ⓦⓔ Wanna Go Trip :D</title> -->
+  <title>We 원하고 트립</title>
 
   <!-- Bootstrap core CSS -->
   <link href="${pageContext.request.contextPath}/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">

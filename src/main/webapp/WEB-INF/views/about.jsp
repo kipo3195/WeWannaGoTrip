@@ -59,7 +59,7 @@
     <div class="row" >
       <div class="col-lg-4 mb-4">
         <div class="card h-100 text-center">
-          <img class="card-img-top" src="resources/img/won.JPG"  alt="">
+          <img class="card-img-top" src="resources/img/won.JPG" style="height:250px;" alt="">
           <!-- src="http://placehold.it/750x450" -->
           <div class="card-body">
             <h4 class="card-title">차정원</h4>
@@ -73,7 +73,8 @@
       </div>
       <div class="col-lg-4 mb-4">
         <div class="card h-100 text-center">
-          <img class="card-img-top" src="resources/img/hoonkim.jpg" alt="">
+          <img class="card-img-top" src="resources/img/hoonkim.jpg" 
+             style="height:250px;"alt="">
           <div class="card-body">
             <h4 class="card-title">김훈</h4>
             <h6 class="card-subtitle mb-2 text-muted">Position</h6>

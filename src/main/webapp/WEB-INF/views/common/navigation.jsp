@@ -1,5 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <style>
+	* {
+		font-family: 'Jua', sans-serif;
+	}
+	 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); 
+</style>  
+    
 <!-- Navigation -->
 <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top"> -->
   <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark fixed-top" style="height:20px">
@@ -13,7 +20,7 @@
                  <li class="nav-item">
                    <a class="nav-link" href="${pageContext.request.contextPath}/member/signin">로그인</a>        
                 </li>
-                <!-- 로그인 됬을때 c:choose 처리 -->
+                 <!-- 로그인 됬을때 c:choose 처리 -->
                 <li class="nav-item">
                    <a class="nav-link" href="${pageContext.request.contextPath}/#">마이페이지</a>        
                 </li>
