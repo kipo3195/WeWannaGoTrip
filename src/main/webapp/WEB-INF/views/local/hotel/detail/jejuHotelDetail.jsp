@@ -44,13 +44,13 @@
           <li>사용 편의 시설 3</li>
           <li>사용 편의 시설 4</li>
         </ul>
-      </div>
-       	<div class="card-footer">
             <a href="reservation" class="btn btn-primary">예약하러가기</a>
-          </div>
+      </div>
 
     </div>
     <!-- /.row -->
+
+
 
     <!-- Related Projects Row -->
     <h3 class="my-4">Related Projects</h3>
@@ -83,6 +83,17 @@
 
     </div>
     <!-- /.row -->
+   
+       <!-- Side Widget -->
+        <div class="card my-4">
+          <h5 class="card-header">실제 예약하신 고객님의 생생한 후기입니다</h5>
+          <div class="card-body">
+         	 <h5 class="mt-0">예약자 명</h5>
+            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+         	<!-- 사용자 닉네임 추가 -->
+          </div>
+        </div>
+
 
   </div>
   <!-- /.container -->

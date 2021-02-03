@@ -37,20 +37,20 @@
 
         <!-- Blog Post -->
         <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/jejuhotel/hotelmain.jpg" alt="">
           <div class="card-body">
             <h2 class="card-title">제주 호텔 미리보기</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <p class="card-text">천혜 경관 제주에 어울리는 품격있는 호텔을 찾아 숙박해 보세요.</p>
             <a href="${pageContext.request.contextPath}/local/jejuhotel" class="btn btn-primary">Read More &rarr;</a>
           </div>
         </div>
 
         <!-- Blog Post -->
         <div class="card mb-4">
-          <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
+          <img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/jejuCafeRes/cafeResmain.jpeg" alt="">
           <div class="card-body">
             <h2 class="card-title">제주 식당 및 카페 정보</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <p class="card-text">입으로 한번 눈으로 또 한번! 모두가 만족하는 제주 카페와 식당 정보를 손쉽게 찾을 수 있습니다.</p>
             <a href="${pageContext.request.contextPath}/local/jejuCafeRes" class="btn btn-primary">Read More &rarr;</a>
           </div>
           </div>
