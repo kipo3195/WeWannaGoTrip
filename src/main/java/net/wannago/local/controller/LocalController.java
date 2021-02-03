@@ -35,13 +35,11 @@ public class LocalController {
 		/* return "/local/hotel/jejuHotel"; */
 	}
 	@RequestMapping("/jejuHotel/Detail")
-	public ModelAndView jejuhotoldetail(ModelAndView mav) {
+	public ModelAndView jejuhoteldetail(ModelAndView mav) {
 		Map<String,String> priceMap = ls.getRPrice();
 		//호텔 정보를 매개변수로 던져줘야할듯?
 		//예약 날짜를 구분지을수있는 변수도 매개변수로 던져줘야 할듯?
 		
-		
-
 			
 		System.out.println("PRICE MAP");
 		mav.addObject("priceMap",priceMap);
@@ -49,6 +47,20 @@ public class LocalController {
 		return mav;
 		/* return "/local/hotel/detail/jejuHotelDetail"; */
 	}
+	
+	@RequestMapping("/jejuHotel/reservation")
+	public ModelAndView jejuhotelReservation(ModelAndView mav) {
+		
+			
+
+		mav.setViewName("/local/hotel/reservation/hotelRes");
+		return mav;
+	}
+	
+	
+	
+	
+	
 	
 	@RequestMapping("/jejuCafeRes")
 	public String jejuCafeResPage() {

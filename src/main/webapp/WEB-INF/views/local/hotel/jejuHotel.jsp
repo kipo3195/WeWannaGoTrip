@@ -35,13 +35,16 @@
     <div class="row">
       <div class="col-md-7">
         <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+          <img class="img-fluid rounded mb-3 mb-md-0"  src="${pageContext.request.contextPath}/resources/img/jejuhotel/first.jpg" alt="">
         </a>
       </div>
       <div class="col-md-5">
         
-        <h3></h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium veniam exercitationem expedita laborum at voluptate. Labore, voluptates totam at aut nemo deserunt rem magni pariatur quos perspiciatis atque eveniet unde.</p>
+        <h3>첫번째 제주호텔 이름</h3>
+        <p>호텔의 간단한 소개가 들어갑니다<br/>
+        	호텔의 가격이 들어갑니다<br/>
+        	호텔의 평점이 들어갑니다<br/>
+        	등록일 2021-01-01<br/></p>
         <a class="btn btn-primary" href="jejuHotel/Detail">호텔 상세보기
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -55,12 +58,15 @@
     <div class="row">
       <div class="col-md-7">
         <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="${pageContext.request.contextPath}/resources/img/jejuhotel/second.jpg" alt="">
         </a>
       </div>
       <div class="col-md-5">
-        <h3>Project Two</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ut, odit velit cumque vero doloremque repellendus distinctio maiores rem expedita a nam vitae modi quidem similique ducimus! Velit, esse totam tempore.</p>
+        <h3>두번째 제주호텔 이름</h3>
+        <p>호텔의 간단한 소개가 들어갑니다<br/>
+        	호텔의 가격이 들어갑니다<br/>
+        	호텔의 평점이 들어갑니다<br/>
+        	등록일 2021-01-01<br/></p>
         <a class="btn btn-primary" href="#">View Project
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -74,12 +80,15 @@
     <div class="row">
       <div class="col-md-7">
         <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="${pageContext.request.contextPath}/resources/img/jejuhotel/third.jpg" alt="">
         </a>
       </div>
       <div class="col-md-5">
-        <h3>Project Three</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, temporibus, dolores, at, praesentium ut unde repudiandae voluptatum sit ab debitis suscipit fugiat natus velit excepturi amet commodi deleniti alias possimus!</p>
+        <h3>세번째 제주호텔 이름</h3>
+        <p>호텔의 간단한 소개가 들어갑니다<br/>
+        	호텔의 가격이 들어갑니다<br/>
+        	호텔의 평점이 들어갑니다<br/>
+        	등록일 2021-01-01<br/></p>
         <a class="btn btn-primary" href="#">View Project
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
@@ -94,17 +103,21 @@
 
       <div class="col-md-7">
         <a href="#">
-          <img class="img-fluid rounded mb-3 mb-md-0" src="http://placehold.it/700x300" alt="">
+          <img class="img-fluid rounded mb-3 mb-md-0" src="${pageContext.request.contextPath}/resources/img/jejuhotel/4th.jpg" alt="">
         </a>
       </div>
       <div class="col-md-5">
-        <h3>Project Four</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, quidem, consectetur, officia rem officiis illum aliquam perspiciatis aspernatur quod modi hic nemo qui soluta aut eius fugit quam in suscipit?</p>
+        <h3>네번째 제주호텔 이름</h3>
+        <p>호텔의 간단한 소개가 들어갑니다<br/>
+        	호텔의 가격이 들어갑니다<br/>
+        	호텔의 평점이 들어갑니다<br/>
+        	등록일 2021-01-01<br/></p>
         <a class="btn btn-primary" href="#">View Project
           <span class="glyphicon glyphicon-chevron-right"></span>
         </a>
       </div>
     </div>
+    
     <!-- /.row -->
 
     <hr>
@@ -141,8 +154,8 @@
    <%@ include file="../../common/footer.jsp" %>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script>
   
   function printList(list){

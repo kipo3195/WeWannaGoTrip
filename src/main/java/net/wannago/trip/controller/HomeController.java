@@ -105,6 +105,11 @@ public class HomeController {
 		
 	}
 	
+	@RequestMapping("credit")
+	public void credit() {
+		
+	}
+	
 	
 	
 }

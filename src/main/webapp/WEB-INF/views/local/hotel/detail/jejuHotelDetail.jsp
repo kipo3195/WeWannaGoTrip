@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- Head -->
+ <!-- Head -->
  <%@ include file="../../../common/header.jsp" %>
 
 <body>
@@ -16,70 +16,71 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Pricing
-      <small>Subheading</small>
+    <h1 class="mt-4 mb-3">첫번째 제주호텔 이름
+      <small>호텔 주소</small>
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>
       </li>
-      <li class="breadcrumb-item active">Pricing</li>
+      <li class="breadcrumb-item active">Portfolio Item</li>
     </ol>
 
-    <!-- Content Row -->
+    <!-- Portfolio Item Row -->
     <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Basic</h3>
-          <div class="card-body">
-            <div class="display-4">$19.99</div>
-            <div class="font-italic">per month</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
+
+      <div class="col-md-8">
+        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first.jpg" alt="">
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card card-outline-primary h-100">
-          <h3 class="card-header bg-primary text-white">Plus</h3>
-          <div class="card-body">
-            <div class="display-4">$39.99</div>
-            <div class="font-italic">per month</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
+
+      <div class="col-md-4">
+        <h3 class="my-3">호텔 정보</h3>
+        <p>호텔에 대한 간략한 소개와 정보가 들어갑니다.</p>
+        <h3 class="my-3">부대시설</h3>
+        <ul>
+          <li>사용 편의 시설 1</li>
+          <li>사용 편의 시설 2</li>
+          <li>사용 편의 시설 3</li>
+          <li>사용 편의 시설 4</li>
+        </ul>
       </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Ultra</h3>
-          <div class="card-body">
-            <div class="display-4">$159.99</div>
-            <div class="font-italic">per month</div>
+       	<div class="card-footer">
+            <a href="reservation" class="btn btn-primary">예약하러가기</a>
           </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">Cras justo odio</li>
-            <li class="list-group-item">Dapibus ac facilisis in</li>
-            <li class="list-group-item">Vestibulum at eros</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <!-- Related Projects Row -->
+    <h3 class="my-4">Related Projects</h3>
+
+    <div class="row">
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+          <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first1.jpeg" alt="">
+        </a>
       </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+          <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first2.jpeg" alt="">
+        </a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+          <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first3.jpeg" alt="">
+        </a>
+      </div>
+
+      <div class="col-md-3 col-sm-6 mb-4">
+        <a href="#">
+          <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first4.jpeg" alt="">
+        </a>
+      </div>
+
     </div>
     <!-- /.row -->
 
@@ -90,8 +91,8 @@
    <%@ include file="../../../common/footer.jsp" %>
    
   <!-- Bootstrap core JavaScript -->
-  <script src="resources/vendor/jquery/jquery.min.js"></script>
-  <script src="resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 </body>
 
