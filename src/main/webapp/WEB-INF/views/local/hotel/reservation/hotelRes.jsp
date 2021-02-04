@@ -21,8 +21,22 @@
     </h1>
     
     
+    <!-- datepicker -->
     
+    <div class="container px-1 px-sm-5 mx-auto">
+    <form autocomplete="off">
+        <div class="flex-row d-flex justify-content-center">
+            <div class="col-lg-6 col-11 px-1">
+                <div class="input-group input-daterange"> <input type="text" id="start" class="form-control text-left mr-2"> <label class="ml-3 form-control-placeholder" id="start-p" for="start">Start Date</label> <span class="fa fa-calendar" id="fa-1"></span> <input type="text" id="end" class="form-control text-left ml-2"> <label class="ml-3 form-control-placeholder" id="end-p" for="end">End Date</label> <span class="fa fa-calendar" id="fa-2"></span> </div>
+            </div>
+        </div>
+    </form>
+</div>
 
+
+	<br/>
+    <hr/>
+	<br/>
     <!-- Content Row -->
     <div class="row">
       <div class="col-lg-4 mb-4">
@@ -97,6 +111,22 @@
     
     
     <!-- /.row -->
+    <!-- bootstrap -->
+    <script>
+    $(document).ready(function(){
+
+    	$('.input-daterange').datepicker({
+    	format: 'dd-mm-yyyy',
+    	autoclose: true,
+    	calendarWeeks : true,
+    	clearBtn: true,
+    	disableTouchKeyboard: true
+    	});
+
+    	});
+    
+    
+    </script>
 
   </div>
   <!-- /.container -->

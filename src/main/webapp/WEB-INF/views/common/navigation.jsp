@@ -22,7 +22,7 @@
                 </li>
                  <!-- 로그인 됬을때 c:choose 처리 -->
                 <li class="nav-item">
-                   <a class="nav-link" href="${pageContext.request.contextPath}/#">마이페이지</a>        
+                   <a class="nav-link" href="${pageContext.request.contextPath}/member/myPage">마이페이지</a>        
                 </li>
   			</ul>
   		</div>

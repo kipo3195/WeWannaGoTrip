@@ -85,11 +85,11 @@ input[id="tab04"]:checked ~ .con4 {
         <div class="row">
           <div class="col-lg-6">
             <a href="#">
-              <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+              <img class="img-fluid rounded" src="${pageContext.request.contextPath}/resources/img/jejuinfo/jungbang.jpg" alt="">
             </a>
           </div>
           <div class="col-lg-6">
-            <h2 class="card-title">Post Title111</h2>
+            <h2 class="card-title">정방 폭포</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
             <a href="#" class="btn btn-primary">Read More &rarr;</a>
           </div>
@@ -106,11 +106,11 @@ input[id="tab04"]:checked ~ .con4 {
         <div class="row">
           <div class="col-lg-6">
             <a href="#">
-              <img class="img-fluid rounded" src="http://placehold.it/750x300" alt="">
+              <img class="img-fluid rounded" src="${pageContext.request.contextPath}/resources/img/jejuinfo/seabyul.jpeg" alt="">
             </a>
           </div>
           <div class="col-lg-6">
-            <h2 class="card-title">Post Title</h2>
+            <h2 class="card-title">새별오름</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
             <a href="#" class="btn btn-primary">Read More &rarr;</a>
           </div>

@@ -3,6 +3,7 @@ package net.wannago.member.controller;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -61,6 +62,12 @@ public class MemberController {
 		mav.setViewName("redirect:/");
 		
 		return mav;
+	}
+	
+	@GetMapping("myPage")
+	public String myPage() {
+		
+		return "member/myPage";
 	}
 	
 }
