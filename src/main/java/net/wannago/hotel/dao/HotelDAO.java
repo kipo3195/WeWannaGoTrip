@@ -14,5 +14,8 @@ public interface HotelDAO {
 	
 //dao 병합테스트
 	//다시수정
+	
+	
+	// 충돌 테스트
 
 }
