@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 차정원 Blog Test!!! 깃허브야 제발 합쳐줘! -->
  <!-- Head -->
  <%@ include file="common/header.jsp" %>
 
