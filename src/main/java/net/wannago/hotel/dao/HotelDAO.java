@@ -14,4 +14,5 @@ public interface HotelDAO {
 	
 
 	//호텔내용수정 테스트
+	//테스트중
 }
