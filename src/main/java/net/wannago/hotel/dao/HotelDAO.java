@@ -13,6 +13,5 @@ public interface HotelDAO {
 	
 	
 
-	//호텔내용수정 테스트vd
-	//2번테스트
+
 }
