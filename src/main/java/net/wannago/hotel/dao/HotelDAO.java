@@ -15,7 +15,6 @@ public interface HotelDAO {
 //dao 병합테스트
 	//다시수정
 	
-	
-	// 충돌 테스트
+//합쳐지는 코드로 다시 수정했습니다.
 
 }
