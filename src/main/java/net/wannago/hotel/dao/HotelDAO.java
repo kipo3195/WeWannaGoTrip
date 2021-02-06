@@ -14,5 +14,7 @@ public interface HotelDAO {
 	
 //dao 병합테스트
 	//다시수정
+	
+	//차정원 브런치얌 돼라돼라~
 
 }
