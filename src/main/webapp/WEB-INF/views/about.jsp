@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- 차정원입니다 Test입니다 -->
  <!-- Head -->
  <%@ include file="common/header.jsp" %>
 
