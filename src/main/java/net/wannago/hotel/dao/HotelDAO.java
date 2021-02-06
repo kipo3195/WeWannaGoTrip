@@ -12,6 +12,6 @@ public interface HotelDAO {
 	public List<HotelVO> readList();
 	
 	
-
+//dao 병합테스트
 
 }
