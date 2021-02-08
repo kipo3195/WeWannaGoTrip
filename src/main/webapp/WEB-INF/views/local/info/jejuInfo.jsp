@@ -91,7 +91,7 @@ input[id="tab04"]:checked ~ .con4 {
           <div class="col-lg-6">
             <h2 class="card-title">정방 폭포</h2>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-            <a href="#" class="btn btn-primary">Read More &rarr;</a>
+            <a href="jungbang" class="btn btn-primary">Read More &rarr;</a>
           </div>
         </div>
       </div>

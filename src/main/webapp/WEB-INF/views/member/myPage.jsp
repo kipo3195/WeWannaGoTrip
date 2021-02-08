@@ -36,11 +36,15 @@
           <a href="#" class="list-group-item">내 예약 확인 하기</a>
           <a href="#" class="list-group-item">내가 찜한 여행 정보 확인</a>
           <a href="#" class="list-group-item">내 정보 수정</a>
+          
+          
+          <!-- TODO I WISH.... PLEASE...
           <a href="#" class="list-group-item">내가 작성한 댓글</a>
           <a href="#" class="list-group-item">내 문의 내역</a>
           <a href="#" class="list-group-item">필요한 용도에 따라 사용</a>
           <a href="#" class="list-group-item">필요한 용도에 따라 사용</a>
-          <a href="#" class="list-group-item">필요한 용도에 따라 사용</a>
+          <a href="#" class="list-group-item">필요한 용도에 따라 사용</a> 
+          -->
           <a href="#" class="list-group-item" style="color:red; ">회원 탈퇴</a>
         </div>
       </div>

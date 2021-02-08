@@ -58,7 +58,12 @@ public class LocalController {
 	}
 	
 	
-	
+	@RequestMapping("missing")
+	public String cafeRes() {
+		
+		
+		return "/local/cafeRes/cafeResInfo";
+	}
 	
 	
 	
@@ -67,10 +72,17 @@ public class LocalController {
 		
 		return "/local/cafeRes/jejuCafeRes";
 	}
+	
 	@RequestMapping("/jejuInfo")
 	public String jejuInfoPage() {
 		
 		return "/local/info/jejuInfo";
+	}
+	
+	@RequestMapping("jungbang")
+	public String jungbang() {
+		
+		return "/local/info/place/placeinfo";
 	}
 
 	
