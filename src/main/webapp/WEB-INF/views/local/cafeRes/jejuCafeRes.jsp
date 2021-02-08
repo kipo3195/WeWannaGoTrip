@@ -36,7 +36,8 @@
           <a href="#"><img class="card-img-top" src="${pageContext.request.contextPath}/resources/img/jejuCafeRes/missing.jpg" alt=""></a>
           <div class="card-body">
             <h4 class="card-title">
-              <a href="#">카페 그리울땐 제주</a>
+            <!-- 카페에 대한 정보를 바탕으로  -->
+              <a href="missing">카페 그리울땐 제주</a>
             </h4>
             <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur eum quasi sapiente nesciunt? Voluptatibus sit, repellat sequi itaque deserunt, dolores in, nesciunt, illum tempora ex quae? Nihil, dolorem!</p>
           </div>
