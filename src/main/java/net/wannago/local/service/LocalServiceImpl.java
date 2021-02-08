@@ -8,6 +8,8 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import net.koreate.util.Criteria;
+import net.koreate.util.PageMaker;
 import net.wannago.hotel.dao.HotelDAO;
 import net.wannago.hotel.vo.HotelVO;
 
@@ -29,6 +31,17 @@ public class LocalServiceImpl implements LocalService{
 	
 		
 		return priceMap;
+	}
+
+	@Override
+	public PageMaker getPageMaker(int page) {
+		Criteria cri = new Criteria(page,2);
+		int totalCount = dao.listCount();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		return pageMaker;
 	}
 	
 	

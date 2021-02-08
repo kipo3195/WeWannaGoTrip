@@ -1,14 +1,20 @@
 package net.wannago.local.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.koreate.util.PageMaker;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -27,9 +33,9 @@ public class LocalController {
 	public ModelAndView jejuHotelPage(ModelAndView mav) {
 		
 		List<HotelVO> hotellist = ls.readList();
-		System.out.println("hotellist"+hotellist);
+		System.out.println("호텔리스트 출력"+hotellist);
 		mav.setViewName("local/hotel/jejuHotel");
-		mav.addObject("hotellist", hotellist);
+		/* mav.addObject("hotellist", hotellist); */
 		
 		return mav;
 		/* return "/local/hotel/jejuHotel"; */
@@ -41,7 +47,6 @@ public class LocalController {
 		//예약 날짜를 구분지을수있는 변수도 매개변수로 던져줘야 할듯?
 		
 			
-		System.out.println("PRICE MAP");
 		mav.addObject("priceMap",priceMap);
 		mav.setViewName("/local/hotel/detail/jejuHotelDetail");
 		return mav;
@@ -111,6 +116,28 @@ public class LocalController {
 	@RequestMapping("/junla")
 	public void junlaPage() {
 		
+	}
+	
+	// 호텔 리스트 처리
+	@GetMapping("/{page}")
+	public ResponseEntity<Map<String, Object>> listPage(
+			@PathVariable("page") int page
+			){
+		ResponseEntity<Map<String,Object>> entity = null;
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		PageMaker pageMaker = ls.getPageMaker(page);
+		List<HotelVO> hotellist = ls.readList();
+		map.put("pm",pageMaker);
+		map.put("hotellist", hotellist);
+		try {
+			entity = new ResponseEntity<>(map,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		return entity;
 	}
 	
 	
