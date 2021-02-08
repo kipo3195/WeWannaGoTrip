@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
   <style>
-	* {
-		font-family: 'Jua', sans-serif;
+	@font-face {
+    font-family: 'Dovemayo-Bold';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.0/Dovemayo-Bold.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
 	}
-	 @import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); 
+
+	*{
+	font-family: 'Dovemayo-Bold';
+	}
 </style>  
     
 <!-- Navigation -->
