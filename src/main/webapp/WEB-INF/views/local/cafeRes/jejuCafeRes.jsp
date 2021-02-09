@@ -156,7 +156,34 @@
  <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<script>
+		var page = 1;
+		
+		cafePage(page);
+		
+		function cafePage(page){
+			$.ajax({
+				type:"get",
+				url : "cr/"+page,
+				dateType:"json",
+				success: function(data){
+					console.log(data);
+					
+				}
+				
+			});
+			
+		}
+		
+	
+	
+	
+	
+	
+	
+	</script>
 </body>
 
 </html>
