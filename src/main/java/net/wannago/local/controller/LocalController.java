@@ -32,8 +32,8 @@ public class LocalController {
 	@RequestMapping("/jejuhotel")
 	public ModelAndView jejuHotelPage(ModelAndView mav) {
 		
-		List<HotelVO> hotellist = ls.readList();
-		System.out.println("호텔리스트 출력"+hotellist);
+		/* List<HotelVO> hotellist = ls.readList(); */
+		/* System.out.println("호텔리스트 출력"+hotellist); */
 		mav.setViewName("local/hotel/jejuHotel");
 		/* mav.addObject("hotellist", hotellist); */
 		
@@ -118,28 +118,7 @@ public class LocalController {
 		
 	}
 	
-	// 호텔 리스트 처리
-	@GetMapping("/{page}")
-	public ResponseEntity<Map<String, Object>> listPage(
-			@PathVariable("page") int page
-			){
-		ResponseEntity<Map<String,Object>> entity = null;
-		
-		Map<String,Object> map = new HashMap<String, Object>();
-		PageMaker pageMaker = ls.getPageMaker(page);
-		List<HotelVO> hotellist = ls.readList();
-		map.put("pm",pageMaker);
-		map.put("hotellist", hotellist);
-		try {
-			entity = new ResponseEntity<>(map,HttpStatus.OK);
-		} catch (Exception e) {
-			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-		}
-		
-		
-		return entity;
-	}
-	
+
 	
 	
 }
