@@ -23,7 +23,8 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter{
 		
 		System.out.println("Sign Up Interceptor");
 		
-		//확인1 비밀번호가 넘어오는지 확인
+		// 확인1 :  비밀번호가 넘어오는지 확인
+		
         String mpw = request.getParameter("mpw");
         String repw = request.getParameter("repw");
         
@@ -34,12 +35,14 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter{
         	message = "비밀번호가 일치하지 않습니다";
         	request.setAttribute("message", message);
         	rd.forward(request, response);
+        	System.out.println("비밀번호일치 노노");
         	// 일치하지않으니깐 가입이 되면 안됨. controller에 요청을 보내면 안됨.
         	return false;
         }
         
         
-        //확인2 아이디 중복 안됨. 사용자 아이디가 기존 테이블에 존재하는지 알아보기.
+        // 확인2 :  아이디 중복 안됨 
+        // 사용자 아이디가 기존 테이블에 존재하는지 알아보기.
         String mid = request.getParameter("mid"); 
         System.out.println("Request Parma mid : "+mid);
         MemberVO vo = ms.getMemberById(mid);
@@ -48,6 +51,7 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter{
         	message = mid+"는 이미 존재하는 아이디입니다.";
         	request.setAttribute("message", message);
         	rd.forward(request, response);
+        	System.out.println("이미있음");
         	return false;
         }
 		
