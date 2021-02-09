@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
+import net.wannago.cafRes.CaResVO;
 import net.wannago.hotel.dao.HotelDAO;
 import net.wannago.hotel.vo.HotelVO;
 
@@ -19,10 +20,7 @@ public class LocalServiceImpl implements LocalService{
 	@Inject
 	HotelDAO dao;
 
-	@Override
-	public List<HotelVO> readList() {
-		return dao.readList();
-	}
+	
 
 	@Override
 	public Map<String, String> getRPrice() {
@@ -35,7 +33,7 @@ public class LocalServiceImpl implements LocalService{
 
 	@Override
 	public PageMaker getPageMaker(int page) {
-		Criteria cri = new Criteria(page,2);
+		Criteria cri = new Criteria(page,3);
 		int totalCount = dao.listCount();
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -43,7 +41,31 @@ public class LocalServiceImpl implements LocalService{
 		
 		return pageMaker;
 	}
+
+	@Override
+	public List<HotelVO> readList(Criteria cri) {
+		return dao.hotellist(cri);
+	}
+
+	@Override
+	public PageMaker getPageMaker1(int page) {
+		Criteria cri = new Criteria(page,8);
+		int totalCount = dao.CaresCount();
+		PageMaker pageMaker = new PageMaker();
+		pageMaker.setCri(cri);
+		pageMaker.setTotalCount(totalCount);
+		
+		return pageMaker;
+	}
+
+	@Override
+	public List<CaResVO> readCalesList(Criteria criteria) {
+		return dao.caResList(criteria);
+	}
+
 	
+
+
 	
 
 }
