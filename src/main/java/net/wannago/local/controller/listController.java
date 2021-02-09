@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 import net.koreate.util.PageMaker;
-import net.wannago.cafRes.CaResVO;
+import net.wannago.cafRes.vo.CaResVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -44,28 +44,7 @@ public class listController {
 	}
 
 	
-	  @GetMapping("local/cr/{page}") 
-	  public ResponseEntity<Map<String, Object>> cafePage(
-			  @PathVariable("page") int page
-			  ){
-	  System.out.println("카페페이지"+page);
 	  
-	  ResponseEntity<Map<String,Object>> entity = null;
-	  
-	  Map<String,Object> map = new HashMap<>();
-	  PageMaker pageMaker1 = ls.getPageMaker1(page); 
-	  List<CaResVO> caleslist = ls.readCalesList(pageMaker1.getCri());
-	  map.put("pm", pageMaker1); 
-	  map.put("caleslist", caleslist); 
-	  try {
-		 entity = new ResponseEntity<>(map,HttpStatus.OK); 
-		 } 
-	  catch (Exception e) {
-		  entity = new
-	  ResponseEntity<>(HttpStatus.BAD_REQUEST); 
-		 }
-	  
-	  return entity; }
 	 
 
 }
