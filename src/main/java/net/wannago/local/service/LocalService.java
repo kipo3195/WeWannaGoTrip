@@ -5,7 +5,7 @@ import java.util.Map;
 
 import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
-import net.wannago.cafRes.CaResVO;
+import net.wannago.cafRes.vo.CaResVO;
 import net.wannago.hotel.vo.HotelVO;
 
 public interface LocalService {
@@ -16,11 +16,6 @@ public interface LocalService {
 
 	PageMaker getPageMaker(int page);
 
-	PageMaker getPageMaker1(int page);
-
-	List<CaResVO> readCalesList(Criteria criteria);
-
-	//
 
 
 	
