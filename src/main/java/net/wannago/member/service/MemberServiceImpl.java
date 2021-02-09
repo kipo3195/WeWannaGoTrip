@@ -14,19 +14,21 @@ public class MemberServiceImpl implements MemberService{
 	@Inject
 	MemberDAO dao;
 	
-	
+	// 회원가입
 	@Override
 	public void signup(MemberVO vo) throws Exception {
 		
 		dao.signup(vo);	
 	}
 
+	// 로그인
 	@Override
 	public MemberVO signin(LoginDTO dto) throws Exception {
 		
 		return dao.signin(dto);
 	}
 
+	// 아이디 정보로 사용자 정보 확인
 	@Override
 	public MemberVO getMemberById(String mid) throws Exception {
 		

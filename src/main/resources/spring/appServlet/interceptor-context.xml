@@ -8,10 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
     <!-- interceptor-context.xml -->
 
-	<!-- 로그인 -->
 	
-
-
     <!-- 회원가입 -->
     <mvc:interceptors> <!-- 맨 윗줄에 beans있으니깐 beans만 생략가능함 -->
 		<mvc:interceptor>
@@ -20,5 +17,18 @@
 			<!-- 클래스명으로 바로 생성해도 괜찮음 -->
 		</mvc:interceptor>
 	</mvc:interceptors>
+
+
+	<!-- 로그인 -->
+	<bean id="loginInterceptor"
+		  class="net.wannago.trip.interceptor.LoginInterceptor"/>
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/member/sigInPost"/>
+				<ref bean="loginInterceptor"/>
+			</mvc:interceptor>
+		</mvc:interceptors>  
+
+
 
 </beans>

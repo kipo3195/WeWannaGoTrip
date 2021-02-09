@@ -14,27 +14,35 @@ import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
 
 @Controller
-@RequestMapping("member/")
+@RequestMapping("member")
 public class MemberController {
     
 	@Inject
 	MemberService ms;
 	
 	
-	@RequestMapping("signup")
+	@RequestMapping("/signup")
 	public String signup() {
 		
 		return "member/signup";
 	}
 	
-	@RequestMapping("signin")
+	@RequestMapping("/signin")
 	public String signin() {
 		
 		return "member/signin";
 	}
 	
+	@GetMapping("/myPage")
+	public String myPage() {
+		
+		return "member/myPage";
+	}
+	
+	
+	
 	// 회원가입
-	@PostMapping("signUpPost")
+	@PostMapping("/signUpPost")
 	public String signUpPost(
 					MemberVO vo,
 					RedirectAttributes rttr) throws Exception{
@@ -48,7 +56,7 @@ public class MemberController {
 	
 	
 	// 로그인
-	@PostMapping("signInPost")
+	@PostMapping("/signInPost")
 	public ModelAndView signInPost(
 					ModelAndView mav,
 					LoginDTO dto) throws Exception { //로그인 매개변수 3개
@@ -56,7 +64,7 @@ public class MemberController {
 		MemberVO vo = ms.signin(dto); //아이디가 일치하면 member정보 있음
 		mav.addObject("memberInfo",vo);
 		mav.addObject("loginDTO",dto);
-		
+		ms.signin(dto);
 		System.out.println("controller : "+mav.getModel().get("memberInfo"));
 		System.out.println("controller : "+mav.getModel().get("loginDTO"));
 		mav.setViewName("redirect:/");
@@ -64,10 +72,6 @@ public class MemberController {
 		return mav;
 	}
 	
-	@GetMapping("myPage")
-	public String myPage() {
-		
-		return "member/myPage";
-	}
+	
 	
 }
