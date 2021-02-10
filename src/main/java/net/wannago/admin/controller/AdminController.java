@@ -1,8 +1,10 @@
 package net.wannago.admin.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
@@ -39,4 +41,17 @@ public class AdminController {
 		//로그인 성공하면  여기 아니면 인터셉터
 		return mav;
 	}
+	
+	@GetMapping("admin/adminPage")
+	public void adminPage() {
+		
+	}
+	
+	@GetMapping("admin/logout")
+	public String adminLogout(HttpSession session) {
+		session.removeAttribute("admin");
+		
+		return "redirect:/";
+	}
+	
 }

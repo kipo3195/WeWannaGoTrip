@@ -19,29 +19,21 @@ public class adminLoginInterceptor extends HandlerInterceptorAdapter {
 		adminDTO dto = (adminDTO) mav.getModel().get("adminDTO");
 		adminVO vo = (adminVO) mav.getModel().get("adminVO");
 		
-	
-		System.out.println("interceptor 호출 : "+dto+" : "+vo);
-		
-		
-		
 		//로그인 확인
 		if(vo != null) {
 			System.out.println("관리자 로그인 성공");
 			HttpSession session = request.getSession();
 			session.setAttribute("admin", vo);
-			
 		}else {
 			System.out.println("로그인실패");
-			
 			mav.getModel().remove("adminDTO");
 			mav.getModel().remove("adminVO");
-			
 			mav.setViewName("redirect:/adminSignin");
 		}
-		
-		
-		
+
 	}
+
+
 	
 
 	
