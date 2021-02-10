@@ -18,16 +18,15 @@
 		</mvc:interceptor>
 	</mvc:interceptors>
 
+
 	<!-- 로그인 -->
 	<bean id="loginInterceptor"
-	      class="net.wannago.trip.interceptor.LoginInterceptor"/>
-	      
-	 <mvc:interceptors>
-	 	<!-- 로그인 -->
-	 	<mvc:interceptor>
-	 		<mvc:mapping path="/member/signInPost"/>
-	 		<ref bean="loginInterceptor"/>
-	 	</mvc:interceptor>
+		  class="net.wannago.trip.interceptor.LoginInterceptor"/>
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/member/sigInPost"/>
+				<ref bean="loginInterceptor"/>
+			</mvc:interceptor>
 	 
 
 	<!-- 로그인 > 자동로그인 체크 -->
@@ -41,8 +40,15 @@
 			<bean class="net.wannago.trip.interceptor.CookieCheckInterceptor"/>
 		</mvc:interceptor>
 
-	
-	
+		<!-- 관리자 로그인 -->
+	<bean id="adminLoginInterceptor" class="net.wannago.trip.interceptor.adminLoginInterceptor"/>
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/signInAdmin"/>
+				<ref bean="adminLoginInterceptor"/>
+			</mvc:interceptor>
+      
    </mvc:interceptors>
+
    
 </beans>
