@@ -34,6 +34,7 @@ public class caResController {
 		  map.put("pm", pageMaker1); 
 		  List<CaResVO> caleslist = ls.readCalesList(pageMaker1.getCri());
 		  map.put("caleslist",caleslist);
+		  System.out.println("size"+caleslist.size());
 		 entity = new ResponseEntity<>(map,HttpStatus.OK); 
 		 } 
 	  catch (Exception e) {

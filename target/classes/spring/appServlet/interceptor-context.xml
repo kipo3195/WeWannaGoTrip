@@ -28,6 +28,18 @@
 				<ref bean="loginInterceptor"/>
 			</mvc:interceptor>
 		</mvc:interceptors>  
+		
+		
+	<!-- 관리자 로그인 -->
+	<bean id="adminLoginInterceptor" class="net.wannago.trip.interceptor.adminLoginInterceptor"/>
+		<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/signInAdmin"/>
+				<ref bean="adminLoginInterceptor"/>
+			</mvc:interceptor>
+		</mvc:interceptors>  
+	
+	
 
 
 
