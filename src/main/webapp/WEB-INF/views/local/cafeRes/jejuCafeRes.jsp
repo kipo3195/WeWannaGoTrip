@@ -251,7 +251,7 @@
 			str += " </div> ";
 			
 			});
-			$(".row").append(str);
+			$(".row").html(str);
 		}
 		
 		
