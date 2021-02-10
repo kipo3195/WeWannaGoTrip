@@ -22,9 +22,8 @@
      <div class="container" >
   			<ul class="navbar-nav ml-auto">
   				
-                 <!-- 로그인인 했을때 처리 -->
+                 <!-- 로그인 했을때 처리 -->
                  <c:choose>
-                 
                  	<c:when test="${!empty sessionScope.memberInfo}">
                  		<li class="nav-item">
                   			<span class="nav-link">${memberInfo.mname} 님 어서오세요:)</span>      
@@ -36,7 +35,17 @@
                    			<a class="nav-link" href="member/signOut">로그아웃</a>        
                 		</li>
                  	</c:when>
-                 	
+                 		<c:when test="${!empty sessionScope.admin}">
+                 		<li class="nav-item">
+                  			<span class="nav-link">${admin.aname} 님 어서오세요:)</span>      
+                		</li>
+                 		<li class="nav-item">
+                  			<a class="nav-link" href="${pageContext.request.contextPath}/admin/adminPage">관리자 페이지</a>        
+                		</li>
+                		<li class="nav-item">
+                   			<a class="nav-link" href="${pageContext.request.contextPath}/admin/logout">로그아웃</a>        
+                		</li>
+                 	</c:when>
                  	<c:otherwise>
                  		<li class="nav-item">
                   			<a class="nav-link" href="${pageContext.request.contextPath}/member/signup">회원가입</a>

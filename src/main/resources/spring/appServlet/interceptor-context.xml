@@ -44,11 +44,22 @@
   
   <!-- 관리자 로그인 -->
 	<bean id="adminLoginInterceptor" class="net.wannago.trip.interceptor.adminLoginInterceptor"/>
-			<mvc:interceptors>
+	<mvc:interceptors>
 			<mvc:interceptor>
 				<mvc:mapping path="/signInAdmin"/>
 				<ref bean="adminLoginInterceptor"/>
 			</mvc:interceptor>
    </mvc:interceptors>
+   
+   <!-- 관리자 로그인 상태 체크 -->
+   <bean id="adminCheckInterceptor" class="net.wannago.trip.interceptor.adminCheckInterceptor"/>
+	<mvc:interceptors>
+			<mvc:interceptor>
+				<mvc:mapping path="/admin/**"/>
+				<ref bean="adminCheckInterceptor"/> 
+			</mvc:interceptor>
+   </mvc:interceptors>
+   
+  
    
 </beans>
