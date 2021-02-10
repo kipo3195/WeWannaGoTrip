@@ -16,8 +16,10 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 
 	// 처음 로그인 : 리턴한 모델의 값을 가지고 확인 해줘야하니, postHandle
 	@Override
-	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
-			ModelAndView mav) throws Exception {
+	public void postHandle(HttpServletRequest request, 
+						   HttpServletResponse response, 
+						   Object handler,
+						   ModelAndView mav) throws Exception {
 		
 		LoginDTO dto = (LoginDTO)mav.getModel().get("loginDTO");
 		MemberVO vo = (MemberVO)mav.getModel().get("memberInfo");
@@ -45,8 +47,8 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 			mav.getModel().remove("memberInfo");
 			mav.getModel().remove("loginDTO");
 			
-			
-			mav.setViewName("/member/signin");
+			mav.addObject("message","회원정보가 일치하지 않습니다.");
+			mav.setViewName("/member/signin"); //다시 로그인페이지
 		}
 		
 		

@@ -299,7 +299,8 @@
     <hr>
 
     <!-- Call to Action Section -->
-<!--     <div class="row mb-4">
+	<!--     
+	<div class="row mb-4">
       <div class="col-md-8">
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestias, expedita, saepe, vero rerum deleniti beatae veniam harum neque nemo praesentium cum alias asperiores commodi.</p>
       </div>
@@ -308,16 +309,14 @@
       </div>
     </div>
 
-  </div> -->
+  </div> 
+   -->
   <!-- /.container -->
 
  <!-- footer -->
  <%@ include file="common/footer.jsp" %>
     
-  <!-- Bootstrap core JavaScript -->
-  <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
+ 
 </body>
 
 </html>
