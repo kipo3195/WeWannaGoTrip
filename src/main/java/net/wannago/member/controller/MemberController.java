@@ -1,11 +1,16 @@
 package net.wannago.member.controller;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -33,7 +38,8 @@ public class MemberController {
 		return "member/signin";
 	}
 	
-	@GetMapping("/myPage")
+	//@GetMapping("/myPage")
+	@RequestMapping("/myPage")
 	public String myPage() {
 		
 		return "member/myPage";
@@ -71,6 +77,33 @@ public class MemberController {
 		
 		return mav;
 	}
+	
+	
+	// 로그아웃
+	@GetMapping("/signOut")
+	public String signOut(
+			HttpSession session,
+			HttpServletResponse response,
+			@SessionAttribute("memberInfo") MemberVO vo,
+			@CookieValue(name="signInCookie",required=false)Cookie signInCookie
+			)throws Exception{
+		
+		if(vo != null) {
+			session.removeAttribute("memberInfo");
+		}
+		if(signInCookie != null) {
+			System.out.println("cookie name : "+signInCookie.getName());
+			System.out.println("cookie value : "+signInCookie.getValue());
+			signInCookie.setPath("/");
+			signInCookie.setMaxAge(0); //브라우저에서 넘겨받자마자 지워줌
+			response.addCookie(signInCookie);
+			
+		}
+	
+		return "redirect:/";
+	}
+	
+	
 	
 	
 	

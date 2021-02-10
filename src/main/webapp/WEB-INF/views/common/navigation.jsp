@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+  <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+  
   <style>
 	@font-face {
     font-family: 'Dovemayo-Bold';
@@ -19,17 +21,32 @@
   <div class="collapse navbar-collapse" id="navbarResponsive">
      <div class="container" >
   			<ul class="navbar-nav ml-auto">
-  				<li class="nav-item">
-                  <a class="nav-link" href="${pageContext.request.contextPath}/member/signup">회원가입</a>
-                  <!-- 정원 ${pageContext.request.contextPath}/member/join-->
-                 </li>
-                 <li class="nav-item">
-                   <a class="nav-link" href="${pageContext.request.contextPath}/member/signin">로그인</a>        
-                </li>
-                 <!-- 로그인 됬을때 c:choose 처리 -->
-                <li class="nav-item">
-                   <a class="nav-link" href="${pageContext.request.contextPath}/member/myPage">마이페이지</a>        
-                </li>
+  				
+                 <!-- 로그인인 했을때 처리 -->
+                 <c:choose>
+                 
+                 	<c:when test="${!empty sessionScope.memberInfo}">
+                 		<li class="nav-item">
+                  			<span class="nav-link">${memberInfo.mname} 님 어서오세요:)</span>      
+                		</li>
+                 		<li class="nav-item">
+                  			<a class="nav-link" href="${pageContext.request.contextPath}/member/myPage">마이페이지</a>        
+                		</li>
+                		<li class="nav-item">
+                   			<a class="nav-link" href="member/signOut">로그아웃</a>        
+                		</li>
+                 	</c:when>
+                 	
+                 	<c:otherwise>
+                 		<li class="nav-item">
+                  			<a class="nav-link" href="${pageContext.request.contextPath}/member/signup">회원가입</a>
+                  			<!-- 정원 ${pageContext.request.contextPath}/member/join-->
+                 		</li>
+                 		<li class="nav-item">
+                   			<a class="nav-link" href="${pageContext.request.contextPath}/member/signin">로그인</a>        
+                		</li>
+                 	</c:otherwise>
+                 </c:choose>
   			</ul>
   		</div>
   	</div>
@@ -64,7 +81,7 @@
              	국내여행
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="#">제주</a>
+              <a class="dropdown-item" href="${pageContext.request.contextPath}/local/jeju">제주</a>
               <a class="dropdown-item" href="#">서울</a>
               <a class="dropdown-item" href="#">부산</a>
               <a class="dropdown-item" href="#">강원</a>
@@ -100,3 +117,10 @@
       </div>
     </div>
   </nav>
+  
+  <!-- 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+		$("#a").on("auto", function(event){
+			event.preventDefault();
+		});
+     </script> -->
