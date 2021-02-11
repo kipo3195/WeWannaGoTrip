@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -312,10 +313,17 @@
   </div> 
    -->
   <!-- /.container -->
-
+	
+	
  <!-- footer -->
  <%@ include file="common/footer.jsp" %>
-    
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+	<script>
+		var msg = '${msg}';
+	 	if(msg != null && msg != '') {
+	 		alert(msg);
+	 	}
+    </script>
  
 </body>
 

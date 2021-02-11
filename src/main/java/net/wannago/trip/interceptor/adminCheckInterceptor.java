@@ -1,6 +1,7 @@
 package net.wannago.trip.interceptor;
 
-import javax.servlet.RequestDispatcher;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -20,13 +21,17 @@ public class adminCheckInterceptor extends HandlerInterceptorAdapter{
 		/* RequestDispatcher rd = request.getRequestDispatcher("/admin/adminPage"); */
 		String msg = null;
 		
+		//관리자 아닐시 접근막기
 		if(admin == null) {
-		msg = "관리자만 접근 가능합니다.";
-		request.setAttribute("msg", msg);
-		System.out.println("여기출력");
-		//여기서부터 해결하기
-		response.sendRedirect("/");
-		/* rd.forward(request, response); */
+			
+		response.setContentType("text/html;charset=utf-8");
+		PrintWriter out = response.getWriter();
+		
+		out.print("<script>");
+		out.print("alert('올바른 접근이 아닙니다');");
+		out.print("history.go(-1);");
+		out.print("</script>");
+	
 			return false;
 		}
 		return true;
