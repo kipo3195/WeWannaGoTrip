@@ -34,7 +34,7 @@
       <div class="col-lg-3 mb-4">
         <div class="list-group">
           <a href="#" class="list-group-item">회원 정보관리</a>
-          <a href="#" class="list-group-item">호텔 정보 등록</a>
+          <a href="${pageContext.request.contextPath}/admin/hotelRegPage" class="list-group-item">호텔 정보 등록</a>
           <a href="#" class="list-group-item">카페 및 식당 정보 등록</a>
           <a href="#" class="list-group-item">관광지 정보 등록</a>
           <a href="#" class="list-group-item">공지사항 등록</a>

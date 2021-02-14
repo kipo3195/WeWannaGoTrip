@@ -11,9 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import net.koreate.util.PageMaker;
-import net.wannago.cafRes.vo.CaResVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -42,7 +42,18 @@ public class listController {
 
 		return entity;
 	}
-
+	
+	@GetMapping("local/jejuHotel/Detail/{hno}")
+	public ModelAndView detailPage(@PathVariable("hno") int hno,
+			ModelAndView mav){
+		
+		HotelVO vo = ls.getHotelVO(hno);
+		
+		mav.addObject("hotel", vo);
+		mav.setViewName("/local/hotel/detail/jejuHotelDetail");
+		return mav;
+		
+	}
 	
 	  
 	 
