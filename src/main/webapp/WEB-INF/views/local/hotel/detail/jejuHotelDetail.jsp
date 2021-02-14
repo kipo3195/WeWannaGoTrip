@@ -16,27 +16,31 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">첫번째 제주호텔 이름
-      <small>호텔 주소</small>
+    <h1 class="mt-4 mb-3">${hotel.hname}
+      <small>${hotel.haddress}</small>
     </h1>
 
-    <ol class="breadcrumb">
+   <!--  <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>
       </li>
       <li class="breadcrumb-item active">Portfolio Item</li>
-    </ol>
+    </ol> -->
 
     <!-- Portfolio Item Row -->
     <div class="row">
 
       <div class="col-md-8">
-        <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first.jpg" alt="">
+ 		<iframe src="${hotel.hgooglemap}" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
       </div>
 
       <div class="col-md-4">
-        <h3 class="my-3">호텔 정보</h3>
-        <p>호텔에 대한 간략한 소개와 정보가 들어갑니다.</p>
+        <h3 class="my-3">${hotel.hname}</h3>
+        <p>${hotel.hinfo}</p>
+        <p>${hotel.htel}</p>
+        <p>체크인 ${hotel.hcheckin} - 체크아웃 ${hotel.hcheckout}</p>
+        <p>${hotel.hlikecnt}</p>
+        <p>${hotel.hgrade}</p>
         <h3 class="my-3">부대시설</h3>
         <ul>
           <li>사용 편의 시설 1</li>
@@ -44,7 +48,7 @@
           <li>사용 편의 시설 3</li>
           <li>사용 편의 시설 4</li>
         </ul>
-            <a href="reservation" class="btn btn-primary">예약하러가기</a>
+            <a href="#" class="btn btn-primary">예약하러가기</a>
       </div>
 
     </div>
@@ -100,7 +104,7 @@
 
    <!-- Footer -->
    <%@ include file="../../../common/footer.jsp" %>
-   
+  
  
 </body>
 

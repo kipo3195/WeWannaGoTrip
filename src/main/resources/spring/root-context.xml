@@ -50,5 +50,12 @@
 		
 	<!-- dao패키지 모두 스캔 -->
 	<mybatis-spring:scan base-package="net.wannago.*.dao" />	
+	
+	
+	
+	<!-- 파일업로드 -->
+	<bean id="uploadFolder" class="java.lang.String">
+		<constructor-arg value="resources/img/jejuhotel/upload"/> <!-- 저장경로를 상대경로로 지정하는 방법 -->
+	</bean>
 		
 </beans>

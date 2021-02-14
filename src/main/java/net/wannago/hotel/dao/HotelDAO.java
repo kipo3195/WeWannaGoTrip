@@ -18,8 +18,11 @@ public interface HotelDAO {
 	public int listCount();
 	
 	@Select("SELECT * FROM pro_hotel ORDER BY "
-			+ " hno ASC limit #{cri.pageStart}, #{cri.perPageNum}")
+			+ " hno desc limit #{cri.pageStart}, #{cri.perPageNum}")
 	public List<HotelVO> hotellist(@Param("cri")Criteria cri);
+
+	@Select("SELECT * FROM pro_hotel WHERE hno = #{hno}")
+	public HotelVO getHotel(int hno);
 
 	
 

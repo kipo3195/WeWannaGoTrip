@@ -28,8 +28,10 @@
 
 
 		<!-- !-- 호텔 리스트 출력 -->
-		<div class="row"></div>
-
+		<div class="hotellist">
+	
+	
+		</div>
 		<%--  <c:choose>
   	<c:when test="${not empty hotellist}">
   		<c:forEach items="${hotellist}" var="h">
@@ -192,42 +194,56 @@
 		
 	}
 	
-		function printList(data){
-			var str = "";
-			$(data).each(function(){
-				var hno = this.hno;
-				var hname = this.hname;
-				var hinfo = this.hinfo;
-				var hprice = this.hprice;
-				var hscore = this.hscore;
-				var hlikecnt = this.hlikecnt;
-				var hregdate = this.hregdate;
-				var hmainimg = this.hmainimg;
-				
-				let date = new Date(hregdate);
-				fmtdate = getFormatDate(date);
-				
-				/* str += " <div class='row'> ";  */
-				str += " <div class='col-md-7' style='padding:15px;'> ";
-				str += " <a href='#'> ";
-		        str += " <img class='img-fluid rounded mb-3 mb-md-0'"
-		        str += " src='${pageContext.request.contextPath}/resources/img/jejuhotel/"+hmainimg+".jpg' alt=''> ";
-		        str += " </a> "; 
-		        str += " </div> ";
-		        str += " <div class='col-md-5'> ";
-		        str += " <h3>"+hname+"</h3> ";
-		        str += " <p>"+hinfo+"<br/>";
-		        str += " "+hprice+"원 <br>";
-		        str += " "+hscore+" <br/>";
-		        str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
-	        	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
-		        str += " <a class='btn btn-primary' href='jejuHotel/Detail'>호텔 상세보기";
-		        str += " <span class='glyphicon glyphicon-chevron-right'></span> "
-		        str += " </a>";
-		        str += " </div> ";
-			});
-			$(".row").append(str);
-		}
+	function printList(data){
+		var str = "";
+		$(data).each(function(){
+			var hno = this.hno;
+			var hname = this.hname;
+			var hinfo = this.hinfo;
+			var hcheckin = this.hcheckin;
+			var hcheckout = this.hcheckout;
+			var hscore = this.hscore;
+			var hprice = this.hprice;
+			var hlikecnt = this.hlikecnt;
+			var hregdate = this.hregdate;
+			var hmainimg = this.hmainimg;
+			var hgrade = this.hgrade;
+			
+			let date = new Date(hregdate);
+			fmtdate = getFormatDate(date);
+			
+			
+		    str += " <div class='card mb-4'>"; 
+			str += " <div class='card-body'> ";
+			str += " <div class='row'> ";  
+			str += " <div class='col-md-7' style='padding:15px;'> ";
+			str += " <a href='#'> ";
+	        str += " <img class='img-fluid rounded mb-3 mb-md-0'"
+	        str += " src='${pageContext.request.contextPath}/resources/img/jejuhotel/upload"+hmainimg+"' alt=''> ";
+	        str += " </a> "; 
+	        str += " </div> ";
+	        str += " <div class='col-md-5'> ";
+	        str += " <h3>"+hname+"</h3> ";
+	        str += " <p>"+hinfo+"<br/>";
+	        str += " <p>"+hprice+"원<br/>";
+	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
+	        str += " "+hgrade+" <br>";
+	        str += " 평균 평점:"+hscore+" <br/>";
+	        str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
+        	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
+	        str += " <a class='btn btn-primary' id='detailBtn' href='jejuHotel/Detail/"+hno+"'>호텔 상세보기";
+	        str += " <span class='glyphicon glyphicon-chevron-right'></span> "
+	        str += " </a>";
+	        str += " </div> ";
+	        str += " </div> ";
+	        str += " </div> ";
+	        str += " </div> ";
+	        
+	        
+		});
+		$(".hotellist").append(str);
+	}
+
 			
 
   
