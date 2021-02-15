@@ -18,6 +18,8 @@ public interface LocalService {
 
 	HotelVO getHotelVO(int hno);
 
+	List<String> getHotelDetailImg(int hno);
+
 
 
 	

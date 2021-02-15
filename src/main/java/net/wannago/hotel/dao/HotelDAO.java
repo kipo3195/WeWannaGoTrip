@@ -24,6 +24,9 @@ public interface HotelDAO {
 	@Select("SELECT * FROM pro_hotel WHERE hno = #{hno}")
 	public HotelVO getHotel(int hno);
 
+	@Select("SELECT * FROM pro_hotelDetail WHERE hno =#{hno}")
+	public List<String> getDetailImage(int hno);
+
 	
 
 	

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +61,17 @@
     <h3 class="my-4">Related Projects</h3>
 
     <div class="row">
+    
+    <c:choose>
+    	<c:when test="${not empty list}">
+    		<c:forEach var="n" items="${list}">
+					<img alt="" src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${n}">   				
+    		</c:forEach>
+    	</c:when>
+    
+    </c:choose>
 
-      <div class="col-md-3 col-sm-6 mb-4">
+     <%--  <div class="col-md-3 col-sm-6 mb-4">
         <a href="#">
           <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first1.jpeg" alt="">
         </a>
@@ -84,7 +94,7 @@
           <img class="img-fluid" src="${pageContext.request.contextPath}/resources/img/jejuhotel/first/first4.jpeg" alt="">
         </a>
       </div>
-
+ --%>
     </div>
     <!-- /.row -->
    

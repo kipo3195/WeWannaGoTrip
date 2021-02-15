@@ -48,8 +48,9 @@ public class listController {
 			ModelAndView mav){
 		
 		HotelVO vo = ls.getHotelVO(hno);
-		
+		List<String> list = ls.getHotelDetailImg(hno);
 		mav.addObject("hotel", vo);
+		mav.addObject("list",list);
 		mav.setViewName("/local/hotel/detail/jejuHotelDetail");
 		return mav;
 		
