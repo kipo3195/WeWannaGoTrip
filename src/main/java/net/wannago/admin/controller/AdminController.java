@@ -2,6 +2,7 @@ package net.wannago.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -10,12 +11,15 @@ import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -124,6 +128,34 @@ public class AdminController {
 		 
 		entity = new ResponseEntity<>(name, HttpStatus.CREATED);
 		return entity;
+	}
+	
+	@PostMapping(value="admin/DetailImgUpload")
+	@ResponseBody
+	public ResponseEntity<Object> DetailImageUpload(
+			@RequestParam("files") MultipartFile[] files) throws Exception{
+		ResponseEntity<Object> entity = null;
+		int pk= as.getPrimaryKey();
+		System.out.println("length"+files.length);
+		for(MultipartFile f : files) {
+			System.out.println(f.getOriginalFilename());
+		}
+		System.out.println("pk : "+pk);
+		try {
+			FileUtils utils = FileUtils.getInstance(uploadFolder);
+			List<String> fileList = utils.uploadFileDetail(files,pk);
+			System.out.println("detailImage : "+fileList);
+			entity = new ResponseEntity<>(fileList,HttpStatus.OK);
+		} catch (IOException e) {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type","text/plain;charset=utf-8");
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		
+		return entity;
+		
 	}
 	
 	

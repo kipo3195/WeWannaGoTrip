@@ -21,6 +21,14 @@
 	table{
 		padding:20px;
 	}
+	#detailFileList{
+		width:100%;
+		height:150px;
+		border:1px solid gray;
+		background-color:skyblue;
+		margin:auto;
+	
+	}
 </style>
 
 <body>
@@ -43,7 +51,7 @@
       <br/>
       
        <div class="row" id="hotelDetailPreview">
-      		 <div class="Temp">
+      		 <div class="DetailTemp">
 					<span>미리보기 시 이곳에 상세 화면 정보가 노출됩니다.</span>
 			</div>
       </div>
@@ -200,9 +208,14 @@
           <h5 class="card-header">상세 이미지 등록하기</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="file" id="detailImages" class="form-control" accept="image/*">
+            	<div id="detailFileList">  
+            		<span>
+            			 등록하실 파일을 여기에 등록하세요  (상세보기 페이지에는 4개의 이미지가 필요합니다.)
+            		</span>
+            	</div>
+             <!--  <input type="file" id="detailImages" class="form-control" accept="image/*">
               <span class="input-group-append">
-              </span>
+              </span> -->
             </div>
           </div>
         </div>
@@ -254,6 +267,7 @@
 	 			var hgrade = $("#hgrade").val();
 	 			console.log(hgrade);
 	 			var hprice = $("#hprice").val();
+	 			var hprimaryprice = $("#hprimaryprice").val();
 				var hmainimg = $("#hmainimg").val();
 				var hcheckin = $("#hcheckin").val();
 				var hcheckout = $("#hcheckout").val();
@@ -271,6 +285,7 @@
 		        str += " <div class='col-md-5'> ";
 		        str += " <h3>"+hname+"</h3> ";
 		        str += " <p>"+hinfo+"<br/>";
+		        str += " <p>"+hprimaryprice+"원<br/>";
 		        str += " <p>"+hprice+"원<br/>";
 		        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 		        str += " 호텔 등급:"+hgrade+" <br>";
@@ -283,37 +298,31 @@
 			
 			}
 			
+			//var contextPaht = ${pageContext}
+			
 		$("#mainImage").on("change",function(){
 			var files = this.files;
 			console.log(files);
-			var formData = new FormData(); //이게뭘까?
+			var formData = new FormData(); //태그 형태의 폼태그 
 			formData.append("file",files[0]);//name값으로 value넣음
 			console.log(formData);		
 			
 			$.ajax({
 				type:"POST",
-				url :"mainImgUpload",
-				contentType : false,
+				url :"mainImgUpload", // 나중에 관광지할때 contextPath 활용 해볼것   
+				contentType : false, //막아줘야 대용량 데이터를 전달 할 수있음
 				processData : false,
-			 	dataType : "text",
-				data : formData,
+			 	dataType : "text", 
+				data : formData, //중괄호 열고 닫고 할 필요없음. 
 				success : function(data){
 			 		console.log(data);
 			 	/* 	$(".mainImage").attr("src","${pageContext.request.contextPath}/img/jejuhotel/upload"+data); */
 					var str = "<input type='hidden' name='hmainimg' id= 'hmainimg' value='"+data+"'>";
 					$("#MainImgName").html(str);
 					
-					
 			 	}
-				
-				
 			});
-			
 		});	
-	
-			
-		//detailimages
-		
 	
 		
 		function getFormatDate(date){
@@ -324,6 +333,54 @@
 	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
 	    return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 	}
+		
+		
+		
+		//detailimage 등록하기  기본이벤트 막아주기
+		$("#detailFileList").on("dragEnter dragover",function(event){
+			event.preventDefault();
+		});
+		$("#detailFileList").on("drop",function(event){
+			event.preventDefault();
+			
+		var files = event.originalEvent.dataTransfer.files;
+		console.log(files);
+		
+		var maxSize = 10485760;
+		var formData = new FormData();
+				
+		for(var i =0; i<files.length; i++){
+			if(files[i].size > maxSize){
+				alert("등록할 수 없는 파일이 존재합니다");
+				return;
+			}else{
+				formData.append("files",files[i]);
+			}
+		};
+			
+			if(files.length != 4){
+				alert("이미지 파일은 4개여야 합니다");
+				return;
+			}
+			
+			
+			$.ajax({
+				type : "POST",
+				data : formData,
+				dataType : "json",
+				url : "DetailImgUpload",
+				contentType: false,
+				processData: false,
+				success : function(data){
+					console.log(data);
+				}
+			});
+		
+		
+		
+		});
+		
+		
 	
 	
 	</script>
