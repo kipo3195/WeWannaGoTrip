@@ -1,6 +1,7 @@
 package net.wannago.admin.dao;
 
 import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import net.wannago.admin.vo.adminDTO;
@@ -25,6 +26,12 @@ public interface adminDAO {
 
 	@Select("select hno from pro_hotel order by hregdate desc limit 1; ")
 	int getPrimaryKey();
+
+	@Insert("INSERT INTO pro_hotelDetail(hdeimg, hno) VALUES(#{f},LAST_INSERT_ID()")
+	void DetailImageReg(@Param("f") String f);
+
+	@Insert("INSERT INTO pro_hotelDetail(hdeimg, hno) VALUES(#{fullName},LAST_INSERT_ID())")
+	void addDetailImg(String fullName);
 	
 	
 	

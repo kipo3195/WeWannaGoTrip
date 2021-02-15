@@ -15,6 +15,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -77,10 +78,12 @@ public class AdminController {
 	
 	//호텔 등록 버튼 클릭
 	@PostMapping("admin/hotelReg")
+	@Transactional
 	public String hotelReg(HotelVO vo) {
 		
 		System.out.println(vo);
 		 as.hotelReg(vo);
+		
 		 
 		 return "redirect:/local/jejuhotel";
 		
@@ -145,6 +148,7 @@ public class AdminController {
 			FileUtils utils = FileUtils.getInstance(uploadFolder);
 			List<String> fileList = utils.uploadFileDetail(files,pk);
 			System.out.println("detailImage : "+fileList);
+			
 			entity = new ResponseEntity<>(fileList,HttpStatus.OK);
 		} catch (IOException e) {
 			HttpHeaders header = new HttpHeaders();

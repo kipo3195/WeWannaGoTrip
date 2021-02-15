@@ -49,6 +49,12 @@ public class LocalServiceImpl implements LocalService{
 		return dao.getHotel(hno);
 	}
 
+	@Override
+	public List<String> getHotelDetailImg(int hno) {
+		System.out.println("이거되나?? : "+dao.getDetailImage(hno));
+		return dao.getDetailImage(hno);
+	}
+
 	
 	
 

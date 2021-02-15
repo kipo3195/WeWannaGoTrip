@@ -1,6 +1,7 @@
 package net.wannago.hotel.vo;
 
 import java.sql.Date;
+import java.util.List;
 
 import lombok.Data;
 
@@ -26,5 +27,7 @@ public class HotelVO {
 	private String hmainimg;
 	private String hdetailimg;
 	private String hfacility;
+	
+	private List<String> file;
 	
 }

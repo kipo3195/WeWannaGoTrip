@@ -166,7 +166,8 @@ public class FileUtils {
 	}
 
 	private String uploadFiles(MultipartFile file,int pk) throws IOException {
-		String uploadFolder = getFolder();//연월일 문자열로 받아옴
+		String pkPath = new DecimalFormat("00000").format(pk+1);
+		String uploadFolder = getFolder()+File.separator+pkPath;//연월일 문자열로 받아옴
 		System.out.println("uploadFolder : "+ uploadFolder);
 		String originalName = file.getOriginalFilename();
 		//원본파일
@@ -175,7 +176,7 @@ public class FileUtils {
 		String savedName = uid.toString().replace("-", "")+"_"+originalName;
 		//랜덤한 이름을 생성해줌
 		
-		File uploadFileFolder = new File(uploadPath,uploadFolder+pk);
+		File uploadFileFolder = new File(uploadPath,uploadFolder);
 		if(!uploadFileFolder.exists()) {
 			uploadFileFolder.mkdirs();
 		}
@@ -199,9 +200,9 @@ public String makeFileUploadName(String uploadFolder, String savedName)throws IO
 		
 		String ext = savedName.substring(savedName.lastIndexOf(".")+1);
 		//파일의 확장자명을 확인
-		
+		System.out.println("섬네일 내부 uploadFolder"+uploadFolder);
 		String uploadName = uploadPath+File.separator+uploadFolder+File.separator+savedName;
-		
+		System.out.println("uploadName"+uploadName);
 		if(MediaUtils.getMediaType(ext) != null) {
 			System.out.println("IMAGE FILE");
 			
@@ -223,12 +224,9 @@ public String makeFileUploadName(String uploadFolder, String savedName)throws IO
 			//원본이미지와 섬네일 이미지 구분방법
 			uploadName = uploadPath+File.separator+uploadFolder+File.separator+"s_"+savedName;
 			file = new File(uploadName);
-			System.out.println("여기나옴1");
 			//이미지 이름 + 복사본 이미지 결합
 			ImageIO.write(sourceImage, ext, file);
-			System.out.println("여기나옴 2");
 			}else {
-			System.out.println("일반파일");
 			
 		}
 		//브라우저가 인식할 수있는 /형태로 바꿔주는 역할

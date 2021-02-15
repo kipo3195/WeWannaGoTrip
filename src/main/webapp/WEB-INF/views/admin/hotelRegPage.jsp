@@ -27,8 +27,14 @@
 		border:1px solid gray;
 		background-color:skyblue;
 		margin:auto;
-	
 	}
+	#detailFileList li{
+		float:left;
+		padding:10px;
+		list-style: none;
+	}
+	
+	
 </style>
 
 <body>
@@ -49,21 +55,23 @@
 				</div>	
       </div>
       <br/>
-      
+      <hr/>
        <div class="row" id="hotelDetailPreview">
-      		 <div class="DetailTemp">
+      		 <div class="Temp">
 					<span>미리보기 시 이곳에 상세 화면 정보가 노출됩니다.</span>
 			</div>
       </div>
+   
+				
        <br/>
  
    		 
         <div class="card mb-4">
-     	 <form action="hotelReg" method="post">
+     	 <form action="hotelReg" method="post" id="hotelReg">
      	 <h5 class="card-header">호텔 상세정보 입력 &nbsp;&nbsp;
      		 <input type="button" value="미리보기" id="previewBtn">
           	&nbsp;
-          	 <input type="submit" value="호텔 등록하기" id="hotelRegSubmit">
+          	 <input type="button" value="호텔 등록하기" id="hotelRegSubmit">
           	
           	</h5>
           	
@@ -80,12 +88,12 @@
 			</tr>
 			<tr>
 				<td>
-	 				호텔 주소 : <input type="text" name="haddress" required/>
+	 				호텔 주소 : <input type="text" name="haddress" id="haddress" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-	 				호텔 전화번호 : <input type="text" name="htel" placeholder="012-345-5678" required/>
+	 				호텔 전화번호 : <input type="text" name="htel" id="htel" placeholder="012-345-5678" required/>
 	 			
 				</td>
 			</tr>
@@ -180,13 +188,19 @@
 			<tr>
 				<td>
 			<div id="MainImgName">
+			
               </div>
 				</td>
 			</tr>
-		
+			<tr>
+				<td>
+			<div class="detailFileList">
 			
+			</div>
+				</td>
+			</tr>
 			</table>
-			</form>
+		</form>
   	</div>
 			<!-- 메인 이미지 -->
 		<div class="card mb-4">
@@ -205,14 +219,16 @@
   
 			<!-- 상세 이미지 -->
 		<div class="card mb-4">
-          <h5 class="card-header">상세 이미지 등록하기</h5>
+          <h5 class="card-header">상세 이미지 등록하기(4개 까지 등록 가능)</h5>
           <div class="card-body">
             <div class="input-group">
+         		 
             	<div id="detailFileList">  
-            		<span>
+            		  <span id="detailInfo">
             			 등록하실 파일을 여기에 등록하세요  (상세보기 페이지에는 4개의 이미지가 필요합니다.)
             		</span>
             	</div>
+            	
              <!--  <input type="file" id="detailImages" class="form-control" accept="image/*">
               <span class="input-group-append">
               </span> -->
@@ -227,13 +243,12 @@
     
     
     
-    
    	<!-- Footer -->
    	<%@ include file="../common/footer.jsp" %>
    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	
-		
+	var contextPath = "${pageContext.request.contextPath}";
 		//셀렉트 값 가져와서 직접입력 선택시 속성 변경가능
 		function changeSelect(){
 			var select = document.getElementById("func4");
@@ -254,6 +269,8 @@
 				
 				preMain();
 				//미리보기 - 상세 호출
+				preDetail();
+				
 			});
 			
 			
@@ -262,10 +279,8 @@
 				var str = "";
 				
 				var hname = $("#hname").val();
-				console.log(hname);
 	 			var hinfo = $("#hinfo").val();
 	 			var hgrade = $("#hgrade").val();
-	 			console.log(hgrade);
 	 			var hprice = $("#hprice").val();
 	 			var hprimaryprice = $("#hprimaryprice").val();
 				var hmainimg = $("#hmainimg").val();
@@ -294,11 +309,50 @@
 		    	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
 		        str += " </a>";
 		        str += " </div> ";
+		        
 			$("#hotelMainPreview").html(str);
 			
-			}
+		}
 			
-			//var contextPaht = ${pageContext}
+			function preDetail(){
+				
+				var hname = $("#hname").val();
+	 			var hinfo = $("#hinfo").val();
+	 			var hgrade = $("#hgrade").val();
+	 			var haddress = $("#haddress").val();
+	 			var htel = $("#htel").val();
+	 			var hprice = $("#hprice").val();
+	 			var hprimaryprice = $("#hprimaryprice").val();
+				var hcheckin = $("#hcheckin").val();
+				var hcheckout = $("#hcheckout").val();
+				
+				
+				var str = "";
+				str += " <h1 class='mt-4 mb-3'>"+hname+"<small>"+haddress+"</small> </h1> ";
+				str += " <div class='col-md-8'> ";
+				str += " </div> ";
+				str += " <div class='col-md-4'> ";
+				str += " <h3 class='my-3'>"+hname+"</h3> ";
+				str += " <p>"+hinfo+"</p> ";
+				str += " <p>"+htel+"</p> ";
+				str += " <p>체크인:"+hcheckin+" - 체크아웃"+hcheckout+" </p> ";
+				str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>좋아요 수<br/> "; 
+				str += " <p>"+hgrade+"</p> ";
+				str += " <h3 class='my-3'>부대시설</h3> ";
+				str += " <ul> ";
+				str += " <li>사용 편의 시설 1</li>";
+				str += " <li>사용 편의 시설 2</li>";
+				str += " <li>사용 편의 시설 3</li>";
+				str += " <li>사용 편의 시설 4</li>";
+				str += " </ul> ";
+				
+				$("#hotelDetailPreview").html(str);
+
+				
+				
+			}
+		
+			
 			
 		$("#mainImage").on("change",function(){
 			var files = this.files;
@@ -335,7 +389,7 @@
 	}
 		
 		
-		
+		var maxImageCnt = 0;
 		//detailimage 등록하기  기본이벤트 막아주기
 		$("#detailFileList").on("dragEnter dragover",function(event){
 			event.preventDefault();
@@ -348,21 +402,23 @@
 		
 		var maxSize = 10485760;
 		var formData = new FormData();
+		
 				
 		for(var i =0; i<files.length; i++){
 			if(files[i].size > maxSize){
 				alert("등록할 수 없는 파일이 존재합니다");
 				return;
 			}else{
+				if(maxImageCnt>=4){
+					alert("최대 등록할 수 있는 이미지 갯수를 초과하였습니다.");
+					return;
+				}else{
 				formData.append("files",files[i]);
+				maxImageCnt += 1;
+				console.log(maxImageCnt);
+				}
 			}
 		};
-			
-			if(files.length != 4){
-				alert("이미지 파일은 4개여야 합니다");
-				return;
-			}
-			
 			
 			$.ajax({
 				type : "POST",
@@ -372,13 +428,83 @@
 				contentType: false,
 				processData: false,
 				success : function(data){
-					console.log(data);
+				
+					for(var i=0; i<data.length; i++){
+					var detailImage = getDetailImage(data[i]);
+					console.log(detailImage);
+					var html = "<li>";
+					html+= "<img src='"+detailImage.imgSrc+"'/>"
+					html+= "<div>";
+					html+= "<a href='"+detailImage.getLink+"' target='_blank'>"+detailImage.fileName+"</a>";
+					html+= "</div>";
+					html+= "<div>";
+					html+= "<a href='"+detailImage.fullName+"' class='delBtn'>닫기</a>";
+					html+= "</div>";
+					html+= "</li>";
+					$("#detailInfo").remove();
+					$("#detailFileList").append(html);
+					$(".detailFileList").append(html);
+					
+					}
+					
 				}
 			});
 		
 		
 		
 		});
+		
+		function checkImageType(fileName){
+			var pattern = /jpg|gif|png|jpeg/i;
+			return fileName.match(pattern);
+			//return fileName.indexOf("s_") > -1 ? true : false;
+		}
+		
+		function getDetailImage(fullName){
+			console.log(fullName);
+			var imgSrc, fileName, getLink;
+			
+			if(checkImageType(fullName)){
+				// 이미지 파일
+				imgSrc = contextPath+"/resources/img/jejuhotel/upload"+fullName;
+				console.log(imgSrc);
+				getLink = contextPath+"/resources/img/jejuhotel/upload"+fullName.replace("s_","");
+			}else{
+				// 일반 파일
+				alert("등록 할 수 없는 파일의 형태 입니다.");
+				return;
+				/* imgSrc = contextPath+"/resources/img/file.png";
+				getLink = contextPath+"/resources/img/jejuhotel/upload/upload"+fullName; */
+			}
+			
+			fileName = fullName.substr(fullName.lastIndexOf("_")+1);
+			
+			return {
+					fileName : fileName,
+					imgSrc : imgSrc, 
+					fullName : fullName, 
+					getLink : getLink
+				   };
+			
+		}
+			
+			//호텔 등록시 동작
+			$("#hotelRegSubmit").click(function(){
+			
+			var str = "";
+			var ViewDetail = $(".detailFileList .delBtn");
+			
+			$(ViewDetail).each(function(index){
+				var fullName = $(this).attr("href");
+				console.log(fullName);
+				str += "<input type='hidden' name='file["+index+"]' value='"+fullName+"' /> ";
+			});
+			
+			$("#hotelReg").append(str);
+			$("#hotelReg").submit();
+ 	});
+		
+		
 		
 		
 	
