@@ -2,15 +2,42 @@ package net.wannago.admin.util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.UUID;
 
 import javax.imageio.ImageIO;
 
 import org.imgscalr.Scalr;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
+
+
 
 public class FileUtils {
+	
+	String uploadPath;
+	
+	private static FileUtils utils;//싱글톤 형태로 등록
+	
+	private FileUtils( ) {}; //기본생성자가 private라서 기본생성자로 생성불가
+	
+	private FileUtils(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+	
+	//외부에서 호출 할 수 있도록
+	public static FileUtils getInstance(String uploadPath) {
+		if(utils == null) {
+			utils= new FileUtils(uploadPath);
+		}
+		return utils;
+	}
 
 	public static String uploadFile(
 			String originalFilename, //원본파일이름
@@ -93,6 +120,7 @@ public class FileUtils {
 		String pkPath =datePath+File.separator
 				+ new DecimalFormat("00000").format(pk+1);
 		
+		
 		mkDir(uploadPath,yearPath,monthPath,datePath,pkPath);
 		
 		return pkPath;
@@ -117,6 +145,107 @@ public class FileUtils {
 			}
 		}
 		
+		
+		
+	}
+
+	public List<String> uploadFileDetail(MultipartFile[] files,int pk) throws IOException {
+		List<String> fileList = new ArrayList<>();
+		for(MultipartFile file : files) {
+			try {
+				String fileName = uploadFiles(file,pk);
+				fileList.add(fileName);
+			} catch (Exception e) {
+				e.printStackTrace();
+				throw new IOException("업로드 할 수 없는 파일이 포함 되어 있습니다");
+			}
+			
+		}
+		
+		return fileList;
+	}
+
+	private String uploadFiles(MultipartFile file,int pk) throws IOException {
+		String uploadFolder = getFolder();//연월일 문자열로 받아옴
+		System.out.println("uploadFolder : "+ uploadFolder);
+		String originalName = file.getOriginalFilename();
+		//원본파일
+		
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString().replace("-", "")+"_"+originalName;
+		//랜덤한 이름을 생성해줌
+		
+		File uploadFileFolder = new File(uploadPath,uploadFolder+pk);
+		if(!uploadFileFolder.exists()) {
+			uploadFileFolder.mkdirs();
+		}
+		
+		
+		File upload = new File(uploadPath+File.separator+uploadFolder,savedName);
+		//경로생성
+		
+		//파일에 대한 데이터를 가져옴
+		byte[] bytes = file.getBytes();
+		
+		//경로에 파일 생성 파일정보를 가지고 반복해서 출력해 주는 역할
+		FileCopyUtils.copy(bytes, upload);
+		
+		//브라우저가 인식 할 수 있는 경로를 알려줘야하고 만약 이미지 파일이면 섬네일 사진 만들고 섬네일경로를 알려줌
+		System.out.println("섬네일 가기 전");
+		return makeFileUploadName(uploadFolder, savedName);
+		
+	}
+public String makeFileUploadName(String uploadFolder, String savedName)throws IOException{
+		
+		String ext = savedName.substring(savedName.lastIndexOf(".")+1);
+		//파일의 확장자명을 확인
+		
+		String uploadName = uploadPath+File.separator+uploadFolder+File.separator+savedName;
+		
+		if(MediaUtils.getMediaType(ext) != null) {
+			System.out.println("IMAGE FILE");
+			
+			//섬네일만들껀데 일단 원본파일을 가져와야함
+			//해당되는 위치에 해당되는 파일의 정보를   가져 올수 있음
+			
+			File file= new File(uploadPath+File.separator+uploadFolder,savedName);
+			
+			BufferedImage originImage = ImageIO.read(file);
+			//이미지 형태로 만들어줌
+			
+			
+			//복사본 만들기
+			BufferedImage sourceImage 
+			= Scalr.resize(originImage,Scalr.Method.AUTOMATIC,
+					Scalr.Mode.FIT_TO_HEIGHT,100);
+			System.out.println("여기나옴");
+			
+			//원본이미지와 섬네일 이미지 구분방법
+			uploadName = uploadPath+File.separator+uploadFolder+File.separator+"s_"+savedName;
+			file = new File(uploadName);
+			System.out.println("여기나옴1");
+			//이미지 이름 + 복사본 이미지 결합
+			ImageIO.write(sourceImage, ext, file);
+			System.out.println("여기나옴 2");
+			}else {
+			System.out.println("일반파일");
+			
+		}
+		//브라우저가 인식할 수있는 /형태로 바꿔주는 역할
+		uploadName = uploadName.substring(uploadPath.length()).replace(File.separatorChar,'/');
+		System.out.println(uploadName);
+		return uploadName;
+	}
+	
+	
+	
+	public String getFolder() {
+		//2021/02/10의 형식으로 만듬 
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(new Date());
+		System.out.println(" str : "+str);
+		return str.replace("-", File.separator);
 		
 		
 	}
