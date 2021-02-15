@@ -44,6 +44,12 @@ public class LocalServiceImpl implements LocalService{
 	}
 
 	
+	@Override
+	public HotelVO getHotelVO(int hno) {
+		return dao.getHotel(hno);
+	}
+
+	
 	
 
 

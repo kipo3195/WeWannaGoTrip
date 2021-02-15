@@ -32,5 +32,14 @@
 	<!-- pom.xml 라이브러리 등록 
 	     root-context transactionproxy등록 
 	     servlet-context에도 aop등록       -->
+	     
+	     
+	     
+	  <beans:bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10240000"/><!-- 바이트단위 최대 얼마만큼의 사이즈를 업로드 시켜줄것인가 default -1 용량제한없이-->
+		<beans:property name="maxInMemorySize" value="1024"/><!-- default 값 1024 -->
+		<beans:property name="defaultEncoding" value="UTF-8"/><!-- default 브라우저의 기본인코딩 iso8??? -->
+	</beans:bean>
 	
 </beans:beans>

@@ -12,9 +12,10 @@ public class HotelVO {
 	private String hinfo;
 	private String haddress;
 	private String htel;
-	private String email;
-	private String hopentoclose;
-	private String googlemap;
+	private String hemail;
+	private String hcheckin;
+	private String hcheckout;
+	private String hgooglemap;
 	private String hlikecnt;
 	private Date hregdate;
 	private Date hupdatedate;
@@ -24,5 +25,6 @@ public class HotelVO {
 	private int hprimaryprice;
 	private String hmainimg;
 	private String hdetailimg;
+	private String hfacility;
 	
 }

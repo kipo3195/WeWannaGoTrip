@@ -16,6 +16,8 @@ public interface LocalService {
 
 	PageMaker getPageMaker(int page);
 
+	HotelVO getHotelVO(int hno);
+
 
 
 	
