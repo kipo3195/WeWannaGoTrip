@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -24,7 +23,7 @@ public class MemberController {
     
 	@Inject
 	MemberService ms;
-	
+
 	
 	@RequestMapping("/signup")
 	public String signup() {
@@ -54,6 +53,7 @@ public class MemberController {
 					RedirectAttributes rttr) throws Exception{
 		
 		ms.signup(vo);
+		System.out.println("vo :"+vo);
 		rttr.addFlashAttribute("message","회원가입 성공♬");
 		
 		return "redirect:/member/signin";
@@ -66,13 +66,16 @@ public class MemberController {
 	public ModelAndView signInPost(
 					ModelAndView mav,
 					LoginDTO dto) throws Exception { //로그인 매개변수 3개
-		//로그인 처리
+		
+		//로그인 처리   
 		MemberVO vo = ms.signin(dto); //아이디가 일치하면 member정보 있음
 		mav.addObject("memberInfo",vo);
 		mav.addObject("loginDTO",dto);
+		
 		ms.signin(dto);
 		System.out.println("controller : "+mav.getModel().get("memberInfo"));
 		System.out.println("controller : "+mav.getModel().get("loginDTO"));
+		
 		mav.setViewName("redirect:/");
 		
 		return mav;
@@ -80,7 +83,7 @@ public class MemberController {
 	
 	
 	// 로그아웃
-	@GetMapping("/signOut")
+	@RequestMapping("/signOut")
 	public String signOut(
 			HttpSession session,
 			HttpServletResponse response,
