@@ -1,5 +1,7 @@
 package net.wannago.admin.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -32,6 +34,11 @@ public interface adminDAO {
 
 	@Insert("INSERT INTO pro_hotelDetail(hdeimg, hno) VALUES(#{fullName},LAST_INSERT_ID())")
 	void addDetailImg(String fullName);
+
+	//호텔 검색 # 은 양쪽에 '' 붙음. 그래서 문자열을 자체로 인식하려면 $ 로 사용하기
+		@Select("SELECT * FROM pro_hotel WHERE ${option} LIKE CONCAT('%', #{keyword},'%')") 
+		List<HotelVO> hotelSearch(@Param("option") String option,@Param("keyword") String keyword);
+	
 	
 	
 	

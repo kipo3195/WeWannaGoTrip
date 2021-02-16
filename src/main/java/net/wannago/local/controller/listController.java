@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.koreate.util.PageMaker;
+import net.wannago.admin.vo.SearchVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -55,6 +56,25 @@ public class listController {
 		return mav;
 		
 	}
+	
+	@GetMapping("local/SearchInfo")
+	public ResponseEntity<Object> SearchInfo(SearchVO vo) {
+ResponseEntity<Object> entity = null;
+		
+		System.out.println("vo 출력 : "+vo);
+		
+		List<HotelVO> hotel = ls.searchInfo(vo);
+		System.out.println("controller hotelList : "+hotel);
+		
+		try {
+			entity = new ResponseEntity<>(hotel,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
 	
 	  
 	 

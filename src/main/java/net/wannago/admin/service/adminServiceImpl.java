@@ -7,6 +7,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import net.wannago.admin.dao.adminDAO;
+import net.wannago.admin.vo.SearchVO;
 import net.wannago.admin.vo.adminDTO;
 import net.wannago.admin.vo.adminVO;
 import net.wannago.hotel.vo.HotelVO;
@@ -56,6 +57,41 @@ public class adminServiceImpl implements adminService {
 			dao.DetailImageReg(f);
 		}
 		
+	}
+
+	public List<HotelVO> searchInfo(SearchVO vo) {
+		 
+		List<HotelVO> hotel = null;
+		switch(vo.getCategory()) {
+		
+		case "호텔":
+			
+			//이름으로 비교
+			if(vo.getSearchOption().equals("이름")) {
+				String option = "hname";
+				hotel = dao.hotelSearch(option,vo.getKeyword());
+				return hotel;
+			}
+			
+			break;
+		case "카페&식당":
+			System.out.println("카페 및 식당");
+			
+			break;
+		case "관광지":
+			System.out.println("관광지");
+			
+			
+			break;
+		}
+		
+		
+		vo.getKeyword();
+		vo.getSearchOption();
+		
+		
+		
+		return hotel;
 	}
 
 	

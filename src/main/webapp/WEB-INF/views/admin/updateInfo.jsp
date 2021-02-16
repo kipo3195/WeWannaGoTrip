@@ -11,6 +11,7 @@
 	.Temp{
 		width:100%;
 		height:150px;
+		line-height:150px;
 		border:1px solid gray;
 		background-color:infobackground;
 		margin:auto;
@@ -39,16 +40,36 @@
 		text-align: center;
 		height:900px;
 	}
-	
-	 table {
-            
+		
+	     table {
+           margin: auto;
+           padding: 30px;  
+          }
+          table td{
+           padding:10px;
           }
        .a {
-            text-align: left;
-            font-size: 20px;
-			padding : 10px;    
-			
+            text-align: right;
+            padding: 12px;        
           }
+        
+        div{ 
+          text-align: center;
+         }
+          
+         #b{
+         /* margin-top : 10px; */
+         list-style: none;
+         text-align : left;
+        
+         }
+         
+         #b:first-child{
+         	margin-top : 20px;
+         }
+       #info{
+       border:1px solid gray;
+       }  
 	
 	
 </style>
@@ -60,9 +81,45 @@
    
   <!-- Page Content -->
   <div class="container">
+  
 
-    <h1 class="mt-4 mb-3">호텔 등록 페이지
+
+    <h1 class="mt-4 mb-3">호텔 수정 & 삭제 페이지
     </h1>
+    
+      <div>
+  	
+  </div>
+    <div class="card mb-4">
+          <h5 class="card-header">
+          	검색 조회 &nbsp;
+  			카테고리&nbsp;<select id="category" name="#">
+	 					<option> 호텔</option>				
+		 				<option> 카페&식당</option>		
+		 				<option> 관광지 </option>		
+	 				</select>
+	 			 &nbsp;
+	 		검색 옵션&nbsp;<select id="SearchOption" name="#">
+	 					<option> 이름 </option>			
+	 					<option> 기타 </option>			
+	 					<option> 기타 </option>			
+	 				</select>
+  	
+  			</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." id="searchKeyword" name="searchKeyword">
+              <span class="input-group-append">
+                <button class="btn btn-secondary" type="button" id="searchBtn">검색</button>
+              </span>
+              
+            </div>
+				<div id="SearchedList">
+              	 검색 버튼 클릭시 이곳에 호텔 정보가 노출됩니다.
+              </div>	
+          </div>
+        </div>
+  
     	
       <div class="row" id="hotelMainPreview">
 		      	
@@ -83,11 +140,11 @@
  
    		 
         <div class="card mb-4">
-     	 <form action="hotelReg" method="post" id="hotelReg">
+     	 <form action="hotelUpdate" method="post" id="hotelReg">
      	 <h5 class="card-header">호텔 상세정보 입력 &nbsp;&nbsp;
      		 <input type="button" value="미리보기" id="previewBtn">
           	&nbsp;
-          	 <input type="button" value="호텔 등록하기" id="hotelRegSubmit">
+          	 <input type="button" value="정보 수정 " id="hotelUpdateBtn">
           	
           	</h5>
           	
@@ -101,32 +158,49 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 소개
+				</td>
 				<td>
-	 				호텔 소개 : <textarea name="hinfo" id="hinfo" required></textarea>
+	 				<textarea name="hinfo" id="hinfo" required></textarea>
 	 			</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 주소
+				</td>
 				<td>
-	 				호텔 주소 : <input type="text" name="haddress" id="haddress" required/>
+	 				 <input type="text" name="haddress" id="haddress" required/>
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 전화번호
+				</td>
 				<td>
-	 				호텔 전화번호 : <input type="text" name="htel" id="htel" placeholder="012-345-5678" required/>
-	 			
+	 				<input type="text" name="htel" id="htel" placeholder="012-345-5678" required/>
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 이메일
+				</td>
 				<td>
-	 				호텔 이메일 : <input type="email" name="hemail" placeholder="hotel@hotel.com" required/>
+	 				 <input type="email" name="hemail" placeholder="hotel@hotel.com" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					호텔 체크인 : <input type="text" name="hcheckin" id="hcheckin" required/>
+				<td class="a">
+					호텔 체크인
 				</td>
 				<td>
-					호텔 체크아웃 : <input type="text" name="hcheckout" id="hcheckout" required/>
+					 <input type="text" name="hcheckin" id="hcheckin" required/>
+				</td>
+				<td class="a">
+					호텔 체크아웃
+				</td>
+				<td>
+					 <input type="text" name="hcheckout" id="hcheckout" required/>
 	 			<!-- 	호텔 체크아웃 : 
 	 				<select id="hopentoclose" name="hotelchekout">
 	 					<option>11 : 00</option>				
@@ -140,13 +214,18 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					구글 맵 주소
+				</td>
 				<td>
-	 				구글 맵 주소 : <input type="text" name="hgooglemap" required width="5"/>
+	 				<input type="text" name="hgooglemap" required width="5"/>
 				</td>
 			</tr>
 			<tr>
-				<td>
-	 				호텔 등급 : 
+				<td class="a">
+					호텔 등급
+				</td>
+				<td> 
 	 				 <input type="text" name="hgrade" id="hgrade" required width="5"/>
 	 				<!-- <select id="hgrade">
 	 					<option>6성급</option>				
@@ -157,51 +236,65 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 기본 가격
+				</td>
 				<td>
-	 				호텔 기본 가격  : <input type="text" name="hprimaryprice" required width="5"/>원
+	 				<input type="text" name="hprimaryprice" required width="5"/>원
 				</td>
 			</tr>
 			<tr>	
-				<td>
+				<td class="a">
 					주요시설
 				</td>	
 				<td>
-				<div>
-				놀이 시설
-	 			<select id="func1">
-	 					<option>수영장</option>				
-		 				<option>오락시설</option>				
-		 				<option>노래방</option>				
-		 				<option>카지노</option>	
-	 				</select>
-	 			</div>
-	 			<div>
-				라운지 & 식사
-	 			<select id="func2">
-	 					<option>조식가능</option>				
-		 				<option>레스토랑</option>				
-		 				<option>바  & 펍</option>				
-		 				<option>무료라운지</option>	
-	 				</select>
-	 			</div>	
-				<div>
-				서비스
-	 			<select id="func3">
-	 					<option>연박할인</option>				
-		 				<option>공항셔틀</option>				
-		 				<option>lundery</option>				
-		 				<option>룸서비스</option>	
-	 				</select>
-				</div>
-					<div id="func44">
-				주요 기능 4
-	 			<select id="func4" name="func4" onchange="changeSelect()">
-	 					<option>수영장</option>				
-		 				<option>노래방</option>				
-		 				<option>카지노</option>	
-		 				<option value="enter">직접입력</option>				
-	 				</select>
+					<div style="padding:5px; margin-top:5px;">
+						놀이 시설
+					</div>
+					<div>
+	 					<select id="func1">
+	 						<option>수영장</option>				
+		 					<option>오락시설</option>				
+		 					<option>노래방</option>				
+		 					<option>카지노</option>	
+	 					</select>
 	 				</div>
+	 				<div style="margin-top:36px;">
+						라운지 & 식사
+					</div>
+					<div>
+	 					<select id="func2">
+	 						<option>조식가능</option>				
+		 					<option>레스토랑</option>				
+		 					<option>바  & 펍</option>				
+		 					<option>무료라운지</option>	
+	 					</select>
+	 				</div>	
+				</td>
+				<td>
+					<div style="padding:5px; margin-top:5px;">
+						서비스
+					</div>
+					<div>
+	 					<select id="func3">
+	 						<option>연박할인</option>				
+		 					<option>공항셔틀</option>				
+		 					<option>lundery</option>				
+		 					<option>룸서비스</option>	
+	 					</select>
+					</div>
+					<div id="func44" style="margin-top:36px;">
+						주요 기능 4
+					</div>
+					<div >	
+	 					<select id="func4" name="func4" onchange="changeSelect()">
+	 						<option>수영장</option>				
+		 					<option>노래방</option>				
+		 					<option>카지노</option>	
+		 					<option value="enter">직접입력</option>				
+	 					</select>
+	 				</div>
+				
 				</td>
 			</tr>
 			<tr>
@@ -226,7 +319,7 @@
           <h5 class="card-header">메인 이미지 등록하기</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="file" class="form-control" placeholder="메인 이미지를 등록하세요" id="mainImage">
+              <input type="file" class="form-control" placeholder="메인 이미지를 등록하세요" id="mainImage" >
               <span class="input-group-append">
               </span>
             
@@ -508,8 +601,8 @@
 			
 		}
 			
-			//호텔 등록시 동작
-			$("#hotelRegSubmit").click(function(){
+			//호텔 수정시
+			$("#hotelUpdateBtn").click(function(){
 			
 			var str = "";
 			var ViewDetail = $(".detailFileList .delBtn");
@@ -520,12 +613,70 @@
 				/* str += "<input type='hidden' name='file["+index+"]' value='"+fullName+"' /> "; */
 			});
 			
-			/* $("#hotelReg").append(str); */
-			$("#hotelReg").submit();
+			/* $("#hotelUpdate").append(str); */
+			/* $("#hotelUpdate").submit(); */
  	});
 		
 		
-		
+			
+			
+			//검색//
+			
+			$("#searchBtn").click(function(){
+				var keyword = $("#searchKeyword").val();
+				var category = $("#category option:selected").val();
+				var SearchOption = $("#SearchOption option:selected").val();
+
+				console.log(keyword);
+				console.log(category);
+				console.log(SearchOption);
+				
+				$.ajax({
+					type:"get",
+					url:"SearchInfo",
+					data:{
+						keyword :keyword,
+						category:category,
+						SearchOption:SearchOption
+					},
+					dataType:"json",
+					success : function(data){
+						console.log(data);
+						var str = "";
+					/* 	var str = " <table id='info'> ";
+							str +=" <tr><td>호텔이름</td><td>호텔 주소</td><td><호텔전화번호></td></tr> "
+							str +=" </table>"; */
+						$(data).each(function() {
+							var hno = this.hno;
+							var hname = this.hname;
+							var haddress = this.haddress;
+							var htel = this.htel;
+							console.log(hname);
+							str += "<li id='b'><a id='atag' href='"+hno+"'>'"+hno+"' ";
+							str += " '"+hname+"' ";
+							str += " '"+haddress+"' ";
+							str += " '"+htel+"'</a></li> ";
+							str += "<br>";
+							
+							$("#SearchedList").html(str);
+						});
+						
+					}
+					
+				});
+			
+			});
+			
+			//리스트 내 호텔 검색 결과 선택시
+			$("#SearchedList").on("click","li a",function(){
+				event.preventDefault();
+				var hno = $(this).attr("href");
+				console.log(hno);
+				
+				
+				
+			});
+			
 		
 	
 	
