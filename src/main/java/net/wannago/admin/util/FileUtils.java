@@ -84,7 +84,34 @@ public class FileUtils {
 			
 			BufferedImage image = ImageIO.read(file);
 			//이미지 정보를 파일객체 정보를 이용하여 읽어온다음 , gui환경에서 사용 할 수있음. 읽어올수 있는것이 이미지여야한다
-			BufferedImage sourceImage = Scalr.resize(image, 300, 700);
+			
+			
+			int dw = 750 , dh = 350;
+			int ow = image.getWidth(); 
+			int oh = image.getHeight();
+			
+			int pd = 0;
+			if(ow > oh) 
+			{ pd = (int)(Math.abs((dh * ow / (double)dw) - oh) / 2d); }
+			else { pd = (int)(Math.abs((dw * oh / (double)dh) - ow) / 2d); }
+			
+			ow = image.getWidth(); 
+			oh = image.getHeight();
+			
+			
+			int nw = ow; int nh = (ow * dh) / dw; if(nh > oh) { nw = (oh * dw) / dh; nh = oh; }
+
+			
+			BufferedImage cropImg = Scalr.crop(image, (ow-nw)/2, (oh-nh)/2, nw, nh);
+
+
+			BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
+
+			
+			
+			
+			
+			/* BufferedImage sourceImage = Scalr.resize(image, 300, 700); */
 			//TODO 화면 비율 규격 설정해야함.
 			
 			//썸네일과 원본 이미지를 구분 할 방법
@@ -95,7 +122,7 @@ public class FileUtils {
 			String formatName = savedName.substring(savedName.lastIndexOf(".")+1);
 				
 			//sourceimage를 file1위치에 해당되는 이름으로 formatName 형식으로 
-			ImageIO.write(sourceImage, formatName, file1);
+			ImageIO.write(destImg, formatName, file1);
 			
 			String name = thumnailImage
 					.substring(uploadFolder.length())
@@ -214,18 +241,45 @@ public String makeFileUploadName(String uploadFolder, String savedName)throws IO
 			BufferedImage originImage = ImageIO.read(file);
 			//이미지 형태로 만들어줌
 			
+			int dw = 250, dh = 150;
+			int ow = originImage.getWidth(); 
+			int oh = originImage.getHeight();
 			
-			//복사본 만들기
-			BufferedImage sourceImage 
-			= Scalr.resize(originImage,Scalr.Method.AUTOMATIC,
-					Scalr.Mode.FIT_TO_HEIGHT,100);
+			int pd = 0;
+			if(ow > oh) 
+			{ pd = (int)(Math.abs((dh * ow / (double)dw) - oh) / 2d); }
+			else { pd = (int)(Math.abs((dw * oh / (double)dh) - ow) / 2d); }
+			
+			ow = originImage.getWidth(); 
+			oh = originImage.getHeight();
+			
+			
+			int nw = ow; int nh = (ow * dh) / dw; if(nh > oh) { nw = (oh * dw) / dh; nh = oh; }
+
+			
+			BufferedImage cropImg = Scalr.crop(originImage, (ow-nw)/2, (oh-nh)/2, nw, nh);
+
+
+			BufferedImage destImg = Scalr.resize(cropImg, dw, dh);
+
+
+			
+			
+			
+			
+			
+			/*
+			 * //복사본 만들기 BufferedImage sourceImage =
+			 * Scalr.resize(originImage,Scalr.Method.AUTOMATIC,
+			 * Scalr.Mode.FIT_TO_HEIGHT,100);
+			 */
 			System.out.println("여기나옴");
 			
 			//원본이미지와 섬네일 이미지 구분방법
 			uploadName = uploadPath+File.separator+uploadFolder+File.separator+"s_"+savedName;
 			file = new File(uploadName);
 			//이미지 이름 + 복사본 이미지 결합
-			ImageIO.write(sourceImage, ext, file);
+			ImageIO.write(destImg, ext, file);
 			}else {
 			
 		}

@@ -3,6 +3,7 @@ package net.wannago.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.wannago.admin.service.adminServiceImpl;
 import net.wannago.admin.util.FileUtils;
+import net.wannago.admin.vo.SearchVO;
 import net.wannago.admin.vo.adminDTO;
 import net.wannago.admin.vo.adminVO;
 import net.wannago.hotel.vo.HotelVO;
@@ -161,6 +163,33 @@ public class AdminController {
 		return entity;
 		
 	}
+	
+	
+	//등록 정보 수정 페이지 이동
+	@GetMapping("admin/updateInfo")
+	public void updateInfo() {
+
+		
+	}
+	
+	@GetMapping("admin/SearchInfo")
+	public ResponseEntity<Object> SearchInfo(SearchVO vo) {
+		ResponseEntity<Object> entity = null;
+		
+		System.out.println("vo 출력 : "+vo);
+		
+		List<HotelVO> hotel = as.searchInfo(vo);
+		System.out.println("controller hotelList : "+hotel);
+		
+		try {
+			entity = new ResponseEntity<>(hotel,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
 	
 	
 	

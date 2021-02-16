@@ -25,7 +25,34 @@
 				href="#">평점 + 낮은가격</a>&nbsp;/&nbsp; <a href="#">낮은가격순</a>&nbsp;/&nbsp;
 				<a href="#">신규 등록순</a></li>
 		</ol>
-
+<div class="card mb-4">
+          <h5 class="card-header">
+          	검색 조회 &nbsp;
+  			카테고리&nbsp;<select id="category" name="#">
+	 					<option> 호텔</option>				
+		 				<option> 카페&식당</option>		
+		 				<option> 관광지 </option>		
+	 				</select>
+	 			 &nbsp;
+	 		검색 옵션&nbsp;<select id="SearchOption" name="#">
+	 					<option> 이름 </option>			
+	 					<option> 기타 </option>			
+	 					<option> 기타 </option>			
+	 				</select>
+  	
+  			</h5>
+          <div class="card-body">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Search for..." id="searchKeyword" name="searchKeyword">
+              <span class="input-group-append">
+                <button class="btn btn-secondary" type="button" id="searchBtn">검색</button>
+              </span>
+              
+            </div>
+          </div>
+        </div>
+        
+        
 
 		<!-- !-- 호텔 리스트 출력 -->
 		<div class="hotellist">
@@ -194,6 +221,7 @@
 		
 	}
 	
+	//이거 활용 첫 페이지용
 	function printList(data){
 		var str = "";
 		$(data).each(function(){
@@ -258,6 +286,7 @@
 		}
 	});
 	
+	
 	function getFormatDate(date){
 	    var year = date.getFullYear();              //yyyy
 	    var month = (1 + date.getMonth());          //M
@@ -266,6 +295,87 @@
 	    day = day >= 10 ? day : '0' + day;          //day 두자리로 저장
 	    return  year + '-' + month + '-' + day;       //'-' 추가하여 yyyy-mm-dd 형태 생성 가능
 	}
+	
+	
+	//리스트 검색
+	$("#searchBtn").click(function(){
+	var keyword = $("#searchKeyword").val();
+	var category = $("#category option:selected").val();
+	var SearchOption = $("#SearchOption option:selected").val();
+
+	console.log(keyword);
+	console.log(category);
+	console.log(SearchOption);
+	
+	$.ajax({
+		type:"get",
+		url:"SearchInfo",
+		data:{
+			keyword :keyword,
+			category:category,
+			SearchOption:SearchOption
+		},
+		dataType:"json",
+		success : function(data){
+			console.log(data);
+			printSearchList(data);
+		}
+	
+	});
+	
+	
+	});
+	
+	function printSearchList(data){
+		var str = "";
+		$(data).each(function(){
+			var hno = this.hno;
+			var hname = this.hname;
+			var hinfo = this.hinfo;
+			var hcheckin = this.hcheckin;
+			var hcheckout = this.hcheckout;
+			var hscore = this.hscore;
+			var hprice = this.hprice;
+			var hlikecnt = this.hlikecnt;
+			var hregdate = this.hregdate;
+			var hmainimg = this.hmainimg;
+			var hgrade = this.hgrade;
+			
+			let date = new Date(hregdate);
+			fmtdate = getFormatDate(date);
+			
+			
+		    str += " <div class='card mb-4'>"; 
+			str += " <div class='card-body'> ";
+			str += " <div class='row'> ";  
+			str += " <div class='col-md-7' style='padding:15px;'> ";
+			str += " <a href='#'> ";
+	        str += " <img class='img-fluid rounded mb-3 mb-md-0'"
+	        str += " src='${pageContext.request.contextPath}/resources/img/jejuhotel/upload"+hmainimg+"' alt=''> ";
+	        str += " </a> "; 
+	        str += " </div> ";
+	        str += " <div class='col-md-5'> ";
+	        str += " <h3>"+hname+"</h3> ";
+	        str += " <p>"+hinfo+"<br/>";
+	        str += " <p>"+hprice+"원<br/>";
+	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
+	        str += " "+hgrade+" <br>";
+	        str += " 평균 평점:"+hscore+" <br/>";
+	        str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
+        	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
+	        str += " <a class='btn btn-primary' id='detailBtn' href='jejuHotel/Detail/"+hno+"'>호텔 상세보기";
+	        str += " <span class='glyphicon glyphicon-chevron-right'></span> "
+	        str += " </a>";
+	        str += " </div> ";
+	        str += " </div> ";
+	        str += " </div> ";
+	        str += " </div> ";
+	        
+	        
+		});
+		$(".hotellist").html(str);
+	}
+	
 	
 	</script>
 

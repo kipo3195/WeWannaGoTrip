@@ -27,6 +27,9 @@ public interface HotelDAO {
 	@Select("SELECT * FROM pro_hotelDetail WHERE hno =#{hno}")
 	public List<String> getDetailImage(int hno);
 
+	//호텔 검색 # 은 양쪽에 '' 붙음. 그래서 문자열을 자체로 인식하려면 $ 로 사용하기
+		@Select("SELECT * FROM pro_hotel WHERE ${option} LIKE CONCAT('%', #{keyword},'%')") 
+		List<HotelVO> hotelSearch(@Param("option") String option,@Param("keyword") String keyword);
 	
 
 	
