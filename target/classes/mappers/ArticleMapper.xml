@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd"><!-- root-context.xml에 mapper등록 -->
+								
+<mapper namespace="net.wannago.article.dao.ArticleDAO"><!-- 맞추기 -->
+	<!-- List<ArticleDTO> getArticles();   *resultType = "ArticleDTO" -->
+	
+<!-- 	  <select id="getArticles" resultType="ArticleDTO">
+	  			SELECT * FROM pro_article
+	       </select> -->
+<!-- 
+	LIMIT 0 , 10   : 앞에꺼 skip하지말고 10개 가져와
+	LIMIT 20 , 10   : 앞에꺼 20개 skip하고 최신꺼 10개 가져와     
+		page 가 1일때는 앞이 0
+		page 가 2일때는 앞이 10
+		page 가 3일때는 앞이 20
+ -->  
+	        <select id="getArticles" resultType="ArticleDTO">
+	  			SELECT * 
+	  			FROM pro_article
+	  			ORDER BY id DESC
+	  			<if test="limitFrom != null and limitTake != null">
+	  			LIMIT #{limitFrom} , #{limitTake}
+	  			</if> 
+	        </select>
+	  
+	  <!-- 게시물 상세보기 -->
+	    <select id="getArticleById" resultType="ArticleDTO">
+	  			SELECT * 
+	  			FROM pro_article
+	  			WHERE id = #{id}
+	  </select>
+	  
+	  <!-- 게시물 삭제 -->
+	  <delete id="deleteArticleById">
+	  			DELETE FROM pro_article
+	  			WHERE id = #{id}
+	  </delete>
+	
+	  <!-- 게시물 수정 -->
+	  <!-- title ',' 때문에 title만 수정하게 될 경우 오류 <set>을 사용- ','을 알아서 넣어줘서 좋음-->
+	  <update id="modifyArticle" >
+	  			UPDATE pro_article
+	  			<set> updateDate = Now(),
+	  				<if test="title != null">
+	  					title = #{title}, 
+	  				</if>
+	  				<if test="body != null">		
+	  					body = #{body},
+	  				</if>
+	  			</set>		
+	  			WHERE id = #{id}		
+	  </update>
+	  
+	  <!-- 게시물 삽입 -->
+	  <insert id="writeArticle" useGeneratedKeys="true" keyProperty="id">
+	  			INSERT INTO pro_article
+	  			<set> 
+	  			regDate = NOW(),
+	  			updateDate = NOW(),
+	  				<if test="title != null">
+	  					title = #{title}, 
+	  				</if>
+	  				<if test="body != null">		
+	  					body = #{body},
+	  				</if>
+	  			</set>	
+	  </insert>
+	  
+	  <!-- 총 게시물 수 -->
+	  <select id="getTotalCount" resultType="int">
+	  		SELECT COUNT(*)
+	  		FROM pro_article
+	  </select>
+	
+</mapper>
