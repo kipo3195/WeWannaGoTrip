@@ -241,7 +241,7 @@ public String makeFileUploadName(String uploadFolder, String savedName)throws IO
 			BufferedImage originImage = ImageIO.read(file);
 			//이미지 형태로 만들어줌
 			
-			int dw = 250, dh = 150;
+			int dw = 250, dh = 200;
 			int ow = originImage.getWidth(); 
 			int oh = originImage.getHeight();
 			
@@ -301,6 +301,7 @@ public String makeFileUploadName(String uploadFolder, String savedName)throws IO
 		
 		
 	}
+
 	
 
 }

@@ -428,7 +428,7 @@
 				return;
 			}else{
 				if(maxImageCnt>=4){
-					alert("최대 등록할 수 있는 이미지 갯수를 초과하였습니다.");
+					alert("최대 등록할 수 있는 이미지 개수를 초과하였습니다.");
 					return;
 				}else{
 				formData.append("files",files[i]);

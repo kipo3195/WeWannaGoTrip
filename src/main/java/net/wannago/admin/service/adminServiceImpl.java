@@ -10,6 +10,7 @@ import net.wannago.admin.dao.adminDAO;
 import net.wannago.admin.vo.SearchVO;
 import net.wannago.admin.vo.adminDTO;
 import net.wannago.admin.vo.adminVO;
+import net.wannago.hotel.vo.HotelDetailVO;
 import net.wannago.hotel.vo.HotelVO;
 
 @Service
@@ -59,41 +60,21 @@ public class adminServiceImpl implements adminService {
 		
 	}
 
-	public List<HotelVO> searchInfo(SearchVO vo) {
-		 
-		List<HotelVO> hotel = null;
-		switch(vo.getCategory()) {
+	public HotelVO hotelModify(int hno) {
 		
-		case "호텔":
-			
-			//이름으로 비교
-			if(vo.getSearchOption().equals("이름")) {
-				String option = "hname";
-				hotel = dao.hotelSearch(option,vo.getKeyword());
-				return hotel;
-			}
-			
-			break;
-		case "카페&식당":
-			System.out.println("카페 및 식당");
-			
-			break;
-		case "관광지":
-			System.out.println("관광지");
-			
-			
-			break;
-		}
-		
-		
-		vo.getKeyword();
-		vo.getSearchOption();
-		
-		
-		
-		return hotel;
+		return dao.hotelModify(hno);
 	}
 
+	public List<HotelDetailVO> hotelDetailImg(int hno) {
+		return dao.hotelDetail(hno);
+	}
+
+	public void HotelUpdate(HotelVO vo) {
+			dao.hotelUpdate(vo);
+	
+	}
+
+	
 	
 	
 }

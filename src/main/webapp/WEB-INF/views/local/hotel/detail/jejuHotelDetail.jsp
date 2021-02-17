@@ -36,6 +36,7 @@
       </div>
 
       <div class="col-md-4">
+      	
         <h3 class="my-3">${hotel.hname}</h3>
         <p>${hotel.hinfo}</p>
         <p>${hotel.htel}</p>
@@ -49,7 +50,21 @@
           <li>사용 편의 시설 3</li>
           <li>사용 편의 시설 4</li>
         </ul>
+        <!-- 세션 정보(관리자, 이용자)에 따른  -->
             <a href="#" class="btn btn-primary">예약하러가기</a>
+            <a href="${pageContext.request.contextPath}/admin/HotelModify?hno=${hotel.hno}" class="btn btn-warning">수정</a>
+            <a href="#" id="deleteHotel" class="btn btn-danger">삭제</a>  		
+            <form id="deleteHotelSubmit" method="post" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit?hno=${hotel.hno}">
+            	<table>
+            		<tr>
+            			<td>
+				            <div id="passwordInput">
+				            		
+				            </div>
+		         	  </td>
+		            </tr>
+	            </table>
+            </form>			
       </div>
 
     </div>
@@ -114,6 +129,34 @@
 
    <!-- Footer -->
    <%@ include file="../../../common/footer.jsp" %>
+   
+   <script>
+   			// 삭제 컨펌
+   		$("#deleteHotel").click(function(){
+   			
+   			if(confirm("정말로 삭제합니까?") == true){
+   				var str = "";
+   					str += "관리자 패스워드 입력 <input type='password' id='adminPass' >";
+   					str +=" <input type='button' value='삭제요청' id='EnterPass'>";
+   				$("#passwordInput").html(str);
+   				
+   			}else{
+   				str = "";
+   				$("#passwordInput").html(str);
+   				return;
+   			}; 	
+   			
+   		});
+   			
+   			$("#passwordInput").on("click","input",function(){
+				
+   				var password = $("#adminPass").val();
+	   		
+   				$("#deleteHotelSubmit").submit();
+   			});
+   			
+   
+   </script>
   
  
 </body>

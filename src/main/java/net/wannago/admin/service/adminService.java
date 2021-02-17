@@ -14,5 +14,4 @@ public interface adminService {
 
 	public void hotelReg(HotelVO vo);
 	
-	public List<HotelVO> searchInfo(SearchVO vo);
 }
