@@ -97,36 +97,36 @@
 	 				호텔 명  
 				</td>
 				<td>
-					<input type="text" name="hname" id="hname" required/>
+					<input type="text" name="hname" id="hname" autocomplete="off" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-	 				호텔 소개 : <textarea name="hinfo" id="hinfo" required></textarea>
+	 				호텔 소개 : <textarea name="hinfo" id="hinfo" autocomplete="off" required></textarea>
 	 			</td>
 			</tr>
 			<tr>
 				<td>
-	 				호텔 주소 : <input type="text" name="haddress" id="haddress" required/>
+	 				호텔 주소 : <input type="text" name="haddress" autocomplete="off" id="haddress" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-	 				호텔 전화번호 : <input type="text" name="htel" id="htel" placeholder="012-345-5678" required/>
+	 				호텔 전화번호 : <input type="text" name="htel" autocomplete="off" id="htel" placeholder="012-345-5678" required/>
 	 			
 				</td>
 			</tr>
 			<tr>
 				<td>
-	 				호텔 이메일 : <input type="email" name="hemail" placeholder="hotel@hotel.com" required/>
+	 				호텔 이메일 : <input type="email" name="hemail" autocomplete="off" placeholder="hotel@hotel.com" required/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					호텔 체크인 : <input type="text" name="hcheckin" id="hcheckin" required/>
+					호텔 체크인 : <input type="text" name="hcheckin" autocomplete="off" id="hcheckin" required/>
 				</td>
 				<td>
-					호텔 체크아웃 : <input type="text" name="hcheckout" id="hcheckout" required/>
+					호텔 체크아웃 : <input type="text" name="hcheckout" autocomplete="off" id="hcheckout" required/>
 	 			<!-- 	호텔 체크아웃 : 
 	 				<select id="hopentoclose" name="hotelchekout">
 	 					<option>11 : 00</option>				
@@ -141,13 +141,13 @@
 			</tr>
 			<tr>
 				<td>
-	 				구글 맵 주소 : <input type="text" name="hgooglemap" required width="5"/>
+	 				구글 맵 주소 : <input type="text" name="hgooglemap" autocomplete="off" required width="5"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
 	 				호텔 등급 : 
-	 				 <input type="text" name="hgrade" id="hgrade" required width="5"/>
+	 				 <input type="text" name="hgrade" id="hgrade" autocomplete="off" required width="5"/>
 	 				<!-- <select id="hgrade">
 	 					<option>6성급</option>				
 		 				<option>5성급</option>				
@@ -158,7 +158,7 @@
 			</tr>
 			<tr>
 				<td>
-	 				호텔 기본 가격  : <input type="text" name="hprimaryprice" required width="5"/>원
+	 				호텔 기본 가격  : <input type="text" name="hprimaryprice" autocomplete="off" required width="5"/>원
 				</td>
 			</tr>
 			<tr>	

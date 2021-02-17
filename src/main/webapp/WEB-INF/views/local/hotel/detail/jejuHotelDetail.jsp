@@ -51,7 +51,7 @@
           <li>사용 편의 시설 4</li>
         </ul>
         <!-- 세션 정보(관리자, 이용자)에 따른  -->
-            <a href="#" class="btn btn-primary">예약하러가기</a>
+            <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
             <a href="${pageContext.request.contextPath}/admin/HotelModify?hno=${hotel.hno}" class="btn btn-warning">수정</a>
             <a href="#" id="deleteHotel" class="btn btn-danger">삭제</a>  		
             <form id="deleteHotelSubmit" method="get" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit">

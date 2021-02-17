@@ -132,13 +132,13 @@ input[type=checkbox] {
 				<label class="label" for="mid">ID</label> 
 				<input type="text" class="input" 
 				       placeholder="「관리자 아이디」" name="aid" autofocus="autofocus"
-					   required />
+					   required autocomplete="off"/>
 			</div>
 			<div class="input-groups">
 				<label class="label" for="mpw">Password</label> 
 				<input type="password" class="input" 
 				       placeholder="「관리자 비밀번호」" name="apw"
-					    required />
+					    required autocomplete="off"/>
 			</div>
 			
 			<div class="input-groups">
