@@ -5,9 +5,13 @@ import java.util.Map;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
 @Controller
@@ -44,12 +48,35 @@ public class LocalController {
 	 * "/local/hotel/detail/jejuHotelDetail"; }
 	 */
 
+	//예약하러가기 
 	@RequestMapping("/jejuHotel/reservation")
-	public ModelAndView jejuhotelReservation(ModelAndView mav) {
-
+	public ModelAndView jejuhotelReservation(
+			@RequestParam("hno") int hno,
+			ModelAndView mav) {
+		
+		 HotelVO vo = ls.HotelInfo(hno);
+		 System.out.println(vo);
+		mav.addObject("hotel", vo);
 		mav.setViewName("/local/hotel/reservation/hotelRes");
 		return mav;
 	}
+	
+	//호텔 예약 가격 
+	@GetMapping("/jejuHotel/gethotelPrice")
+	@ResponseBody
+	public void gethotelPrice(
+			@RequestParam("a")double a,
+			@RequestParam("hno") int hno,
+			@RequestParam("odd") int odd,
+			@RequestParam("idd") int idd
+			)
+		{
+		Map<String,Integer> hotelprice= ls.hotelPrice(a,hno);
+		
+		
+		
+	}
+	
 
 	@RequestMapping("missing")
 	public String cafeRes() {

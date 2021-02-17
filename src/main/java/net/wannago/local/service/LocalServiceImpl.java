@@ -12,6 +12,7 @@ import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
 import net.wannago.hotel.dao.HotelDAO;
+import net.wannago.hotel.vo.HotelPriceVO;
 import net.wannago.hotel.vo.HotelVO;
 
 @Service	
@@ -91,6 +92,36 @@ public class LocalServiceImpl implements LocalService{
 		
 		return hotel;
 	}
+
+	@Override
+	public HotelVO HotelInfo(int hno) {
+		 
+		return dao.getHotel(hno);
+	}
+
+	@Override
+	public Map<String, Integer> hotelPrice(double a, int hno) {
+		Map<String,Integer> hotelPrice= null;
+		//호텔정보가져와서
+		HotelVO vo = dao.getHotel(hno);
+		//몇성급인지 확인하고
+		HotelPriceVO pricevo = dao.getGradePrice(vo.getHgrade());
+		//가격객체 가져와서 확인
+		
+		double luxury = pricevo.getHpriprice() * a * pricevo.getLuxury();
+		double delux = pricevo.getHpriprice() * a * pricevo.getDelux();
+		double doubler = pricevo.getHpriprice()  * a * pricevo.getDoubler();
+		double business = pricevo.getHpriprice() *a * pricevo.getBusiness();
+		
+		System.out.println(luxury);
+		System.out.println(delux);
+		System.out.println(doubler);
+		System.out.println(business);
+		
+		
+		return hotelPrice;
+	}
+
 
 	
 	

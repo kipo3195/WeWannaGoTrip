@@ -47,7 +47,8 @@ public class adminServiceImpl implements adminService {
 		
 		
 	}
-
+	
+	@Override
 	public int getPrimaryKey() {
 			int result = 0;
 		try {
@@ -58,6 +59,7 @@ public class adminServiceImpl implements adminService {
 		return result;
 	}
 
+	@Override
 	public void DetailImage(List<String> fileList) {
 		for(String f : fileList) {
 			System.out.println(f);
@@ -65,25 +67,29 @@ public class adminServiceImpl implements adminService {
 		}
 		
 	}
-
+	@Override
 	public HotelVO hotelModify(int hno) {
 		
 		return dao.hotelModify(hno);
 	}
-
+	@Override
 	public List<HotelDetailVO> hotelDetailImg(int hno) {
 		return dao.hotelDetail(hno);
 	}
-
+	@Override
 	public void HotelUpdate(HotelVO vo) {
 			dao.hotelUpdate(vo);
 	
 	}
-
+	
+	@Override
 	public String deleteHotel(int hno, String hname) {
 		String resultMessage = null;
 		
+		dao.deleteDetail(hno);
+		
 		int result= dao.deleteHotel(hno,hname);
+		
 		if(result == 1) {
 			//성공
 			resultMessage =  "Suc";
