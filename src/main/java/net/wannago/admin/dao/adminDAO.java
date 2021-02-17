@@ -66,6 +66,9 @@ public interface adminDAO {
 	@Delete("DELETE FROM pro_hotel WHERE hno=#{hno} AND hname=#{hname}")
 	int deleteHotel(@Param("hno") int hno,@Param("hname") String hname);
 
+	@Delete("DELETE FROM pro_hotelDetail WHERE hno=#{hno}")
+	void deleteDetail(int hno);
+
 	
 	
 	

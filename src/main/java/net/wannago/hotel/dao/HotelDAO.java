@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Select;
 
 import net.koreate.util.Criteria;
 import net.wannago.cafRes.vo.CaResVO;
+import net.wannago.hotel.vo.HotelPriceVO;
 import net.wannago.hotel.vo.HotelVO;
 
 public interface HotelDAO {
@@ -30,6 +31,9 @@ public interface HotelDAO {
 	//호텔 검색 # 은 양쪽에 '' 붙음. 그래서 문자열을 자체로 인식하려면 $ 로 사용하기
 		@Select("SELECT * FROM pro_hotel WHERE ${option} LIKE CONCAT('%', #{keyword},'%')") 
 		List<HotelVO> hotelSearch(@Param("option") String option,@Param("keyword") String keyword);
+
+	@Select("Select * from pro_hotelRoom WHERE hgrade = #{hgrade}")	
+	public HotelPriceVO getGradePrice(String hgrade);
 	
 
 	

@@ -23,6 +23,10 @@ public interface LocalService {
 
 	List<HotelVO> searchInfo(SearchVO vo);
 
+	HotelVO HotelInfo(int hno);
+
+	Map<String, Integer> hotelPrice(double a, int hno);
+
 
 
 	

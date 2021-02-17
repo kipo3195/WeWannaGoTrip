@@ -123,7 +123,7 @@
 				<td>
 					<div id="hidden">
 					</div>
-					<input type="hidden" name="hno" value="${hotel.hno}">
+					<input type="hidden" name="hno" value="${hotel.hno}" autocomplete="off">
 				</td>
 			</tr>
 			<tr>
@@ -131,7 +131,7 @@
 	 				호텔 명  
 				</td>
 				<td>
-					<input type="text" name="hname" id="hname" value="${hotel.hname}" required/>
+					<input type="text" name="hname" id="hname" value="${hotel.hname}" required autocomplete="off"/>
 				</td>
 			</tr>
 			<tr>
@@ -139,7 +139,7 @@
 					호텔 소개
 				</td>
 				<td>
-	 				<textarea name="hinfo" id="hinfo" required>${hotel.hinfo}</textarea>
+	 				<textarea name="hinfo" id="hinfo" required autocomplete="off">${hotel.hinfo}</textarea>
 	 			</td>
 			</tr>
 			<tr>
@@ -147,7 +147,7 @@
 					호텔 주소
 				</td>
 				<td>
-	 				 <input type="text" name="haddress" id="haddress" value="${hotel.haddress}" required/>
+	 				 <input type="text" name="haddress" id="haddress" value="${hotel.haddress}" required autocomplete="off"/>
 				</td>
 			</tr>
 			<tr>
@@ -155,7 +155,7 @@
 					호텔 전화번호
 				</td>
 				<td>
-	 				<input type="text" name="htel" id="htel" value="${hotel.htel}" required/>
+	 				<input type="text" name="htel" id="htel" value="${hotel.htel}" required autocomplete="off"/>
 				</td>
 			</tr>
 			<tr>
@@ -163,7 +163,7 @@
 					호텔 이메일
 				</td>
 				<td>
-	 				 <input type="email" name="hemail" placeholder="hotel@hotel.com" required/>
+	 				 <input type="email" name="hemail" placeholder="hotel@hotel.com" required autocomplete="off"/>
 				</td>
 			</tr>
 			<tr>
@@ -171,13 +171,13 @@
 					호텔 체크인
 				</td>
 				<td>
-					 <input type="text" name="hcheckin" id="hcheckin" value="${hotel.hcheckin}" required/>
+					 <input type="text" name="hcheckin" id="hcheckin" value="${hotel.hcheckin}" required autocomplete="off"/>
 				</td>
 				<td class="a">
 					호텔 체크아웃
 				</td>
 				<td>
-					 <input type="text" name="hcheckout" id="hcheckout" value="${hotel.hcheckout}" required/>
+					 <input type="text" name="hcheckout" id="hcheckout" value="${hotel.hcheckout}" required autocomplete="off"/>
 	 			<!-- 	호텔 체크아웃 : 
 	 				<select id="hopentoclose" name="hotelchekout">
 	 					<option>11 : 00</option>				
@@ -195,7 +195,7 @@
 					구글 맵 주소
 				</td>
 				<td>
-	 				<input type="text" name="hgooglemap" value="${hotel.hgooglemap}" required width="5"/>
+	 				<input type="text" name="hgooglemap" value="${hotel.hgooglemap}" required width="5" autocomplete="off"/>
 				</td>
 			</tr>
 			<tr>
@@ -203,7 +203,7 @@
 					호텔 등급
 				</td>
 				<td> 
-	 				 <input type="text" name="hgrade" id="hgrade" value="${hotel.hgrade}" required width="5"/>
+	 				 <input type="text" name="hgrade" id="hgrade" value="${hotel.hgrade}" autocomplete="off" required width="5"/>
 	 				<!-- <select id="hgrade">
 	 					<option>6성급</option>				
 		 				<option>5성급</option>				

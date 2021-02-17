@@ -2,13 +2,10 @@ package net.wannago.admin.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
@@ -27,7 +24,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.koreate.util.PageMaker;
 import net.wannago.admin.service.adminServiceImpl;
 import net.wannago.admin.util.FileUtils;
 import net.wannago.admin.vo.adminDTO;
@@ -39,10 +35,10 @@ import net.wannago.local.service.LocalServiceImpl;
 @Controller
 public class AdminController {
 
-	@Inject
+	@Autowired
 	adminServiceImpl as;
 	
-	@Inject
+	@Autowired
 	LocalServiceImpl ls;
 	
 	@RequestMapping("/adminSignin")
@@ -236,7 +232,7 @@ public class AdminController {
 		mav.setViewName("/local/hotel/detail/jejuHotelDetail");
 		}else {
 		System.out.println("삭제성공");
-		mav.setViewName("redirect:/local/hotel/jejuHotel");
+		mav.setViewName("redirect:/local/jejuhotel");
 		}
 		return mav;
 	}
