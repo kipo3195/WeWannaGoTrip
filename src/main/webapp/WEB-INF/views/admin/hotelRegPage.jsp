@@ -371,29 +371,44 @@
 			}
 		
 			
-			
+			//메인이미지
 		$("#mainImage").on("change",function(){
-			var files = this.files;
-			console.log(files);
-			var formData = new FormData(); //태그 형태의 폼태그 
-			formData.append("file",files[0]);//name값으로 value넣음
-			console.log(formData);		
+			var files = this.files; //업로드용
 			
-			$.ajax({
-				type:"POST",
-				url :"mainImgUpload", // 나중에 관광지할때 contextPath 활용 해볼것   
-				contentType : false, //막아줘야 대용량 데이터를 전달 할 수있음
-				processData : false,
-			 	dataType : "text", 
-				data : formData, //중괄호 열고 닫고 할 필요없음. 
-				success : function(data){
-			 		console.log(data);
-			 	/* 	$(".mainImage").attr("src","${pageContext.request.contextPath}/img/jejuhotel/upload"+data); */
-					var str = "<input type='hidden' name='hmainimg' id= 'hmainimg' value='"+data+"'>";
-					$("#MainImgName").html(str);
-					
-			 	}
-			});
+			var filesInfo = $(this)[0].files[0]; //이미지 파일 아닌거 막기 용
+			
+			
+				//이미지 파일이 아닐경우 
+			if(!filesInfo.type.startsWith("image/")){
+				alert("이미지 파일을 선택해 주세요");
+				removeFileInfo();
+				
+			}else{
+				//이미지일때
+				
+				var formData = new FormData(); //태그 형태의 폼태그 
+				formData.append("file",files[0]);//name값으로 value넣음
+				console.log(formData);		
+				
+				$.ajax({
+					type:"POST",
+					url :"mainImgUpload", // 나중에 관광지할때 contextPath 활용 해볼것   
+					contentType : false, //막아줘야 대용량 데이터를 전달 할 수있음
+					processData : false,
+				 	dataType : "text", 
+					data : formData, //중괄호 열고 닫고 할 필요없음. 
+					success : function(data){
+				 		console.log(data);
+				 	/* 	$(".mainImage").attr("src","${pageContext.request.contextPath}/img/jejuhotel/upload"+data); */
+						var str = "<input type='hidden' name='hmainimg' id= 'hmainimg' value='"+data+"'>";
+						$("#MainImgName").html(str);
+				 	}
+				});
+			}
+			function removeFileInfo(){
+				$("#mainImage").val("");
+			}
+			
 		});	
 	
 		
@@ -407,22 +422,24 @@
 	}
 		
 		
+		//이미지 최대갯수 제한 용
 		var maxImageCnt = 0;
+		
 		//detailimage 등록하기  기본이벤트 막아주기
 		$("#detailFileList").on("dragEnter dragover",function(event){
 			event.preventDefault();
 		});
 		$("#detailFileList").on("drop",function(event){
 			event.preventDefault();
-			
-		var files = event.originalEvent.dataTransfer.files;
-		console.log(files);
 		
+		var files = event.originalEvent.dataTransfer.files;//업로드용
+		console.log(files);
 		var maxSize = 10485760;
 		var formData = new FormData();
 		
-				
+		//파일사이즈, 최대 갯수 초과 
 		for(var i =0; i<files.length; i++){
+			//파일 사이즈
 			if(files[i].size > maxSize){
 				alert("등록할 수 없는 파일이 존재합니다");
 				return;
@@ -438,6 +455,14 @@
 			}
 		};
 			
+		
+		//이미지인지 아닌지 구분하기 위한 방법.type
+		var Detailfiles = event.originalEvent.dataTransfer.files[0].type;//업로드용
+		
+		if(!Detailfiles.startsWith("image/")){
+			alert('이미지 파일을 선택해주세요.');
+			return;
+		}else{
 			$.ajax({
 				type : "POST",
 				data : formData,
@@ -469,8 +494,10 @@
 					
 				}
 			});
-		
-		
+			
+			
+		}
+			
 		
 		});
 		
@@ -524,6 +551,9 @@
 			$("#hotelReg").submit();
  	});
 		
+			
+			
+			//삭제 버튼 구현해야함!
 		
 		
 		

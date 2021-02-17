@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import net.wannago.admin.dao.adminDAO;
 import net.wannago.admin.vo.SearchVO;
@@ -48,8 +49,13 @@ public class adminServiceImpl implements adminService {
 	}
 
 	public int getPrimaryKey() {
-		
-		return dao.getPrimaryKey();
+			int result = 0;
+		try {
+			result = dao.getPrimaryKey();
+		} catch (Exception e) {
+				return result;
+		}
+		return result;
 	}
 
 	public void DetailImage(List<String> fileList) {
@@ -72,6 +78,20 @@ public class adminServiceImpl implements adminService {
 	public void HotelUpdate(HotelVO vo) {
 			dao.hotelUpdate(vo);
 	
+	}
+
+	public String deleteHotel(int hno, String hname) {
+		String resultMessage = null;
+		
+		int result= dao.deleteHotel(hno,hname);
+		if(result == 1) {
+			//성공
+			resultMessage =  "Suc";
+		}else {
+			resultMessage = "Fail";
+		}
+		
+		return resultMessage;
 	}
 
 	

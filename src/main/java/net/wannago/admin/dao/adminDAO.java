@@ -2,6 +2,7 @@ package net.wannago.admin.dao;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -61,6 +62,9 @@ public interface adminDAO {
 			+ " hfacility = #{hfacility} "
 			+ " WHERE hno = #{hno}")
 	void hotelUpdate(HotelVO vo);
+
+	@Delete("DELETE FROM pro_hotel WHERE hno=#{hno} AND hname=#{hname}")
+	int deleteHotel(@Param("hno") int hno,@Param("hname") String hname);
 
 	
 	

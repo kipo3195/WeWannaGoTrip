@@ -54,13 +54,16 @@
             <a href="#" class="btn btn-primary">예약하러가기</a>
             <a href="${pageContext.request.contextPath}/admin/HotelModify?hno=${hotel.hno}" class="btn btn-warning">수정</a>
             <a href="#" id="deleteHotel" class="btn btn-danger">삭제</a>  		
-            <form id="deleteHotelSubmit" method="post" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit?hno=${hotel.hno}">
+            <form id="deleteHotelSubmit" method="get" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit">
             	<table>
             		<tr>
             			<td>
-				            <div id="passwordInput">
+				            <div id="confirmCheck">
 				            		
 				            </div>
+		         	  </td>
+		         	  <td>
+		         	  	<input type="hidden" value="${hotel.hno}" name="hno">
 		         	  </td>
 		            </tr>
 	            </table>
@@ -136,26 +139,44 @@
    			
    			if(confirm("정말로 삭제합니까?") == true){
    				var str = "";
-   					str += "관리자 패스워드 입력 <input type='password' id='adminPass' >";
-   					str +=" <input type='button' value='삭제요청' id='EnterPass'>";
-   				$("#passwordInput").html(str);
+   					str += "확인을 위해 호텔 이름을 한번 더 입력해주세요 <input type='text' id='deleteCheck' name='hotelname'>";
+   					str +=" <input type='button' value='삭제요청' id='CheckSubmit'/>";
+   				$("#confirmCheck").html(str);
    				
    			}else{
    				str = "";
-   				$("#passwordInput").html(str);
+   				$("#confirmCheck").html(str);
    				return;
    			}; 	
    			
    		});
-   			
+   		/* 	
    			$("#passwordInput").on("click","input",function(){
 				
-   				var password = $("#adminPass").val();
-	   		
-   				$("#deleteHotelSubmit").submit();
+   				var deleteCheck = $("#deleteCheck").val();
+   				console.log(deleteCheck);
+   				
+   				//일치 불일치 비동기 체크 구현
    			});
    			
-   
+   			
+    */
+    
+    //버튼
+    
+    //원래 바디에 존재 했던 것을 기준으로 두번째(해당속성)이 첫번째 동작시
+    $("#confirmCheck").on("click","#CheckSubmit",function(){
+    	
+    	$("#deleteHotelSubmit").submit();
+    	
+    });
+    
+    
+    
+    
+    
+    
+    
    </script>
   
  
