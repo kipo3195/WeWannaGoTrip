@@ -84,43 +84,15 @@
   
 
 
-    <h1 class="mt-4 mb-3">호텔 수정 & 삭제 페이지
+    <h1 class="mt-4 mb-3">호텔 수정 페이지
     </h1>
     
       <div>
   	
   </div>
-    <div class="card mb-4">
-          <h5 class="card-header">
-          	검색 조회 &nbsp;
-  			카테고리&nbsp;<select id="category" name="#">
-	 					<option> 호텔</option>				
-		 				<option> 카페&식당</option>		
-		 				<option> 관광지 </option>		
-	 				</select>
-	 			 &nbsp;
-	 		검색 옵션&nbsp;<select id="SearchOption" name="#">
-	 					<option> 이름 </option>			
-	 					<option> 기타 </option>			
-	 					<option> 기타 </option>			
-	 				</select>
-  	
-  			</h5>
-          <div class="card-body">
-            <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for..." id="searchKeyword" name="searchKeyword">
-              <span class="input-group-append">
-                <button class="btn btn-secondary" type="button" id="searchBtn">검색</button>
-              </span>
-              
-            </div>
-				<div id="SearchedList">
-              	 검색 버튼 클릭시 이곳에 호텔 정보가 노출됩니다.
-              </div>	
-          </div>
-        </div>
+ 
   
-    	
+ <!--    	
       <div class="row" id="hotelMainPreview">
 		      	
       			<div class="Temp">
@@ -133,28 +105,33 @@
       		 <div class="Temp">
 					<span>미리보기 시 이곳에 상세 화면 정보가 노출됩니다.</span>
 			</div>
-      </div>
+      </div> -->
    
 				
        <br/>
  
    		 
         <div class="card mb-4">
-     	 <form action="hotelUpdate" method="post" id="hotelReg">
+     	 <form action="hotelUpdate" method="post" id="hotelUpdate">
      	 <h5 class="card-header">호텔 상세정보 입력 &nbsp;&nbsp;
-     		 <input type="button" value="미리보기" id="previewBtn">
-          	&nbsp;
-          	 <input type="button" value="정보 수정 " id="hotelUpdateBtn">
+          	 <input type="button" value="정보 수정  완료" id="hotelUpdateBtn" class="btn btn-warning">
           	
           	</h5>
           	
 			<table>
 			<tr>
+				<td>
+					<div id="hidden">
+					</div>
+					<input type="hidden" name="hno" value="${hotel.hno}">
+				</td>
+			</tr>
+			<tr>
 				<td class="a">
 	 				호텔 명  
 				</td>
 				<td>
-					<input type="text" name="hname" id="hname" required/>
+					<input type="text" name="hname" id="hname" value="${hotel.hname}" required/>
 				</td>
 			</tr>
 			<tr>
@@ -162,7 +139,7 @@
 					호텔 소개
 				</td>
 				<td>
-	 				<textarea name="hinfo" id="hinfo" required></textarea>
+	 				<textarea name="hinfo" id="hinfo" required>${hotel.hinfo}</textarea>
 	 			</td>
 			</tr>
 			<tr>
@@ -170,7 +147,7 @@
 					호텔 주소
 				</td>
 				<td>
-	 				 <input type="text" name="haddress" id="haddress" required/>
+	 				 <input type="text" name="haddress" id="haddress" value="${hotel.haddress}" required/>
 				</td>
 			</tr>
 			<tr>
@@ -178,7 +155,7 @@
 					호텔 전화번호
 				</td>
 				<td>
-	 				<input type="text" name="htel" id="htel" placeholder="012-345-5678" required/>
+	 				<input type="text" name="htel" id="htel" value="${hotel.htel}" required/>
 				</td>
 			</tr>
 			<tr>
@@ -194,13 +171,13 @@
 					호텔 체크인
 				</td>
 				<td>
-					 <input type="text" name="hcheckin" id="hcheckin" required/>
+					 <input type="text" name="hcheckin" id="hcheckin" value="${hotel.hcheckin}" required/>
 				</td>
 				<td class="a">
 					호텔 체크아웃
 				</td>
 				<td>
-					 <input type="text" name="hcheckout" id="hcheckout" required/>
+					 <input type="text" name="hcheckout" id="hcheckout" value="${hotel.hcheckout}" required/>
 	 			<!-- 	호텔 체크아웃 : 
 	 				<select id="hopentoclose" name="hotelchekout">
 	 					<option>11 : 00</option>				
@@ -214,11 +191,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="a">
+				<td class="a" >
 					구글 맵 주소
 				</td>
 				<td>
-	 				<input type="text" name="hgooglemap" required width="5"/>
+	 				<input type="text" name="hgooglemap" value="${hotel.hgooglemap}" required width="5"/>
 				</td>
 			</tr>
 			<tr>
@@ -226,7 +203,7 @@
 					호텔 등급
 				</td>
 				<td> 
-	 				 <input type="text" name="hgrade" id="hgrade" required width="5"/>
+	 				 <input type="text" name="hgrade" id="hgrade" value="${hotel.hgrade}" required width="5"/>
 	 				<!-- <select id="hgrade">
 	 					<option>6성급</option>				
 		 				<option>5성급</option>				
@@ -240,7 +217,7 @@
 					호텔 기본 가격
 				</td>
 				<td>
-	 				<input type="text" name="hprimaryprice" required width="5"/>원
+	 				<input type="text" name="hprimaryprice" value="${hotel.hprimaryprice}" required width="5"/>원
 				</td>
 			</tr>
 			<tr>	
@@ -297,48 +274,49 @@
 				
 				</td>
 			</tr>
-			<tr>
-				<td>
-			<div id="MainImgName">
-			
-              </div>
-				</td>
-			</tr>
-			<tr>
-				<td>
-			<div class="detailFileList">
-			
-			</div>
-				</td>
-			</tr>
+				<tr>
+					<td class="a">
+					 메인 이미지 : 
+					</td>
+					<td>
+						<div id="hotelMainImg">
+							<input type="text" value="${hotel.hmainimg}" style="width: 300px;" disabled>
+						</div>
+					</td>
+					<td>
+						<input id="mainChangeBtn" type="button" value="메인이미지 변경 하기 ">
+					</td>
+					<td>
+						<input id="ChangeCancelBtn" type="button" value="취소">
+					</td>
+				</tr>
 			</table>
 		</form>
   	</div>
 			<!-- 메인 이미지 -->
 		<div class="card mb-4">
-          <h5 class="card-header">메인 이미지 등록하기</h5>
+          <h5 class="card-header">현재 등록된 메인 이미지 </h5>
           <div class="card-body">
-            <div class="input-group">
-              <input type="file" class="form-control" placeholder="메인 이미지를 등록하세요" id="mainImage" >
-              <span class="input-group-append">
-              </span>
-            
+            <div class="input-group" id="changedImage">
+              <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${hotel.hmainimg}"/>
             </div>
           </div>
         </div>
-    
-  
   
 			<!-- 상세 이미지 -->
 		<div class="card mb-4">
-          <h5 class="card-header">상세 이미지 등록하기(4개 까지 등록 가능)</h5>
+          <h5 class="card-header">상세 이미지 수정하기</h5> 
           <div class="card-body">
             <div class="input-group">
          		 
             	<div id="detailFileList">  
-            		  <span id="detailInfo">
-            			 등록하실 파일을 여기에 등록하세요  (상세보기 페이지에는 4개의 이미지가 필요합니다.)
-            		</span>
+            		<c:choose>
+            			<c:when test="${not empty DetailImg}">
+            				<c:forEach items="${DetailImg}" var="img">
+            					<img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${img.hdeimg}"/>
+            				</c:forEach>
+            			</c:when>
+            		</c:choose>
             	</div>
             </div>
           </div>
@@ -355,6 +333,66 @@
    	<%@ include file="../common/footer.jsp" %>
    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
+	<script>
+			//수정완료 버튼 눌렸을때
+			$("#hotelUpdateBtn").click(function(){
+				
+				$("#hotelUpdate").submit();
+				
+			});
+			
+			//이미지 수정 버튼 눌렸을때 -> input type file로 변경해서 새 파일 받게하기
+			$("#mainChangeBtn").click(function(){
+				var str = "<input type='file' id='mainfilechange'>";
+				
+				$("#hotelMainImg").html(str);
+				
+			});//이미지 수정 취소 버튼 눌렸을때
+			$("#ChangeCancelBtn").click(function(){
+				var str = "<input type='text' value='${hotel.hmainimg}' style='width: 300px;' disabled>"
+				$("#hotelMainImg").html(str);
+			});
+			
+				//이미지 정보 새로 변경시
+			$("#hotelMainImg").on("change","input",function(){
+				var files = this.files;
+				var hno = '${hotel.hno}';
+				console.log(hno);
+				console.log(files);
+				var formData = new FormData(); //태그 형태의 폼태그 
+				formData.append("file",files[0]);//name값으로 value넣음
+				console.log(formData);		
+				
+				$.ajax({
+					type:"POST",
+					url:"mainImgChange/"+hno,
+					contentType:false,
+					processData:false,
+					dataType: "text",
+					data:formData,
+					success:function(data){
+						console.log(data);
+						var img = data;
+						var html = "";
+						html += "<img src='${pageContext.request.contextPath}/resources/img/jejuhotel/upload"+img+"'/> ";
+						$("#changedImage").html(html);
+						
+						console.log(img);
+						var str = "<input type='hidden' value='"+img+"' name='hmainimg'>";
+						$("#hidden").html(str);
+						
+						
+					}
+					
+					
+				});
+				
+				
+			});
+			
+		
+	
+	</script>
 
 </body>
 

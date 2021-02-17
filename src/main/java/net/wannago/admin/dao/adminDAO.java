@@ -5,9 +5,11 @@ import java.util.List;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import net.wannago.admin.vo.adminDTO;
 import net.wannago.admin.vo.adminVO;
+import net.wannago.hotel.vo.HotelDetailVO;
 import net.wannago.hotel.vo.HotelVO;
 
 public interface adminDAO {
@@ -35,9 +37,31 @@ public interface adminDAO {
 	@Insert("INSERT INTO pro_hotelDetail(hdeimg, hno) VALUES(#{fullName},LAST_INSERT_ID())")
 	void addDetailImg(String fullName);
 
-	//호텔 검색 # 은 양쪽에 '' 붙음. 그래서 문자열을 자체로 인식하려면 $ 로 사용하기
-		@Select("SELECT * FROM pro_hotel WHERE ${option} LIKE CONCAT('%', #{keyword},'%')") 
-		List<HotelVO> hotelSearch(@Param("option") String option,@Param("keyword") String keyword);
+	@Select("Select * from pro_hotel WHERE hno = #{hno}")
+	HotelVO hotelModify(int hno);
+
+	@Select("SELECT * FROM pro_hotelDetail WHERE hno = #{hno}")
+	List<HotelDetailVO> hotelDetail(int hno);
+
+	@Update("UPDATE pro_hotel SET "
+			+ " hname = #{hname},"
+			+ " hinfo = #{hinfo},"
+			+ " haddress = #{haddress},"
+			+ " htel = #{htel},"
+			+ " hemail = #{hemail},"
+			+ " hcheckin = #{hcheckin},"
+			+ " hcheckout = #{hcheckout},"
+			+ " hgooglemap = #{hgooglemap},"
+			+ " hupdatedate = now(),"
+			+ " hgrade = #{hgrade},"
+			+ " hscore = #{hscore},"
+			+ " hprice = #{hprice},"
+			+ " hmainimg = #{hmainimg},"
+			+ " hdetailimg = #{hdetailimg},"
+			+ " hfacility = #{hfacility} "
+			+ " WHERE hno = #{hno}")
+	void hotelUpdate(HotelVO vo);
+
 	
 	
 	

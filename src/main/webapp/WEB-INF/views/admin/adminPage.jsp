@@ -40,7 +40,6 @@
           <a href="#" class="list-group-item">공지사항 등록</a>
           <a href="#" class="list-group-item">기획전 등록</a>
           <a href="#" class="list-group-item">광고등록</a>
-          <a href="${pageContext.request.contextPath}/admin/updateInfo" class="list-group-item">등록 정보 수정</a>
           
           
           

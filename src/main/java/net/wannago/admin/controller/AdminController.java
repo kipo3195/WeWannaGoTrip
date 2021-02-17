@@ -3,7 +3,6 @@ package net.wannago.admin.controller;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -18,6 +17,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,9 +27,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.wannago.admin.service.adminServiceImpl;
 import net.wannago.admin.util.FileUtils;
-import net.wannago.admin.vo.SearchVO;
 import net.wannago.admin.vo.adminDTO;
 import net.wannago.admin.vo.adminVO;
+import net.wannago.hotel.vo.HotelDetailVO;
 import net.wannago.hotel.vo.HotelVO;
 
 @Controller
@@ -165,30 +165,62 @@ public class AdminController {
 	}
 	
 	
-	//등록 정보 수정 페이지 이동
-	@GetMapping("admin/updateInfo")
-	public void updateInfo() {
+	@GetMapping("admin/HotelModify")
+	public ModelAndView HotelModify(@RequestParam("hno") int hno,
+			ModelAndView mav) {
+		
+		HotelVO hotel = as.hotelModify(hno);
+		List<HotelDetailVO> HotelDetail= as.hotelDetailImg(hno);
 
+		mav.setViewName("admin/ModifyHotel");
+		mav.addObject("hotel", hotel);
+		mav.addObject("DetailImg",HotelDetail);
+		
+		return mav;
 		
 	}
 	
-	@GetMapping("admin/SearchInfo")
-	public ResponseEntity<Object> SearchInfo(SearchVO vo) {
-		ResponseEntity<Object> entity = null;
+	@PostMapping("admin/hotelUpdate")
+	public String hotelUpdate(HotelVO vo) {
 		
-		System.out.println("vo 출력 : "+vo);
+		System.out.println("업데이트 vo : "+vo);
+		as.HotelUpdate(vo);
 		
-		List<HotelVO> hotel = as.searchInfo(vo);
-		System.out.println("controller hotelList : "+hotel);
-		
-		try {
-			entity = new ResponseEntity<>(hotel,HttpStatus.OK);
+		return "redirect:/local/jejuHotel/Detail/"+vo.getHno();
+	}
+	
+	
+	//비동기에서 값 넘겨줄때 pathVariable로 변수 받을 수 있음
+	@PostMapping(value="admin/mainImgChange/{hno}",produces="text/plain;charset=UTF-8")
+	@ResponseBody
+	public ResponseEntity<String> mainChange(MultipartFile file,
+			@PathVariable(name="hno") int hno) throws Exception{
+		ResponseEntity<String> entity = null;
+
+		 String changeMain = FileUtils.uploadFile(file.getOriginalFilename(), uploadFolder,
+				  file.getBytes(),hno-1);
+		 
+		 try {
+			entity = new ResponseEntity<String>(changeMain,HttpStatus.OK);
 		} catch (Exception e) {
-			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
 		}
+		
 		
 		return entity;
 	}
+	
+	//호텔 삭제처리
+	@PostMapping("admin/deleteHotelSubmit/{hno}")
+	public void deleteHotel(@RequestParam("hno") int hno){
+		
+		//여기서 부터 해결하기 
+		System.out.println("hno: "+hno);
+	}
+	
+	
+	
+	
 	
 	
 	

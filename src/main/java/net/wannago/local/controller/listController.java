@@ -43,7 +43,6 @@ public class listController {
 
 		return entity;
 	}
-	
 	@GetMapping("local/jejuHotel/Detail/{hno}")
 	public ModelAndView detailPage(@PathVariable("hno") int hno,
 			ModelAndView mav){
