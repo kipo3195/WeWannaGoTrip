@@ -1,5 +1,10 @@
 package net.wannago.local.service;
 
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +18,7 @@ import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
 import net.wannago.hotel.dao.HotelDAO;
 import net.wannago.hotel.vo.HotelPriceVO;
+import net.wannago.hotel.vo.HotelRoomVO;
 import net.wannago.hotel.vo.HotelVO;
 
 @Service	
@@ -122,6 +128,93 @@ public class LocalServiceImpl implements LocalService{
 		  hotelPrice.put("plus", plus); //날짜
 		 		
 		return hotelPrice;
+	}
+	
+	 	public static int getDateByInteger(Date date) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+	        return Integer.parseInt(sdf.format(date));
+	    }
+	     
+	    public static String getDateByString(Date date) {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	        return sdf.format(date);
+	    }
+
+
+	@Override
+	public Map<String,Object> getBookableRoom(HotelRoomVO vo) {
+			int enddate = 0;
+
+		//체크인 날짜 넣어둘 배열 사용
+		ArrayList<String> bookabledate = new ArrayList<String>();
+			
+		//yyyymmdd 형식 포맷팅하기	
+		
+		
+		
+		System.out.println("odd : "+vo.getOdd());
+		if(vo.getOdd()<10){
+			String odd = "0"+vo.getOdd();
+			if(vo.getOmm()<10) {
+			 String omm = "0"+vo.getOmm();
+			 enddate = Integer.parseInt(vo.getOyyyy()+omm+odd);
+		 	}else {
+		 	enddate = Integer.parseInt(vo.getOyyyy()+vo.getOmm()+odd);
+		 	}
+		}else {
+			if(vo.getOmm()<10) {
+				 String omm = "0"+vo.getOmm();
+				 enddate = Integer.parseInt(vo.getOyyyy()+omm+vo.getOdd());
+			}else {
+			enddate = Integer.parseInt(vo.getOyyyy()+""+vo.getOmm()+""+vo.getOdd());
+			}
+		}
+		
+		//
+		//체크 인 - 체크아웃 날짜를 배열에 담기
+		Calendar cal = Calendar.getInstance();
+		cal.set(vo.getIyyyy(),vo.getImm()-1, vo.getIdd());
+		System.out.println("calTime : "+cal.getTime());
+		System.out.println("endDate : "+enddate);
+		while(true) {
+			System.out.println(getDateByString(cal.getTime()));
+			bookabledate.add(getDateByString(cal.getTime()));
+			cal.add(Calendar.DATE,1);
+			if(getDateByInteger(cal.getTime()) > enddate-1) {
+				break;
+			}
+		}
+		Map<String,Integer> luxmap = new HashMap<String, Integer>();
+		Map<String,Integer> demap = new HashMap<String, Integer>();
+		Map<String,Integer> doumap = new HashMap<String, Integer>();
+		Map<String,Integer> busimap = new HashMap<String, Integer>();
+		
+		
+		System.out.println(bookabledate.size());
+		for(int i=0; i<bookabledate.size(); i++) {
+			luxmap.put(bookabledate.get(i),dao.getbookableLux("lux",bookabledate.get(i),vo.getHno()));
+				System.out.println("date:"+bookabledate.get(i)+" | hno:"+vo.getHno());
+			demap.put(bookabledate.get(i),dao.getbookableLux("del",bookabledate.get(i),vo.getHno()));
+			doumap.put(bookabledate.get(i),dao.getbookableLux("dou",bookabledate.get(i),vo.getHno()));
+			busimap.put(bookabledate.get(i),dao.getbookableLux("busi",bookabledate.get(i),vo.getHno()));
+		
+		}
+		System.out.println("맵 여기");
+		System.out.println("lux : "+luxmap);
+		System.out.println("de : "+demap);
+		System.out.println("dou : "+doumap);
+		System.out.println("busi : "+busimap);
+		
+		
+	
+		
+		Map<String,Object> map = new HashMap<String, Object>();
+		map.put("lux", luxmap);
+		map.put("del", demap);
+		map.put("dou", doumap);
+		map.put("busi", busimap);
+		
+		return map;
 	}
 
 

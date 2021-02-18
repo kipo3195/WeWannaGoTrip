@@ -7,6 +7,7 @@ import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
 import net.wannago.cafRes.vo.CaResVO;
+import net.wannago.hotel.vo.HotelRoomVO;
 import net.wannago.hotel.vo.HotelVO;
 
 public interface LocalService {
@@ -25,7 +26,9 @@ public interface LocalService {
 
 	HotelVO HotelInfo(int hno);
 
-	Map<String, Integer> hotelPrice(double a, int hno, int plus);
+	Map<String,Integer> hotelPrice(double a, int hno, int plus);
+
+	Map<String,Object> getBookableRoom(HotelRoomVO vo);
 
 
 

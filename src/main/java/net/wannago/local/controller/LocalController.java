@@ -1,5 +1,6 @@
 package net.wannago.local.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import net.wannago.hotel.vo.HotelPrice;
+import net.wannago.hotel.vo.HotelRoomVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -70,8 +71,6 @@ public class LocalController {
 	public ResponseEntity<Map<String,Integer>> gethotelPrice(
 			@RequestParam("a")double a,
 			@RequestParam("hno") int hno,
-			@RequestParam("odd") int odd,
-			@RequestParam("idd") int idd,
 			@RequestParam("plus") int plus
 			)
 		{
@@ -87,6 +86,25 @@ public class LocalController {
 		
 		return entity;
 	}
+	
+	//잔여 객실 정보
+	@GetMapping("/jejuHotel/getBookableRoom")
+	@ResponseBody
+	public ResponseEntity<Map<String,Object>> getBookableRoom(
+			HotelRoomVO vo){
+		ResponseEntity<Map<String,Object>> entity = null;
+		Map<String, Object> map = ls.getBookableRoom(vo);
+		
+		try {
+			entity = new ResponseEntity<>(map,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		return entity;
+	}
+
 	
 
 	@RequestMapping("missing")

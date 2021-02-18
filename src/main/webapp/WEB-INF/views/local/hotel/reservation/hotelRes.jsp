@@ -70,7 +70,7 @@
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit/${hotel.hno}" class="btn btn-primary">Sign Up!</a>
+              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" class="btn btn-primary">예약하기</a>
             </li>
           </ul>
         </div>
@@ -83,7 +83,11 @@
             <div class="font-italic" id="de">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item">잔여 객실
+            <div id="deluxRoom">
+            
+            </div>
+            </li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
@@ -246,10 +250,6 @@
 								data:{
 									hno : hno,
 									a : a,
-									omm :omm,
-									odd :odd,
-									imm :imm,
-									idd :idd,
 									plus:plus
 								},
 								success:function(data){
@@ -296,6 +296,42 @@
 									
 								}
 								}); 
+							
+							
+								 $.ajax({
+									type:"get",
+									url :"getBookableRoom",
+									data : {
+										hno :hno,
+										iyyyy:iyyyy,
+										imm :imm,
+										idd :idd,
+										oyyyy:oyyyy,
+										omm : omm,
+										odd : odd,
+										plus : plus
+									},
+									success:function(data){
+										console.log(data);
+									var lux = data.lux;
+									var dou = data.dou;
+									var del = data.del;
+									var busi = data.busi;
+									//여기서 부터 해결하기
+									console.log(del);
+									
+									for(var i=0; i<del.prototype.size; i++){
+											console.log("A");
+									}
+									
+									var str ="<span>"+del+"</span> ";
+									
+									$("#deluxRoom").html(str);
+									
+										
+									}
+									 
+								 });
 							 }
 							 
 						 }
