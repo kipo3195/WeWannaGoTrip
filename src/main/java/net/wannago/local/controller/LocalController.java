@@ -4,6 +4,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.wannago.hotel.vo.HotelPrice;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -64,17 +67,25 @@ public class LocalController {
 	//호텔 예약 가격 
 	@GetMapping("/jejuHotel/gethotelPrice")
 	@ResponseBody
-	public void gethotelPrice(
+	public ResponseEntity<Map<String,Integer>> gethotelPrice(
 			@RequestParam("a")double a,
 			@RequestParam("hno") int hno,
 			@RequestParam("odd") int odd,
-			@RequestParam("idd") int idd
+			@RequestParam("idd") int idd,
+			@RequestParam("plus") int plus
 			)
 		{
-		Map<String,Integer> hotelprice= ls.hotelPrice(a,hno);
+		ResponseEntity<Map<String,Integer>> entity = null;
+		Map<String,Integer> hotelprice= ls.hotelPrice(a,hno,plus);
 		
 		
+		try {
+			entity = new ResponseEntity<>(hotelprice,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		}
 		
+		return entity;
 	}
 	
 

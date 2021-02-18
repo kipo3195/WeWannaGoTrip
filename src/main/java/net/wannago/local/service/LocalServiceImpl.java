@@ -100,25 +100,27 @@ public class LocalServiceImpl implements LocalService{
 	}
 
 	@Override
-	public Map<String, Integer> hotelPrice(double a, int hno) {
-		Map<String,Integer> hotelPrice= null;
+	public Map<String, Integer> hotelPrice(double a, int hno,int plus) {
+		Map<String,Integer> hotelPrice= new HashMap<>();
 		//호텔정보가져와서
 		HotelVO vo = dao.getHotel(hno);
 		//몇성급인지 확인하고
 		HotelPriceVO pricevo = dao.getGradePrice(vo.getHgrade());
 		//가격객체 가져와서 확인
 		
-		double luxury = pricevo.getHpriprice() * a * pricevo.getLuxury();
-		double delux = pricevo.getHpriprice() * a * pricevo.getDelux();
-		double doubler = pricevo.getHpriprice()  * a * pricevo.getDoubler();
-		double business = pricevo.getHpriprice() *a * pricevo.getBusiness();
 		
-		System.out.println(luxury);
-		System.out.println(delux);
-		System.out.println(doubler);
-		System.out.println(business);
+		int luxury =  (int) (pricevo.getHpriprice() * a * pricevo.getLuxury());
+		int delux =  (int) (pricevo.getHpriprice() * a * pricevo.getDelux());
+		int doubler =  (int) (pricevo.getHpriprice()  * a * pricevo.getDoubler());
+		int business =  (int) (pricevo.getHpriprice() *a * pricevo.getBusiness());
 		
 		
+		  hotelPrice.put("luxury",luxury);
+		  hotelPrice.put("delux",delux);
+		  hotelPrice.put("doubler",doubler); 
+		  hotelPrice.put("business",business);
+		  hotelPrice.put("plus", plus); //날짜
+		 		
 		return hotelPrice;
 	}
 
