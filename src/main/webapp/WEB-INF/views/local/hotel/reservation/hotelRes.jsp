@@ -53,7 +53,90 @@
 		
    </table>
    
-   <script>
+	<br/>
+    <hr/>
+	<br/>
+    <!-- Content Row -->
+    <div class="row">
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h3 class="card-header">Luxury</h3>
+          <div class="card-body">
+            <div class="display-4" id="luxuryprice">금액 표시</div>
+            <div class="font-italic" id="lu">per day</div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
+            <li class="list-group-item">부가기능 추가 가능</li>
+            <li class="list-group-item">
+              <a href="${pageContext.request.contextPath}/credit/${hotel.hno}" class="btn btn-primary">Sign Up!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card card-outline-primary h-100">
+          <h3 class="card-header bg-primary text-white">Delux</h3>
+          <div class="card-body">
+          <div class="display-4" id="deluxprice">금액 표시</div>
+            <div class="font-italic" id="de">per day</div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
+            <li class="list-group-item">부가기능 추가 가능</li>
+            <li class="list-group-item">
+              <a href="#" class="btn btn-primary">Sign Up!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h3 class="card-header">Double</h3>
+          <div class="card-body">
+          <div class="display-4" id="doublerprice">금액 표시</div>
+            <div class="font-italic" id="dou">per day</div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
+            <li class="list-group-item">부가기능 추가 가능</li>
+            <li class="list-group-item">
+              <a href="#" class="btn btn-primary">Sign Up!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+         <div class="col-lg-4 mb-4">
+        <div class="card h-100">
+          <h3 class="card-header">Business</h3>
+          <div class="card-body">
+          <div class="display-4" id="businessprice">금액 표시</div>
+            <div class="font-italic" id="bu">per day</div>
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
+            <li class="list-group-item">부가기능 추가 가능</li>
+            <li class="list-group-item">
+              <a href="#" class="btn btn-primary">Sign Up!</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    
+    
+    <!-- /.row -->
+    <!-- bootstrap -->
+    
+
+  </div>
+  <!-- /.container -->
+  
+    <script>
    
    		var hno = $("#hno").val();
    		
@@ -81,7 +164,7 @@
    		     var today = year+month+day; //오늘날짜
    		     console.log(today);
         	
-        	 
+   		     //체크인
              var iyyyy = checkin.substr(6,4);
 			 var imm = checkin.substr(0,2);
 			 var idd = checkin.substr(3,2);
@@ -91,7 +174,7 @@
              var checkinDay = weeks[new Date(iyyyy,imm,idd).getDay()];
              console.log(checkinDay);
              
-             
+             //체크아웃
              var oyyyy = checkout.substr(6,4);
              var omm = checkout.substr(0,2);
 			 var odd = checkout.substr(3,2);
@@ -99,22 +182,33 @@
 
 			 var a =1;
 			 
-			 
-			 //1달 차이 날때
+			 //2개월 단위 이상 예약 불가
+			 if(month - imm < -2 || month - omm < -2){
+				 alert("최대 2개월 이후까지만 예약 가능합니다");
+				 return;
+			 }
+			 if(omm-imm ==2 ){
+				 alert("서비스 준비중입니다");
+				 return;
+			 }
+			 //1달 차이 날때 체크
 			 if(omm-imm == 1){
 				var lastDate = new Date(iyyyy, imm, 0).getDate();
 				var checkingap = lastDate - idd;
 				var plus = checkingap + Number(odd);
-				 for(var i = idd; i < idd+plus; i++ ){
+				  for(var i = 0; i < plus; i++ ){
 					 a *= pricemag[new Date(iyyyy,imm,i).getDay()];
-				 }
+				 } 
+				var odda = 1; //한달차이 구분 플레이그
+				
 			 }else{
 			 // 배율 계산
 			 for(var i = idd; i < odd; i++ ){
 				 a *= pricemag[new Date(iyyyy,imm,i).getDay()];
+				 a = a.toFixed(1);
 			 }
              console.log(a);
-             
+             plus = odd-idd;
 			 }
 			 
 			 
@@ -124,7 +218,7 @@
 			 console.log(checkoutDay);
              
 			 
-			 if(checkin == '' && checkout == ''){
+			 if(checkin == '' || checkout == ''){
 				 alert("날짜를 먼저 선택하세요");
 			 	return;
 			 }else{
@@ -139,9 +233,11 @@
 						alert("이전달 예약은 불가능합니다");
 						return;
 					 }else{
-						 if(idd - odd >= 0){
-							alert("이전일 예약은 불가능 합니다");
+						 
+						 if(idd - odd >= 0 && odda == null){
+							 alert("이전일 예약은 불가능 합니다");
 							return;
+							
 						 }else{
 						 		
 							$.ajax({
@@ -153,12 +249,53 @@
 									omm :omm,
 									odd :odd,
 									imm :imm,
-									idd :idd
+									idd :idd,
+									plus:plus
 								},
 								success:function(data){
 									console.log(data);
+									
+									var luxury = data.luxury;
+									var delux = data.delux;
+									var business = data.business;
+									var doubler = data.doubler;
+									
+									var plus = data.plus; //나눌 기간
+									
+									var lu = priceCal(luxury);
+									var de = priceCal(delux);
+									var bu = priceCal(business);
+									var dou = priceCal(doubler);
+									
+									function priceCal(price){
+										
+										return(Math.ceil(price/plus));
+									}
+									
+									
+									var luxurystr = "<span>"+luxury+"원</span>";
+									$("#luxuryprice").html(luxurystr);
+									var lustr = "<span>"+lu+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
+									$("#lu").html(lustr);
+									
+									var deluxstr = "<span>"+delux+"원</span>";
+									$("#deluxprice").html(deluxstr);
+									var destr = "<span>"+de+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
+									$("#de").html(destr);
+									
+									var businessstr = "<span>"+business+"원</span>";
+									$("#businessprice").html(businessstr);
+									var bustr = "<span>"+bu+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
+									$("#bu").html(bustr);
+									
+									var doublerstr = "<span>"+doubler+"원</span>";
+									$("#doublerprice").html(doublerstr);
+									var doustr = "<span>"+dou+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
+									$("#dou").html(doustr);
+								
+									
 								}
-							}); 
+								}); 
 							 }
 							 
 						 }
@@ -166,105 +303,15 @@
 					 }
 				}
 			}      
-	             
-             
-             
-             
              
         });
         
-       
-        
-        
     </script>
-
-
-	<br/>
-    <hr/>
-	<br/>
-    <!-- Content Row -->
-    <div class="row">
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Luxury</h3>
-          <div class="card-body">
-            <div class="display-4">금액 표시</div>
-            <div class="font-italic">per day</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
-            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
-            <li class="list-group-item">부가기능 추가 가능</li>
-            <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card card-outline-primary h-100">
-          <h3 class="card-header bg-primary text-white">Delux</h3>
-          <div class="card-body">
-          <div class="display-4">금액 표시</div>
-            <div class="font-italic">per day</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
-            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
-            <li class="list-group-item">부가기능 추가 가능</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-      <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">double</h3>
-          <div class="card-body">
-          <div class="display-4">금액 표시</div>
-            <div class="font-italic">per day</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
-            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
-            <li class="list-group-item">부가기능 추가 가능</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </div>
-         <div class="col-lg-4 mb-4">
-        <div class="card h-100">
-          <h3 class="card-header">Single</h3>
-          <div class="card-body">
-          <div class="display-4">금액 표시</div>
-            <div class="font-italic">per day</div>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
-            <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
-            <li class="list-group-item">부가기능 추가 가능</li>
-            <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-    
-    
-    <!-- /.row -->
-    <!-- bootstrap -->
-    
-
-  </div>
-  <!-- /.container -->
 
    <!-- Footer -->
    <%@ include file="../../../common/footer.jsp" %>
    
+ 
  
  
  	

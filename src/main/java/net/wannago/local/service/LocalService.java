@@ -25,7 +25,7 @@ public interface LocalService {
 
 	HotelVO HotelInfo(int hno);
 
-	Map<String, Integer> hotelPrice(double a, int hno);
+	Map<String, Integer> hotelPrice(double a, int hno, int plus);
 
 
 
