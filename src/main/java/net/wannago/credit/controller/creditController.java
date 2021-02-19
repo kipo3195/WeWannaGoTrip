@@ -1,18 +1,19 @@
 package net.wannago.credit.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class creditController {
 
-	@GetMapping("/credit")
+	@PostMapping("/credit")
 	public void credit(
-		int hno) {
-		
+		@RequestParam("hno") int hno,
+		@RequestParam("mno") int mno) {
+		System.out.println("여기");
+		System.out.println(hno);
+		System.out.println(mno);
 		
 	}
 	
