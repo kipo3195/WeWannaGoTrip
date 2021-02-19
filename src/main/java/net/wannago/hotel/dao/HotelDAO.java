@@ -37,18 +37,15 @@ public interface HotelDAO {
 	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{lux} AND Rdate = #{date} AND hno = ${hno}") 
 	public int getbookableLux(@Param("lux") String lux, @Param("date")String date, @Param("hno") int hno);
 	
-	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{del} AND Rdate =#{date} AND hno = ${hno}") 
+	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{del} AND Rdate = #{date} AND hno = ${hno}") 
 	public int getbookableDe(@Param("del") String del, @Param("date") String date, @Param("hno") int hno);
 	
-	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{dou} AND Rdate =#{date} AND hno = ${hno}") 
+	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{dou} AND Rdate = #{date} AND hno = ${hno}") 
 	public int getbookableDou(@Param("dou") String dou, @Param("date") String date, @Param("hno") int hno);
 	
 	@Select("SELECT count(*) FROM pro_HotelReservation WHERE grade = #{busi} AND Rdate = #{date} AND hno = ${hno}") 
 	public int getbookableBusi(@Param("busi") String busi, @Param("date") String date, @Param("hno") int hno);
 
 
-	
-
-	
 	
 }

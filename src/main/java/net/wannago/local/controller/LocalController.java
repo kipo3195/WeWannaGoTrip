@@ -94,6 +94,7 @@ public class LocalController {
 			HotelRoomVO vo){
 		ResponseEntity<Map<String,Object>> entity = null;
 		Map<String, Object> map = ls.getBookableRoom(vo);
+		System.out.println("확인할 위치 : "+map);
 		
 		try {
 			entity = new ResponseEntity<>(map,HttpStatus.OK);

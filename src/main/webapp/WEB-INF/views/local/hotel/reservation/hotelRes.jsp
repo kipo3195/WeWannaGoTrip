@@ -66,11 +66,11 @@
             <div class="font-italic" id="lu">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item" id="luxlestRoom">잔여 객실</li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
-            <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" class="btn btn-primary">예약하기</a>
+            <li class="list-group-item" id="cencelLux">
+              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="luxBtn" class="btn btn-primary">예약하기</a>
             </li>
           </ul>
         </div>
@@ -83,7 +83,7 @@
             <div class="font-italic" id="de">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실
+            <li class="list-group-item" id="dellestRoom">잔여 객실
             <div id="deluxRoom">
             
             </div>
@@ -91,7 +91,7 @@
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
+              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}"  id="cenceldel" class="btn btn-primary">Sign Up!</a>
             </li>
           </ul>
         </div>
@@ -104,11 +104,11 @@
             <div class="font-italic" id="dou">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item" id="doulestRoom">잔여 객실</li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
+              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="cenceldou" class="btn btn-primary">Sign Up!</a>
             </li>
           </ul>
         </div>
@@ -122,11 +122,11 @@
             <div class="font-italic" id="bu">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">잔여 객실</li>
+            <li class="list-group-item" id="busiRoom">잔여 객실</li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="#" class="btn btn-primary">Sign Up!</a>
+              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" class="btn btn-primary" id="cencelbusi">Sign Up!</a>
             </li>
           </ul>
         </div>
@@ -215,7 +215,7 @@
              plus = odd-idd;
 			 }
 			 
-			 
+			
 			 
 			// 체크아웃 요일
 			 var checkoutDay = weeks[new Date(oyyyy,omm,odd).getDay()];
@@ -313,24 +313,75 @@
 									},
 									success:function(data){
 										console.log(data);
+									var defaultcount = 3; 
 									var lux = data.lux;
 									var dou = data.dou;
-									var del = data.del;
+									var de = data.de;
 									var busi = data.busi;
-									//여기서 부터 해결하기
-									console.log(del);
+									var date = data.date;
+									var plus = data.plus;
+									var str = "";
+									var html = "";
 									
-									for(var i=0; i<del.prototype.size; i++){
-											console.log("A");
+									
+									//luxury
+									var cencelLux = $("#cencelLux");
+									var luxlestRoom = $("#luxlestRoom");
+									//delux
+									var dellestRoom = $("#dellestRoom");
+									var cenceldel = $("#cenceldel");
+									//double
+									var doulestRoom = $("#doulestRoom");
+									var cenceldou = $("#cenceldou");
+									//business
+									var busiRoom = $("#busiRoom");
+									var cencelbusi = $("cencelbusi");
+
+									lestroomCal(lux,defaultcount,date,cencelLux,luxlestRoom);
+									lestroomCal(de,defaultcount,date,cenceldel,dellestRoom);
+									lestroomCal(dou,defaultcount,date,cenceldou,doulestRoom);
+									lestroomCal(busi,defaultcount,date,cencelbusi,busiRoom);
+									
+									
+									function lestroomCal(map, defaultcount, date,div,divA){
+										for(var i =0; i<map.length; i++){
+											if(defaultcount-map[i] == 0){
+												alert('예약불가능한 날짜가 존재합니다');
+											str ="<li style='list-style:none; color:red'>"+ date[i]+" : "+(defaultcount-map[i])+"</li>";
+											html = "<label>예약이 불가능합니다</label>";
+											
+											$(div).html(html);
+											
+											}else{
+											str ="<li style='list-style:none;'>"+ date[i]+" : "+(defaultcount-map[i])+"</li>";
+											}
+											$(divA).append(str);
+										}
 									}
 									
-									var str ="<span>"+del+"</span> ";
-									
-									$("#deluxRoom").html(str);
-									
+									/* for(var i =0; i<lux.length; i++){
+										if(defaultcount-lux[i] == 0){
+											alert('예약불가능한 날짜가 존재합니다');
+										str ="<li style='list-style:none; color:red'>"+ date[i]+" : "+(defaultcount-lux[i])+"</li>";
+										html = "<label>예약이 불가능합니다</label>";
 										
+										$("#cencelLux").html(html);
+										
+										}else{
+										str ="<li style='list-style:none;'>"+ date[i]+" : "+(defaultcount-lux[i])+"</li>";
+										}
+									
+										$("#luxlestRoom").append(str);
+									} */
+									
+									
+									
+									
+									
+									
+									
+									
 									}
-									 
 								 });
 							 }
 							 
