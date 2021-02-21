@@ -30,6 +30,8 @@ public interface LocalService {
 
 	Map<String,Object> getBookableRoom(HotelRoomVO vo);
 
+	Map<String,Object> likeCnt(int hno, int mno);
+
 
 
 	

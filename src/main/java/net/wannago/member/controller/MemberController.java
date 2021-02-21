@@ -1,14 +1,22 @@
 package net.wannago.member.controller;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -105,6 +113,90 @@ public class MemberController {
 	
 		return "redirect:/";
 	}
+	
+	
+	////훈
+	//세션 영역에 저장된 객체 불러오기
+	@GetMapping("membersLikeHotel")
+	public ModelAndView membersLikeHotel(
+			@SessionAttribute("memberInfo") MemberVO member
+			) {
+		ModelAndView mav = new ModelAndView();
+		/* Map<Integer, Object> map = ms.getIntHotelList(member.getMno()); */
+		/* String regintdate = ms.getRegintdate(member.getMno()); */
+		/* Map<String,Object> map = ms.getRegMap(member.getMno()); */
+		/*
+		 * System.out.println("이게 맵 : "+map); System.out.println("이건  reg맵"+regMap);
+		 * mav.addObject("map", map); mav.addObject("regMap", regMap);
+		 */
+		//어떻게 하면 호텔을 리스트 형태로 보여줄 것이며, 어떻게 하면 등록일을 보여줄 것인가?
+		
+		//리스트로 다시해보자 
+		Map<String,Object> map  = ms.getIntHotelList(member.getMno());
+		System.out.println("interList : "+map.get("interlist"));
+		System.out.println("HotelList : "+map.get("HotelList"));
+	
+		mav.addObject("map",map);
+		mav.setViewName("member/membersLikeHotel");
+		return mav;
+	}
+	
+	//관심호텔 등록
+	@GetMapping("/reginterestedHotel/{hno}/{mno}")
+	@ResponseBody
+	public ResponseEntity<Object> reginterestedHotel(
+			@PathVariable("hno") int hno,
+			@PathVariable("mno") int mno) {
+		ResponseEntity<Object> entity = null;
+		
+		Map<String,String> map= ms.regIntHotel(hno,mno);
+		
+		try {
+			entity = new ResponseEntity<>(map,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		return entity;
+	}
+	
+	/*
+	 * @GetMapping("/deleteInterHotel") public ModelAndView deleteInterHotel(
+	 * 
+	 * @RequestParam("ino")int ino) { ModelAndView mav = new ModelAndView();
+	 * 
+	 * System.out.println("여기출력"); System.out.println(ino);
+	 * 
+	 * mav.setViewName("redirect:/member/membersLikeHotel"); return mav;
+	 * 
+	 * }
+	 */
+	
+	//삭제 요청 비동기
+	@GetMapping("/deleteInterHotel/{ino}")
+	public ResponseEntity<String> deleteInterHotel(
+			@PathVariable("ino") int ino){
+
+		ResponseEntity<String> entity = null;
+		
+		String message = ms.deleteInterHotel(ino);
+		
+		try {
+			entity = new ResponseEntity<>(message,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			e.printStackTrace();
+		}
+		
+		return entity;
+		
+	}
+	
+	
+	
+	////훈
+	
 	
 	
 	

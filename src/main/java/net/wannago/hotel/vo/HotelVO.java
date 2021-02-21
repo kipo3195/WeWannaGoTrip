@@ -27,6 +27,8 @@ public class HotelVO {
 	private String hmainimg;
 	private String hdetailimg;
 	private String hfacility;
+	private double hwedo;
+	private double hkyungdo;
 	
 	private List<String> file;
 	

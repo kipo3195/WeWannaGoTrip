@@ -6,6 +6,17 @@
 
 <!-- Head -->
 <%@ include file="../../common/header.jsp"%>
+<style>
+
+
+.likeimg:selection{
+
+}
+.likeimg:hover {
+	cursor: pointer;
+}
+
+</style>
 
 <body>
 
@@ -19,10 +30,12 @@
 		<h1 class="mt-4 mb-3">
 			제주 호텔 미리보기 <small></small>
 		</h1>
+		<!-- 로그인 안됬을시 막기 -->
+		<input type="hidden" name="mno" value="${memberInfo.mno}" id="boolLogin">
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">평점순</a>&nbsp;/&nbsp; <a
-				href="#">평점 + 낮은가격</a>&nbsp;/&nbsp; <a href="#">낮은가격순</a>&nbsp;/&nbsp;
+			<li class="breadcrumb-item"><a href="#">찜</a>&nbsp;/&nbsp; <a
+				href="#">신규 등록순</a>&nbsp;/&nbsp; <a href="#">낮은가격순</a>&nbsp;/&nbsp;
 				<a href="#">신규 등록순</a></li>
 		</ol>
 <div class="card mb-4">
@@ -240,7 +253,7 @@
 			let date = new Date(hregdate);
 			fmtdate = getFormatDate(date);
 			
-			
+			str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 		    str += " <div class='card mb-4'>"; 
 			str += " <div class='card-body'> ";
 			str += " <div class='row'> ";  
@@ -257,7 +270,9 @@
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
 	        str += " 평균 평점:"+hscore+" <br/>";
-	        str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
+	        str += "<div class=likediv ani_type='scale'>";
+	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
+	        str += "</div>";
         	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
 	        str += " <a class='btn btn-primary' id='detailBtn' href='jejuHotel/Detail/"+hno+"'>호텔 상세보기";
 	        str += " <span class='glyphicon glyphicon-chevron-right'></span> "
@@ -325,11 +340,11 @@
 	
 	
 	});
-	
+
 	function printSearchList(data){
 		var str = "";
 		$(data).each(function(){
-			var hno = this.hno;
+			hno = this.hno;
 			var hname = this.hname;
 			var hinfo = this.hinfo;
 			var hcheckin = this.hcheckin;
@@ -344,7 +359,7 @@
 			let date = new Date(hregdate);
 			fmtdate = getFormatDate(date);
 			
-			
+		    str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 		    str += " <div class='card mb-4'>"; 
 			str += " <div class='card-body'> ";
 			str += " <div class='row'> ";  
@@ -361,7 +376,9 @@
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
 	        str += " 평균 평점:"+hscore+" <br/>";
-	        str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
+	        str += "<div class=likediv>";
+	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>"+hlikecnt+"<br/> "; 
+	        str += "</div>";
         	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
 	        str += " <a class='btn btn-primary' id='detailBtn' href='jejuHotel/Detail/"+hno+"'>호텔 상세보기";
 	        str += " <span class='glyphicon glyphicon-chevron-right'></span> "
@@ -375,6 +392,54 @@
 		});
 		$(".hotellist").html(str);
 	}
+	
+	
+	
+	//좋아요 구현!
+	$(".hotellist").on("click",".likeimg",function(){
+		
+		//로그인됬는지 안됬는지 유무+로그인 된 회원번호
+		var boolLogin= $("#boolLogin").val();
+		//호텔 번호
+		var hno = $("#hno").val();
+		
+		console.log(hno);
+		
+		if(boolLogin === ''){
+		alert("해당 기능은 로그인 후 사용 가능합니다.");
+		}else{
+		
+			$.ajax({
+				type :"get",
+				url : "likeCnt",
+				dataType : "json",
+				data :{
+					hno:hno,
+					boolLogin:boolLogin
+				},
+				success : function(data){
+					console.log(data);
+					var likecnt = data.likecnt;
+					var result = data.result;
+					console.log(likecnt);
+					console.log(result);
+					
+					if(result == "true"){
+						alert("처음 누름");
+						
+					}else{
+						alert("취소");
+					}
+					var sstr = "찜 하기 <img class=likeimg src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+likecnt+"<br/> "; 
+					$(".likediv").html(sstr);
+				
+				}
+			});
+			
+		}
+	
+		
+	});
 	
 	
 	</script>

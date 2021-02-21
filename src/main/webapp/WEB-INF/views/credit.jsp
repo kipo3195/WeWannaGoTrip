@@ -16,13 +16,18 @@
   <div class="row mb-4">
     <div class="col-lg-8 mx-auto text-center">
       <h1 class="display-4">결제 페이지</h1>
-      <p class="lead mb-0">결제 페이지에서는 여러가지 결제를 제공할 예정입니다.</p>
+      <p class="lead mb-0">회원님의 행복한 여정에 대한 요금 안내 페이지 입니다.</p>
+      <br>
+      <p class="lead mb-0">기간 : ${totalin} ~ ${totalout}</p>
+      <p class="lead mb-0">호텔이름 : ${hname}</p>
+      <p class="lead mb-0">호텔등급 : ${grade}</p>
+      <p class="lead mb-0">Room Grade : ${room}</p>
     </div>
   </div>
   <!-- End -->
   <!-- 총 결제 요금 보여주기 -->
 	<div class="col-lg-8 mx-auto text-center">
-		<h6 class="display-4">결제할 요금 : </h6>
+		  <p class="lead mb-0">결제할 요금 : ${price} 원</p>
 	</div>
 
   <div class="row">
@@ -39,13 +44,13 @@
           <li class="nav-item">
             <a data-toggle="pill" href="#nav-tab-paypal" class="nav-link rounded-pill">
                                 <i class="fa fa-paypal"></i>
-                                Paypal
+                                실시간 계좌 이체
                             </a>
           </li>
           <li class="nav-item">
             <a data-toggle="pill" href="#nav-tab-bank" class="nav-link rounded-pill">
                                 <i class="fa fa-university"></i>
-                                 Bank Transfer
+                                	네이버 페이결제
                              </a>
           </li>
         </ul>
@@ -55,17 +60,19 @@
         <!-- Credit card form content -->
         <div class="tab-content">
           <!-- credit card info-->
-          <div id="nav-tab-card" class="tab-pane fade show active">
-            <p class="alert alert-success">Some text success or error</p>
-            <form role="form">
+          <div id="nav-tab-card" class="tab-pane fade show active" id="nameCheckable">
+	          	<div id="check">
+	          	 	 <p class="alert alert-danger">입력된 정보가 없거나 일치 하지 않습니다.</p>
+	            </div>
+            <form role="form" action="creditConfirm" method="POST">
               <div class="form-group">
                 <label for="username">성함을 입력해 주세요.</label>
-                <input type="text" name="username" placeholder="ENTER YOUR NAME" required class="form-control">
+                <input type="text" id="idCheck" name="username" placeholder="ENTER YOUR NAME" required="required" class="form-control">
               </div>
               <div class="form-group">
                 <label for="cardNumber">카드 번호를 입력해주세요.</label>
                 <div class="input-group">
-                  <input type="text" name="cardNumber" placeholder="ENTER YOUR CARD NUMBER" class="form-control" required>
+                  <input type="text" name="cardNumber" placeholder="해당서비스는 준비중입니다" disabled="disabled" class="form-control" required>
                   <div class="input-group-append">
                     <span class="input-group-text text-muted">
                                                 <i class="fa fa-cc-visa mx-1"></i>
@@ -80,8 +87,8 @@
                   <div class="form-group">
                     <label><span class="hidden-xs">카드 등록 정보를 입력해 주세요.</span></label>
                     <div class="input-group">
-                      <input type="number" placeholder="MM" name="" class="form-control" required>
-                      <input type="number" placeholder="YY" name="" class="form-control" required>
+                      <input type="number" placeholder="준비중" name="" disabled="disabled" class="form-control" required>
+                      <input type="number" placeholder="준비중" disabled="disabled" name="" class="form-control" required>
                     </div>
                   </div>
                 </div>
@@ -90,46 +97,53 @@
                     <label data-toggle="tooltip" title="Three-digits code on the back of your card">CVV
                                                 <i class="fa fa-question-circle"></i>
                                             </label>
-                    <input type="text" required class="form-control">
+                    <input type="text" required class="form-control" placeholder="준비중" disabled="disabled">
                   </div>
                 </div>
-
-
-
               </div>
-              <button type="button" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm"> Confirm  </button>
+              <div>
+				<table>
+					<tr>
+						<td>
+							<input type="hidden" name="hno" value="${hno}"/>
+							<input type="hidden" name="mno" value="${memberInfo.mno}"/>
+							<input type="hidden" name="totalin" value="${totalin}"/>
+							<input type="hidden" name="totalout" value="${totalout}"/>
+							<input type="hidden" name="price" value="${price}"/>
+							<input type="hidden" name="room" value="${room}"/>
+						</td>
+					</tr>
+					
+				</table>
+			
+              </div>
+              <button type="submit" class="subscribe btn btn-primary btn-block rounded-pill shadow-sm" disabled="disabled" id="ConfirmBtn"> Confirm  </button>
             </form>
           </div>
           <!-- End -->
 
           <!-- Paypal info -->
           <div id="nav-tab-paypal" class="tab-pane fade">
-            <p>Paypal is easiest way to pay online</p>
-            <p>
-              <button type="button" class="btn btn-primary rounded-pill"><i class="fa fa-paypal mr-2"></i> Log into my Paypal</button>
-            </p>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+           <br/>
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;실시간 계좌이체 서비스 준비중</h2>
+            <br/>
+            <dl>
+              <dt>빠른 시일 내로 찾아 뵙도록 하겠습니다. 불편을 드려 죄송합니다.</dt>
+              <dd> - WeWannaGoTrip</dd>
+            </dl>
           </div>
           <!-- End -->
 
           <!-- bank transfer info -->
           <div id="nav-tab-bank" class="tab-pane fade">
-            <h6>Bank account details</h6>
+            <br/>
+            <h2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;네이버 페이 결제 서비스 준비중</h2>
+            <br/>
             <dl>
-              <dt>Bank</dt>
-              <dd> THE WORLD BANK</dd>
+              <dt>빠른 시일 내로 찾아 뵙도록 하겠습니다. 불편을 드려 죄송합니다.</dt>
+              <dd> - WeWannaGoTrip</dd>
             </dl>
-            <dl>
-              <dt>Account number</dt>
-              <dd>7775877975</dd>
-            </dl>
-            <dl>
-              <dt>IBAN</dt>
-              <dd>CZ7775877975656</dd>
-            </dl>
-            <p class="text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-            </p>
+           
           </div>
           <!-- End -->
         </div>
@@ -145,5 +159,33 @@
  
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+
+	<script>
+     
+		var username = "${memberInfo.mname}";
+		$("#idCheck").on("input",function(){
+			//정보 확인 후, confirm 활성화 , 비활성화 
+			 var name = $(this).val();
+			 if(name === username){
+				 var str = "<p class='alert alert-success'>등록된 정보와 일치합니다 서둘러 예약하세요!</p>";
+				 $("#check").html(str);
+				 	$("#ConfirmBtn").attr("disabled",false);
+				 
+			 }else{
+				 var strback = "<p class='alert alert-danger'>입력된 정보가 없거나 일치 하지 않습니다.</p>";
+				 $("#check").html(strback);
+					 $("#check").html(str);
+					 	$("#ConfirmBtn").attr("disabled",true);
+			 }
+		});
+	
+	</script>
+
+
+
+
+
+
 </body>
 </html>

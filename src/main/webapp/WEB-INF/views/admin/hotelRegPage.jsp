@@ -8,7 +8,7 @@
  <%@ include file="../common/header.jsp" %>
  
 <style>
-	.Temp{
+	/* .Temp{
 		width:100%;
 		height:150px;
 		border:1px solid gray;
@@ -48,8 +48,69 @@
             font-size: 20px;
 			padding : 10px;    
 			
-          }
+          } */
+	.Temp{
+		width:100%;
+		height:150px;
+		line-height:150px;
+		border:1px solid gray;
+		background-color:infobackground;
+		margin:auto;
+	}
+	.Temp span{
+		padding:50px;
+	}
+	table{
+		padding:20px;
+	}
+	#detailFileList{
+		width:100%;
+		height:220px;
+		border:1px solid gray;
+		background-color:skyblue;
+		margin:auto;
+		align-content: center;
+	}
+	#detailFileList li{
+		float:left;
+		padding:5px;
+		list-style: none;
+	}
 	
+	#hotelReg{
+		text-align: center;
+		height:900px;
+	}
+		
+	     table {
+           margin: auto;
+           padding: 30px;  
+          }
+          table td{
+           padding:10px;
+          }
+       .a {
+            text-align: right;
+            padding: 12px;        
+          }
+        
+        div{ 
+          text-align: center;
+         }
+          
+         #b{
+         /* margin-top : 10px; */
+         list-style: none;
+         text-align : left;
+        
+         }
+         
+         #b:first-child{
+         	margin-top : 20px;
+         }
+       #info{
+       border:1px solid gray;
+       }  
 	
 </style>
 
@@ -101,18 +162,27 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 소개
+				</td>
 				<td>
-	 				호텔 소개 : <textarea name="hinfo" id="hinfo" autocomplete="off" required></textarea>
+	 				 <textarea name="hinfo" id="hinfo" autocomplete="off" required></textarea>
 	 			</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 주소
+				</td>
 				<td>
-	 				호텔 주소 : <input type="text" name="haddress" autocomplete="off" id="haddress" required/>
+	 				 <input type="text" name="haddress" autocomplete="off" id="haddress" required/>
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 전화번호
+				</td>
 				<td>
-	 				호텔 전화번호 : <input type="text" name="htel" autocomplete="off" id="htel" placeholder="012-345-5678" required/>
+	 			 <input type="text" name="htel" autocomplete="off" id="htel" placeholder="012-345-5678" required/>
 	 			
 				</td>
 			</tr>
@@ -203,6 +273,16 @@
 	 				</select>
 	 				</div>
 				</td>
+			</tr>
+			<tr>
+				<td>
+	 				호텔 위도  : <input type="text" name="hwedo" autocomplete="off" required width="5"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+	 				호텔 경도  : <input type="text" name="hkyungdo" autocomplete="off" required width="5"/>
+	 			</td>
 			</tr>
 			<tr>
 				<td>
