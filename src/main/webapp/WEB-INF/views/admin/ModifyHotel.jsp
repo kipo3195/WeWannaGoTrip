@@ -220,6 +220,22 @@
 	 				<input type="text" name="hprimaryprice" value="${hotel.hprimaryprice}" required width="5"/>원
 				</td>
 			</tr>
+			<tr>
+				<td class="a">
+					호텔 위도
+				</td>
+				<td>
+	 				<input type="text" name="hwedo" value="${hotel.hwedo}" required width="5"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="a">
+					호텔 경도
+				</td>
+				<td>
+	 				<input type="text" name="hkyungdo" value="${hotel.hkyungdo}" required width="5"/>
+				</td>
+			</tr>
 			<tr>	
 				<td class="a">
 					주요시설

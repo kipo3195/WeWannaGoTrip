@@ -51,7 +51,17 @@
           <li>사용 편의 시설 4</li>
         </ul>
         <!-- 세션 정보(관리자, 이용자)에 따른  -->
+        
             <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
+            <form>
+            	<table>
+					<tr>
+						<td><input type="hidden" value="${hotel.hno}" name="hno" id="hno" ></td>
+						<td><input type="hidden" value="${memberInfo.mno}" name="mno" id="mno"></td>
+						<td><input type="button" class="btn btn-secondary" value="관심등록" id="intBtn"></td>
+					</tr>            	
+            	</table>
+            </form>
             <a href="${pageContext.request.contextPath}/admin/HotelModify?hno=${hotel.hno}" class="btn btn-warning">수정</a>
             <a href="#" id="deleteHotel" class="btn btn-danger">삭제</a>  		
             <form id="deleteHotelSubmit" method="get" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit">
@@ -171,12 +181,58 @@
     	
     });
     
+    $("#intBtn").click(function(){
+    	
+    	//로그인 한 계정인지 아닌지 판별 
+    	 var hno =$("#hno").val();
+    	 var mno =$("#mno").val();
+    	 console.log(hno);
+    	 console.log(mno);
+    	 if(mno == ''){
+    		 
+    		 alert("해당 기능은 로그인 후 사용 가능 합니다.");
+    		 
+    		 return;
+    	 }else{
+    	 		
+    		 if(confirm("해당 호텔을 관심등록 하시겠습니까?")){
+
+    				
+    				$.ajax({
+    					type:"get",
+    					url:"${pageContext.request.contextPath}/member/reginterestedHotel/"+hno+"/"+mno,
+    					dataType:"json",
+    					success : function(data){
+    						console.log(data);
+    						var result = data.result;
+    						console.log(result);
+	    						if(result == "already"){
+	    							alert("이미 등록한 호텔 정보 입니다.");
+	    						}else{
+		    						if(result == "true"){
+					    			 alert("등록 완료!")
+		    						}else{
+		    						 alert("관심 등록은 최대 5개까지 가능합니다");
+		    						}
+    						}
+    						
+    					}
+    				
+    				});
+    			 
+    			
+    			 
+    		 }else{
+    			 alert("관심 등록을 취소하셨습니다.");
+    		 }
+    	 
+    	 }
+    	 
+    });
     
+
     
-    
-    
-    
-    
+
    </script>
   
  

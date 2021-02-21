@@ -65,7 +65,7 @@ public class LocalController {
 		return mav;
 	}
 	
-	//호텔 예약 가격 
+	//호텔 예약 가격  ---이부분에서 받아줘야하는데?
 	@GetMapping("/jejuHotel/gethotelPrice")
 	@ResponseBody
 	public ResponseEntity<Map<String,Integer>> gethotelPrice(

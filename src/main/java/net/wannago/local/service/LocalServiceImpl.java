@@ -230,4 +230,33 @@ public class LocalServiceImpl implements LocalService {
 		return map;
 	}
 
+	//좋아요 구현. 처음눌린것인지 이전에 눌린적 있는지 확인 결과값을 1,2 로 리턴
+	@Override
+	public Map<String, Object> likeCnt(int hno, int mno) {
+		
+		Map<String, Object> map = new HashMap<String, Object>();
+		int result = dao.boolexist(hno,mno);
+		System.out.println("결과 존재 유무 : " +result);
+		
+		if(result == 1) {
+		//이전에 누른적 있다.
+			dao.deleteLikecount(hno,mno);
+			dao.minusLikecount(hno);
+			System.out.println("누른적 있다");
+			map.put("result", "false");
+			
+		}else {
+		//누른적 없다.
+			dao.registerLike(hno,mno);
+			dao.plusLikecount(hno);
+			System.out.println("처음 누른다");
+			map.put("result", "true");
+		}
+		
+		int likecnt = dao.hotellikecnt(hno);
+		map.put("likecnt", likecnt);
+		
+		return map;
+	}
+
 }

@@ -16,10 +16,11 @@
   <div class="container">
 
     <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">Blog Home Two
-      <small>Subheading</small>
+    <br/>	
+	<br/>
+    <h1 class="mt-4 mb-3">내가 관심등록한 호텔에 대한 정보를 나타내는 페이지 입니다
     </h1>
-
+	<br/>
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
         <a href="index.html">Home</a>

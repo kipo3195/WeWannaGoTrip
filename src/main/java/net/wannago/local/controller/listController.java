@@ -10,6 +10,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -74,6 +76,26 @@ ResponseEntity<Object> entity = null;
 		return entity;
 	}
 	
+	@ResponseBody
+	@GetMapping("local/likeCnt")
+	public ResponseEntity<Map<String, Object>> likeCnt(
+			@RequestParam("hno") int hno,
+			@RequestParam("boolLogin") int mno){
+			ResponseEntity<Map<String, Object>> entity = null;
+
+			Map<String,Object> map = ls.likeCnt(hno,mno);
+			
+			System.out.println(map);
+			
+			try {
+				entity = new ResponseEntity<Map<String, Object>>(map,HttpStatus.OK);
+			} catch (Exception e) {
+				entity = new ResponseEntity<Map<String, Object>>(HttpStatus.BAD_REQUEST);
+				e.printStackTrace();
+			}
+			
+		return entity;
+	}
 	
 	  
 	 

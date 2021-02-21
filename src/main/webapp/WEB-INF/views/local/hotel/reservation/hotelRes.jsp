@@ -28,7 +28,7 @@
 			 	체크인 날짜를 선택 하세요
 			</td>
 			<td>		
- 				<input type="text" id="checkin">
+ 				<input type="text" id="checkin" autocomplete="off">
 			</td>		
 			<td>
 				<input type="button" id="checkinBtn" value="예약조회"/>
@@ -42,7 +42,7 @@
 			 	체크아웃 날짜를 선택 하세요
 			</td>
 			<td>		
- 				<input type="text" id="checkout">
+ 				<input type="text" id="checkout" autocomplete="off">
 			</td>	
 		</tr>
 		<tr>
@@ -66,11 +66,39 @@
             <div class="font-italic" id="lu">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" id="luxlestRoom">잔여 객실</li>
+            <li class="list-group-item" >잔여 객실 
+	            <div id="luxlestRoom">
+	            
+	            </div>
+            </li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item" id="cencelLux">
-              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="luxBtn" class="btn btn-primary">예약하기</a>
+             <%--  <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="luxBtn" class="btn btn-primary">예약하기</a> --%>
+            <form method="POST" action="${pageContext.request.contextPath}/credit">
+           		<table>
+           			<tr id="luxtr">
+           				<td>
+           					<input type="hidden" name="hno" value="${hotel.hno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="mno" value="${memberInfo.mno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="room" value="lux">
+           				</td>
+           				<td id="luxtr1">
+           				</td>
+           				<td id="luxtr2">
+           				</td>
+           				<td id="luxtr3">
+           				</td>
+           				<td id=submitlux>
+           					<input type="submit" class="btn btn-primary" value="예약 하기">
+           				</td>
+           			</tr>
+           		</table>
+           	</form>
             </li>
           </ul>
         </div>
@@ -83,15 +111,39 @@
             <div class="font-italic" id="de">per day</div>
           </div>
           <ul class="list-group list-group-flush">
-            <li class="list-group-item" id="dellestRoom">잔여 객실
-            <div id="deluxRoom">
-            
-            </div>
+            <li class="list-group-item">잔여 객실
+            	<div id="dellestRoom">
+            	
+            	</div>
             </li>
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}"  id="cenceldel" class="btn btn-primary">Sign Up!</a>
+            <%--   <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}"  id="cenceldel" class="btn btn-primary">Sign Up!</a> --%>
+                 <form method="POST" action="${pageContext.request.contextPath}/credit">
+           		<table>
+           			<tr id="deltr">
+           				<td>
+           					<input type="hidden" name="hno" value="${hotel.hno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="mno" value="${memberInfo.mno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="room" value="del">
+           				</td>
+           				<td id="deltr1">
+           				</td>
+           				<td id="deltr2">
+           				</td>
+           				<td id="deltr3">
+           				</td>
+           				<td id="submitdel">
+           					<input type="submit" class="btn btn-primary" value="예약 하기">
+           				</td>
+           			</tr>
+           		</table>
+           	</form>
             </li>
           </ul>
         </div>
@@ -108,7 +160,31 @@
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="cenceldou" class="btn btn-primary">Sign Up!</a>
+             <%--  <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" id="cenceldou" class="btn btn-primary">Sign Up!</a> --%>
+           <form method="POST" action="${pageContext.request.contextPath}/credit">
+        	  	<table>
+           			<tr id="doutr">
+           				<td>
+           					<input type="hidden" name="hno" value="${hotel.hno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="mno" value="${memberInfo.mno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="room" value="dou">
+           				</td>
+           				<td id="doutr1">
+           				</td>
+           				<td id="doutr2">
+           				</td>
+           				<td id="doutr3">
+           				</td>
+           				<td id="submitdou">
+           					<input type="submit" class="btn btn-primary" value="예약 하기">
+           				</td>
+           			</tr>
+           		</table>
+           	</form>
             </li>
           </ul>
         </div>
@@ -126,7 +202,31 @@
             <li class="list-group-item">조식 포함&nbsp;<input type="checkbox">&nbsp;+ 추가 금액(원) </li>
             <li class="list-group-item">부가기능 추가 가능</li>
             <li class="list-group-item">
-              <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" class="btn btn-primary" id="cencelbusi">Sign Up!</a>
+             <%--  <a href="${pageContext.request.contextPath}/credit?hno=${hotel.hno}" class="btn btn-primary" id="cencelbusi">Sign Up!</a> --%>
+                <form method="POST" action="${pageContext.request.contextPath}/credit">
+        	  	<table>
+           			<tr id="busitr">
+           				<td>
+           					<input type="hidden" name="hno" value="${hotel.hno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="mno" value="${memberInfo.mno}">
+           				</td>
+           				<td>
+           					<input type="hidden" name="room" value="busi">
+           				</td>
+           				<td id="busitr1">
+           				</td>
+           				<td id="busitr2">
+           				</td>
+           				<td id="busitr3">
+           				</td>
+           				<td id="submitbusi">
+           					<input type="submit" class="btn btn-primary" value="예약 하기">
+           				</td>
+           			</tr>
+           		</table>
+           	</form>
             </li>
           </ul>
         </div>
@@ -152,8 +252,26 @@
         $("#checkout").datepicker({
         });
         
-        //체크인 버튼 눌려졌을때.
+        // 예약조회 버튼 눌려졌을때.
         $("#checkinBtn").click(function(){
+        	
+        	//내부에있는 속성값을 먼저 제거 하고 들어가는 방법   자식 요소 제거 
+        	$("#dellestRoom").empty();
+        	$("#doulestRoom").empty();
+        	$("#busiRoom").empty();
+        	$("#luxlestRoom").empty();
+        	
+        	//예약 불가능 -> 가능으로 바꿨을때,   모든 버튼 재정의 할것.
+        	var submitluxstr = "<input type='submit' value='예약하기' />";
+        	$("#submitlux").html(submitluxstr);
+        	var submitdelstr = "<input type='submit' value='예약하기' />";
+        	$("#submitdel").html(submitluxstr);
+        	var submitdoustr = "<input type='submit' value='예약하기' />";
+        	$("#submitdou").html(submitdoustr);
+        	var submitbusistr = "<input type='submit' value='예약하기' />";
+        	$("#submitbusi").html(submitbusistr);
+       
+        	
         	console.log(hno);
              var weeks =['일','월','화','수','목','금','토'];
              var pricemag =[1.6,1,1,1.2,1.4,1.6,2];
@@ -243,9 +361,31 @@
 							return;
 							
 						 }else{
+						 		console.log("--------------------");	
+						 		var totalin = iyyyy+"-"+imm+"-"+idd;
+						 		var totalout = oyyyy+"-"+omm+"-"+odd;
+						 		console.log(totalin);
+						 		console.log(totalout);
 						 		
+						 		var luxtrin ="<input type='hidden' name='totalin' value="+totalin+">";    
+						 		var luxtrout ="<input type='hidden' name='totalout' value="+totalout+">";
+						 		
+						 		$("#luxtr1").html(luxtrin);
+						 		$("#luxtr2").html(luxtrout);
+						 		$("#deltr1").html(luxtrin);
+						 		$("#deltr2").html(luxtrout);
+						 		$("#doutr1").html(luxtrin);
+						 		$("#doutr2").html(luxtrout);
+						 		$("#busitr1").html(luxtrin);
+						 		$("#busitr2").html(luxtrout);
+						 	
+						 	
+						 		console.log("--------------------");	
+						 		
+							 
+							 
 							$.ajax({
-								type:"GET",
+								type:"get",
 								url :"gethotelPrice",
 								data:{
 									hno : hno,
@@ -277,21 +417,30 @@
 									$("#luxuryprice").html(luxurystr);
 									var lustr = "<span>"+lu+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
 									$("#lu").html(lustr);
+									//럭셔리 금액 넘겨주기
+									var luxPricestr ="<input type='hidden' name='price' value="+luxury+">";
+									$("#luxtr3").html(luxPricestr);
 									
 									var deluxstr = "<span>"+delux+"원</span>";
 									$("#deluxprice").html(deluxstr);
 									var destr = "<span>"+de+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
 									$("#de").html(destr);
+									var delPricestr ="<input type='hidden' name='price' value="+delux+">";
+									$("#deltr3").html(delPricestr);
 									
 									var businessstr = "<span>"+business+"원</span>";
 									$("#businessprice").html(businessstr);
 									var bustr = "<span>"+bu+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
 									$("#bu").html(bustr);
+									var douPricestr ="<input type='hidden' name='price' value="+doubler+">";
+									$("#doutr3").html(douPricestr);
 									
 									var doublerstr = "<span>"+doubler+"원</span>";
 									$("#doublerprice").html(doublerstr);
 									var doustr = "<span>"+dou+"원 per day "+plus+"박 "+(plus+1)+"일</span>";
 									$("#dou").html(doustr);
+									var busiPricestr ="<input type='hidden' name='price' value="+business+">";
+									$("#busitr3").html(busiPricestr);
 								
 									
 								}
@@ -337,26 +486,33 @@
 									var busiRoom = $("#busiRoom");
 									var cencelbusi = $("cencelbusi");
 
-									lestroomCal(lux,defaultcount,date,cencelLux,luxlestRoom);
+									lestroomCal(lux,defaultcount,date,submitlux,luxlestRoom);
 									lestroomCal(de,defaultcount,date,cenceldel,dellestRoom);
 									lestroomCal(dou,defaultcount,date,cenceldou,doulestRoom);
 									lestroomCal(busi,defaultcount,date,cencelbusi,busiRoom);
 									
 									
 									function lestroomCal(map, defaultcount, date,div,divA){
+										var bool = 0;
 										for(var i =0; i<map.length; i++){
 											if(defaultcount-map[i] == 0){
-												alert('예약불가능한 날짜가 존재합니다');
 											str ="<li style='list-style:none; color:red'>"+ date[i]+" : "+(defaultcount-map[i])+"</li>";
 											html = "<label>예약이 불가능합니다</label>";
+											bool = 1;
 											
 											$(div).html(html);
 											
 											}else{
 											str ="<li style='list-style:none;'>"+ date[i]+" : "+(defaultcount-map[i])+"</li>";
+											
 											}
 											$(divA).append(str);
 										}
+										if(bool != 0){
+											alert("예약불가능 한 날짜가 존재합니다.")
+										}
+										
+										
 									}
 									
 									/* for(var i =0; i<lux.length; i++){
