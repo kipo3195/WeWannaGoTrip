@@ -74,6 +74,18 @@ public interface HotelDAO {
 	@Select("SELECT hlikecnt from pro_hotel WHERE hno =${hno} ")
 	public int hotellikecnt(int hno);
 
+	//가격순 정렬
+	@Select("SELECT * FROM pro_hotel order by hprimaryprice")
+	public List<HotelVO> orderByPrice();
+
+	//등록순 정렬
+	@Select("SELECT * FROM pro_hotel")
+	public List<HotelVO> orderByReg();
+
+	//좋아요순
+	@Select("select * from pro_hotel order by hlikecnt desc")
+	public List<HotelVO> orderByLike();
+
 
 
 

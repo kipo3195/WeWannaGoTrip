@@ -34,17 +34,15 @@
 		<input type="hidden" name="mno" value="${memberInfo.mno}" id="boolLogin">
 
 		<ol class="breadcrumb">
-			<li class="breadcrumb-item"><a href="#">찜</a>&nbsp;/&nbsp; <a
-				href="#">신규 등록순</a>&nbsp;/&nbsp; <a href="#">낮은가격순</a>&nbsp;/&nbsp;
-				<a href="#">신규 등록순</a></li>
+			<li class="breadcrumb-item"><a href="#" id="like">찜 높은 순</a>&nbsp;/&nbsp; <a
+				href="#" id="reg">신규 등록순</a>&nbsp;/&nbsp; <a href="#" id="price">낮은가격순</a>&nbsp;&nbsp;
+			</li>
 		</ol>
 <div class="card mb-4">
           <h5 class="card-header">
           	검색 조회 &nbsp;
   			카테고리&nbsp;<select id="category" name="#">
 	 					<option> 호텔</option>				
-		 				<option> 카페&식당</option>		
-		 				<option> 관광지 </option>		
 	 				</select>
 	 			 &nbsp;
 	 		검색 옵션&nbsp;<select id="SearchOption" name="#">
@@ -244,7 +242,7 @@
 			var hcheckin = this.hcheckin;
 			var hcheckout = this.hcheckout;
 			var hscore = this.hscore;
-			var hprice = this.hprice;
+			var hprimaryprice = this.hprimaryprice;
 			var hlikecnt = this.hlikecnt;
 			var hregdate = this.hregdate;
 			var hmainimg = this.hmainimg;
@@ -265,7 +263,7 @@
 	        str += " <div class='col-md-5'> ";
 	        str += " <h3>"+hname+"</h3> ";
 	        str += " <p>"+hinfo+"<br/>";
-	        str += " <p>"+hprice+"원<br/>";
+	        str += " <p>평균 가격 : "+hprimaryprice+"원<br/>";
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
 			str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
@@ -350,7 +348,7 @@
 			var hcheckin = this.hcheckin;
 			var hcheckout = this.hcheckout;
 			var hscore = this.hscore;
-			var hprice = this.hprice;
+			var hprimaryprice = this.hprimaryprice;
 			var hlikecnt = this.hlikecnt;
 			var hregdate = this.hregdate;
 			var hmainimg = this.hmainimg;
@@ -371,11 +369,11 @@
 	        str += " <div class='col-md-5'> ";
 	        str += " <h3>"+hname+"</h3> ";
 	        str += " <p>"+hinfo+"<br/>";
-	        str += " <p>"+hprice+"원<br/>";
+	        str += " <p> 평균 가격 : "+hprimaryprice+"원<br/>";
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
 	        str += " 평균 평점:"+hscore+" <br/>";
-	        str += " <input type='hidden' name='hno' id='hno' value="+hno+"/>";
+	        str += " <input type='hidden' name='hno' id='hno' value="+hno+">";
 	        str += "<div class=likediv>";
 	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>"+hlikecnt+"<br/> "; 
 	        str += "</div>";
@@ -427,10 +425,15 @@
 					}else{
 						alert("취소");
 					}
+					
+					
+					
 					var sstr = "찜 하기 <img class=likeimg src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+likecnt+"<br/> "; 
 					$(".likediv").html(sstr);
 					//해당되는 요소 부분
-				
+					console.log(hno);
+					history.go(0);
+					
 				}
 			});
 			
@@ -438,6 +441,70 @@
 	
 		
 	});
+	
+	
+	//검색 비동기
+		
+	$("#price").bind("click",function(e){
+				
+		var price = "price";
+		
+		$.ajax({
+			type:"get",
+			url:"orderByPrice",
+			data:{
+				price :price
+			},
+			dataType:"json",
+			success : function(data){
+				console.log(data);
+				printSearchList(data);
+			}
+		
+		});
+	});
+	
+	
+	$("#reg").bind("click",function(e){
+		
+		var reg = "reg";
+		
+		$.ajax({
+			type:"get",
+			url:"orderByReg",
+			data:{
+				reg :reg
+			},
+			dataType:"json",
+			success : function(data){
+				console.log(data);
+				printSearchList(data);
+			}
+		
+		});
+	});
+	
+	$("#like").bind("click",function(e){
+			
+			var like = "like";
+			
+			$.ajax({
+				type:"get",
+				url:"orderByLike",
+				data:{
+					like :like
+				},
+				dataType:"json",
+				success : function(data){
+					console.log(data);
+					printSearchList(data);
+				}
+			
+			});
+		});
+	
+	
+	
 	
 	
 	</script>

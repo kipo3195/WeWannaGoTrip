@@ -26,44 +26,373 @@
     </div>
     <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=5ebd2c945c2a7c6405ad930cf5b4d20a"></script>
     <script>
-    
+   
+  
     
     
 var mapContainer = document.getElementById('Hotelmap'), // 지도를 표시할 div 
     mapOption = { 
-        center: new kakao.maps.LatLng(33.37330, 126.54524), // 지도의 중심좌표
+        center: new kakao.maps.LatLng(33.37330, 126.54524), 
         level: 10 // 지도의 확대 레벨
     };
+    
+ 
 
 var Hotelmap = new kakao.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
-var test1 = ${map.HotelList[0].hwedo};
-var test2 = ${map.HotelList[0].hkyungdo};
- console.log(test1);
- console.log(test2);
-// 마커가 표시될 위치입니다 
-var markerPosition  = new kakao.maps.LatLng(test1, test2); 
-// 마커를 생성합니다
-var marker = new kakao.maps.Marker({
-    position: markerPosition
-});
+var test1 = "${map.HotelList[0].hwedo}";
+var test2 = "${map.HotelList[0].hkyungdo}";
+var test3 = "${map.HotelList[1].hwedo};"
+var test4 = "${map.HotelList[1].hkyungdo}";
+var test5 = "${map.HotelList[2].hwedo}";
+var test6 = "${map.HotelList[2].hkyungdo}";
+var test7 = "${map.HotelList[3].hwedo}";
+var test8 = "${map.HotelList[3].hkyungdo}";
+var test9 = "${map.HotelList[4].hwedo}";
+var test10 = "${map.HotelList[4].hkyungdo}";
 
-// 마커가 지도 위에 표시되도록 설정합니다
-marker.setMap(Hotelmap);
 
-var iwContent = '<div style="padding:5px;"> ${map.HotelList[0].hname} <br></div>', // 인포윈도우에 표출될 내용으로 HTML 문자열이나 document element가 가능합니다
-iwPosition = new kakao.maps.LatLng(test1, test2); //인포윈도우 표시 위치입니다
 
-//인포윈도우를 생성합니다
-var infowindow = new kakao.maps.InfoWindow({
-position : iwPosition, 
-content : iwContent 
-});
+if(test1 != ""){
+	
+	if(test3 != ""){
+		
+		if(test5 != ""){
+			
+			if(test7 != ""){
+				
+				if(test9 != ""){
+					
+					var positions = [
+					    {
+					        content: '<div>${map.HotelList[0].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[1].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test3), parseFloat(test4))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[2].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test5), parseFloat(test6))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[3].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test7), parseFloat(test8))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[4].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test9), parseFloat(test10))
+					    }
+					    
+					];
 
-infowindow.open(Hotelmap, marker); 
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: Hotelmap, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
 
-// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
-// marker.setMap(null);    
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					    
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					} 
+
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+				}else
+				//4개 정의
+				var positions = [
+					    {
+					        content: '<div>${map.HotelList[0].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[1].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test3), parseFloat(test4))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[2].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test5), parseFloat(test6))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[3].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test7), parseFloat(test8))
+					    }
+					    
+					];
+
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: Hotelmap, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					    
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					} 
+
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+				
+			}else
+			//3개 정의
+			var positions = [
+					    {
+					        content: '<div>${map.HotelList[0].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[1].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test3), parseFloat(test4))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[2].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test5), parseFloat(test6))
+					    }
+					    
+					];
+
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: Hotelmap, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					    
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					} 
+
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+		}else
+		//2개만정의
+		var positions = [
+					    {
+					        content: '<div>${map.HotelList[0].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+					    }, 
+					    {
+					        content: '<div>${map.HotelList[1].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test3), parseFloat(test4))
+					    }
+					    
+					];
+
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: Hotelmap, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					    
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					} 
+
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+		
+	}else
+	//1개만 정의
+	var positions = [
+					    {
+					        content: '<div>${map.HotelList[0].hname}</div>', 
+					        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+					    }
+					    
+					];
+
+					for (var i = 0; i < positions.length; i ++) {
+					    // 마커를 생성합니다
+					    var marker = new kakao.maps.Marker({
+					        map: Hotelmap, // 마커를 표시할 지도
+					        position: positions[i].latlng // 마커의 위치
+					    });
+
+					    var infowindow = new kakao.maps.InfoWindow({
+					        content: positions[i].content // 인포윈도우에 표시할 내용
+					    });
+					    
+					    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+					    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+					} 
+
+					function makeOverListener(map, marker, infowindow) {
+					    return function() {
+					        infowindow.open(map, marker);
+					    };
+					}
+
+					// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+					function makeOutListener(infowindow) {
+					    return function() {
+					        infowindow.close();
+					    };
+					}
+}else{
+
+	 alert("관심등록된 호텔이 없습니다.");
+}
+
+
+
+
+
+
+////////////////////////////////////////
+
+if(test1 != ""){
+	
+	
+	if(test3 != ""){
+		
+		
+		
+		var positions = [
+		    {
+		        content: '<div>${map.HotelList[0].hname}</div>', 
+		        latlng: new kakao.maps.LatLng(parseFloat(test1), parseFloat(test2))
+		    }, 
+		    {
+		        content: '<div>${map.HotelList[1].hname}</div>', 
+		        latlng: new kakao.maps.LatLng(parseFloat(test3), parseFloat(test4))
+		    }
+		 
+		];
+
+
+
+		for (var i = 0; i < positions.length; i ++) {
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: Hotelmap, // 마커를 표시할 지도
+		        position: positions[i].latlng // 마커의 위치
+		    });
+
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].content // 인포윈도우에 표시할 내용
+		    });
+		    
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		} 
+
+		function makeOverListener(map, marker, infowindow) {
+		    return function() {
+		        infowindow.open(map, marker);
+		    };
+		}
+
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+		    return function() {
+		        infowindow.close();
+		    };
+		}
+		
+		
+	}else{
+		var positions = [
+		    {
+		        content: '<div>${map.HotelList[0].hname}</div>', 
+		        latlng: new kakao.maps.LatLng(parseFloat(test1),parseFloat(test2))
+		    },
+		 
+		];
+
+		for (var i = 0; i < positions.length; i ++) {
+		    // 마커를 생성합니다
+		    var marker = new kakao.maps.Marker({
+		        map: Hotelmap, // 마커를 표시할 지도
+		        position: positions[i].latlng // 마커의 위치
+		    });
+
+		    var infowindow = new kakao.maps.InfoWindow({
+		        content: positions[i].content // 인포윈도우에 표시할 내용
+		    });
+		    
+		    kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(Hotelmap, marker, infowindow));
+		    kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+		} 
+
+		function makeOverListener(map, marker, infowindow) {
+		    return function() {
+		        infowindow.open(map, marker);
+		    };
+		}
+
+		// 인포윈도우를 닫는 클로저를 만드는 함수입니다 
+		function makeOutListener(infowindow) {
+		    return function() {
+		        infowindow.close();
+		    };
+		}
+		
+	}
+	
+	
+}
+
+
 </script>
     
     </div>
@@ -88,6 +417,7 @@ infowindow.open(Hotelmap, marker);
             <p class="card-text">${map.HotelList[0].hcheckin}-${map.HotelList[0].hcheckin}</p>
             <p class="card-text">${map.HotelList[0].hgrade}</p>
             <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${map.HotelList[0].hno}" class="btn btn-primary">예약하러 가기</a>
+            <input type="hidden" id="ino" value="${map.interlist[0].ino}">
             <%-- <a href="${pageContext.request.contextPath}/member/deleteInterHotel?ino=${map.interlist[0].ino}" class="btn btn-danger">삭제</a> --%>
             <a href="#" id="deleteBtn" class="btn btn-danger">삭제</a>
             
@@ -194,7 +524,7 @@ infowindow.open(Hotelmap, marker);
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[4].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6" >
+          <div class="col-lg-6">
             <h2 class="card-title">${map.HotelList[4].hname}</h2>
             <p class="card-text">${map.HotelList[4].hinfo}</p>
             <p class="card-text">${map.HotelList[4].haddress}</p>
@@ -232,10 +562,13 @@ infowindow.open(Hotelmap, marker);
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
 	<script>
-	 var ino = ${map.interlist[0].ino};
+	
+	//여기 속성 어떻게 접근 해야하는지 ?
 	 
 	$("#deleteBtn").on("click",function(event){
 		event.preventDefault();
+		
+		 var ino = $(this).closest(".card").find("#ino").val();
 		
 		if(confirm("삭제 하시겠습니까?")){
 			console.log("삭제요청");
@@ -250,6 +583,8 @@ infowindow.open(Hotelmap, marker);
 					var result = data;
 					if(result == "Success"){
 						alert("삭제완료");
+						history.go();
+						
 					}else{
 						alert("삭제 처리 실패");
 					}

@@ -41,7 +41,7 @@
         <p>${hotel.hinfo}</p>
         <p>${hotel.htel}</p>
         <p>체크인 ${hotel.hcheckin} - 체크아웃 ${hotel.hcheckout}</p>
-        <p>${hotel.hlikecnt}</p>
+        <p><img src="${pageContext.request.contextPath}/resources/img/etc/like.png"/> ${hotel.hlikecnt}</p>
         <p>${hotel.hgrade}</p>
         <h3 class="my-3">부대시설</h3>
         <ul>
@@ -198,12 +198,9 @@
     	 var hno =$("#hno").val();
     	 var mno =$("#mno").val();
 
-    	 console.log(position);
     	 console.log(hno);
     	 console.log(mno);
-    	 if(position != null){
-    		alert("관리자는 해당기능을 사용 할 수 없습니다."); 
-    	 }
+    	
     	 
     	 if(mno == ''){
     		 
