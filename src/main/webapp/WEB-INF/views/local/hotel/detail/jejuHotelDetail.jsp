@@ -52,7 +52,10 @@
         </ul>
         <!-- 세션 정보(관리자, 이용자)에 따른  -->
         
-            <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
+          
+		<c:choose>
+			<c:when test="${ not empty memberInfo}">
+			  <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
             <form>
             	<table>
 					<tr>
@@ -62,6 +65,8 @@
 					</tr>            	
             	</table>
             </form>
+            </c:when>
+            <c:when test="${ not empty admin}">
             <a href="${pageContext.request.contextPath}/admin/HotelModify?hno=${hotel.hno}" class="btn btn-warning">수정</a>
             <a href="#" id="deleteHotel" class="btn btn-danger">삭제</a>  		
             <form id="deleteHotelSubmit" method="get" action="${pageContext.request.contextPath}/admin/deleteHotelSubmit">
@@ -77,9 +82,15 @@
 		         	  </td>
 		            </tr>
 	            </table>
-            </form>			
+            </form>	
+            </c:when>
+            <c:otherwise>
+            	  <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
+            </c:otherwise>
+          </c:choose>		
       </div>
 
+	
     </div>
     <!-- /.row -->
 
@@ -186,8 +197,14 @@
     	//로그인 한 계정인지 아닌지 판별 
     	 var hno =$("#hno").val();
     	 var mno =$("#mno").val();
+
+    	 console.log(position);
     	 console.log(hno);
     	 console.log(mno);
+    	 if(position != null){
+    		alert("관리자는 해당기능을 사용 할 수 없습니다."); 
+    	 }
+    	 
     	 if(mno == ''){
     		 
     		 alert("해당 기능은 로그인 후 사용 가능 합니다.");

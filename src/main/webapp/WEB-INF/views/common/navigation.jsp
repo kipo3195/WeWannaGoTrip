@@ -32,7 +32,7 @@
                   			<a class="nav-link" href="${pageContext.request.contextPath}/member/myPage">마이페이지</a>        
                 		</li>
                 		<li class="nav-item">
-                   			<a class="nav-link" href="member/signOut">로그아웃</a>        
+                   			<a class="nav-link" href="${pageContext.request.contextPath}/member/signOut">로그아웃</a>        
                 		</li>
                  	</c:when>
                  		<c:when test="${!empty sessionScope.admin}">
