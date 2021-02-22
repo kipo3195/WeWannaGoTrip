@@ -8,47 +8,7 @@
  <%@ include file="../common/header.jsp" %>
  
 <style>
-	/* .Temp{
-		width:100%;
-		height:150px;
-		border:1px solid gray;
-		background-color:infobackground;
-		margin:auto;
-	}
-	.Temp span{
-		padding:50px;
-	}
-	table{
-		padding:20px;
-	}
-	#detailFileList{
-		width:100%;
-		height:220px;
-		border:1px solid gray;
-		background-color:skyblue;
-		margin:auto;
-		align-content: center;
-	}
-	#detailFileList li{
-		float:left;
-		padding:5px;
-		list-style: none;
-	}
 	
-	#hotelReg{
-		text-align: center;
-		height:900px;
-	}
-	
-	 table {
-            
-          }
-       .a {
-            text-align: left;
-            font-size: 20px;
-			padding : 10px;    
-			
-          } */
 	.Temp{
 		width:100%;
 		height:150px;
@@ -111,6 +71,10 @@
        #info{
        border:1px solid gray;
        }  
+    .listyle{
+    	list-style: none;
+    
+    }
 	
 </style>
 
@@ -187,16 +151,25 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a">
+					호텔 이메일
+				</td>
 				<td>
-	 				호텔 이메일 : <input type="email" name="hemail" autocomplete="off" placeholder="hotel@hotel.com" required/>
+	 				 <input type="email" name="hemail" autocomplete="off" placeholder="hotel@hotel.com" required/>
 				</td>
 			</tr>
 			<tr>
-				<td>
-					호텔 체크인 : <input type="text" name="hcheckin" autocomplete="off" id="hcheckin" required/>
+				<td class="a">
+					호텔 체크인
 				</td>
 				<td>
-					호텔 체크아웃 : <input type="text" name="hcheckout" autocomplete="off" id="hcheckout" required/>
+					 <input type="text" name="hcheckin" placeholder="ex)14:00" autocomplete="off" id="hcheckin" required/>
+				</td>
+				<td class="a">
+					호텔 체크아웃
+				</td>
+				<td>
+					 <input type="text" name="hcheckout" placeholder="ex)11:00" autocomplete="off" id="hcheckout" required/>
 	 			<!-- 	호텔 체크아웃 : 
 	 				<select id="hopentoclose" name="hotelchekout">
 	 					<option>11 : 00</option>				
@@ -210,79 +183,107 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="a" >
+					구글 맵 주소
+				</td>
 				<td>
-	 				구글 맵 주소 : <input type="text" name="hgooglemap" autocomplete="off" required width="5"/>
+	 				 <input type="text" name="hgooglemap" autocomplete="off" required width="5"/>
 				</td>
 			</tr>
 			<tr>
+				<td class="a" >
+					호텔 등급
+				</td>
 				<td>
-	 				호텔 등급 : 
-	 				 <input type="text" name="hgrade" id="hgrade" autocomplete="off" required width="5"/>
-	 				<!-- <select id="hgrade">
-	 					<option>6성급</option>				
-		 				<option>5성급</option>				
-		 				<option>4성급</option>				
-		 				<option>3성급</option>	
-	 				</select> -->
+	 				 <input type="text" readonly name="hgrade" id="hgrade" autocomplete="off" required width="5"/>
+	 			</td>
+	 			<td>
+	 				 <select id="hgradeOption" size="1" onChange="setValues();" >
+	 					<option value="등급선택">등급선택</option>				
+	 					<option value="6성급">6성급</option>				
+		 				<option value="5성급">5성급</option>				
+		 				<option value="4성급">4성급</option>				
+		 				<option value="3성급">3성급</option>	
+	 				</select> 
 				</td>
 			</tr>
 			<tr>
+			<td class="a" >
+					호텔 기본 가격  
+				</td>
 				<td>
-	 				호텔 기본 가격  : <input type="text" name="hprimaryprice" autocomplete="off" required width="5"/>원
+	 				 <input type="text" name="hprimaryprice" autocomplete="off" placeholder="원" required width="5" />
+				</td>
+			</tr>
+			<tr>
+				<td class="a">
+					호텔 위도
+				</td>
+				<td>
+	 				<input type="text" name="hwedo" value="${hotel.hwedo}" required width="5"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="a">
+					호텔 경도
+				</td>
+				<td>
+	 				<input type="text" name="hkyungdo" value="${hotel.hkyungdo}" required width="5"/>
 				</td>
 			</tr>
 			<tr>	
-				<td>
+				<td class="a">
 					주요시설
 				</td>	
 				<td>
-				<div>
-				놀이 시설
-	 			<select id="func1">
-	 					<option>수영장</option>				
-		 				<option>오락시설</option>				
-		 				<option>노래방</option>				
-		 				<option>카지노</option>	
-	 				</select>
-	 			</div>
-	 			<div>
-				라운지 & 식사
-	 			<select id="func2">
-	 					<option>조식가능</option>				
-		 				<option>레스토랑</option>				
-		 				<option>바  & 펍</option>				
-		 				<option>무료라운지</option>	
-	 				</select>
-	 			</div>	
-				<div>
-				서비스
-	 			<select id="func3">
-	 					<option>연박할인</option>				
-		 				<option>공항셔틀</option>				
-		 				<option>lundery</option>				
-		 				<option>룸서비스</option>	
-	 				</select>
-				</div>
-					<div id="func44">
-				주요 기능 4
-	 			<select id="func4" name="func4" onchange="changeSelect()">
-	 					<option>수영장</option>				
-		 				<option>노래방</option>				
-		 				<option>카지노</option>	
-		 				<option value="enter">직접입력</option>				
-	 				</select>
+					<div style="padding:5px; margin-top:5px;">
+						놀이 시설
+					</div>
+					<div>
+	 					<select id="func1">
+	 						<option>수영장</option>				
+		 					<option>오락시설</option>				
+		 					<option>노래방</option>				
+		 					<option>카지노</option>	
+	 					</select>
 	 				</div>
+	 				<div style="margin-top:36px;">
+						라운지 & 식사
+					</div>
+					<div>
+	 					<select id="func2">
+	 						<option>조식가능</option>				
+		 					<option>레스토랑</option>				
+		 					<option>바  & 펍</option>				
+		 					<option>무료라운지</option>	
+	 					</select>
+	 				</div>	
 				</td>
-			</tr>
-			<tr>
 				<td>
-	 				호텔 위도  : <input type="text" name="hwedo" autocomplete="off" required width="5"/>
+					<div style="padding:5px; margin-top:5px;">
+						서비스
+					</div>
+					<div>
+	 					<select id="func3">
+	 						<option>연박할인</option>				
+		 					<option>공항셔틀</option>				
+		 					<option>lundery</option>				
+		 					<option>룸서비스</option>	
+	 					</select>
+					</div>
+					<div id="func44" style="margin-top:36px;">
+						주요 기능 4
+					</div>
+					<div >	
+	 					<select id="func4" name="func4" onchange="changeSelect()">
+	 						<option>수영장</option>				
+		 					<option>노래방</option>				
+		 					<option>카지노</option>	
+		 					<option value="enter">직접입력</option>				
+	 					</select>
+	 				</div>
+				
 				</td>
-			</tr>
-			<tr>
-				<td>
-	 				호텔 경도  : <input type="text" name="hkyungdo" autocomplete="off" required width="5"/>
-	 			</td>
 			</tr>
 			<tr>
 				<td>
@@ -347,6 +348,13 @@
    	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	
+	function setValues() {
+		var selected = document.getElementById("hgradeOption");
+		var sv = selected.options[selected.selectedIndex].value;
+		
+		$("#hgrade").val(sv);
+	}
+	
 	var contextPath = "${pageContext.request.contextPath}";
 		//셀렉트 값 가져와서 직접입력 선택시 속성 변경가능
 		function changeSelect(){
@@ -369,6 +377,8 @@
 				preMain();
 				//미리보기 - 상세 호출
 				preDetail();
+			
+				
 				
 			});
 			
@@ -433,15 +443,15 @@
 				str += " <h3 class='my-3'>"+hname+"</h3> ";
 				str += " <p>"+hinfo+"</p> ";
 				str += " <p>"+htel+"</p> ";
-				str += " <p>체크인:"+hcheckin+" - 체크아웃"+hcheckout+" </p> ";
+				str += " <p>체크인 "+hcheckin+" - 체크아웃"+hcheckout+" </p> ";
 				str += " <img src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>좋아요 수<br/> "; 
 				str += " <p>"+hgrade+"</p> ";
 				str += " <h3 class='my-3'>부대시설</h3> ";
 				str += " <ul> ";
-				str += " <li>사용 편의 시설 1</li>";
-				str += " <li>사용 편의 시설 2</li>";
-				str += " <li>사용 편의 시설 3</li>";
-				str += " <li>사용 편의 시설 4</li>";
+				str += " <li class='listyle'>사용 편의 시설 1</li>";
+				str += " <li class='listyle'>사용 편의 시설 2</li>";
+				str += " <li class='listyle'>사용 편의 시설 3</li>";
+				str += " <li class='listyle'>사용 편의 시설 4</li>";
 				str += " </ul> ";
 				
 				$("#hotelDetailPreview").html(str);
@@ -514,6 +524,10 @@
 		
 		var files = event.originalEvent.dataTransfer.files;//업로드용
 		console.log(files);
+		if(files.length != 4){
+			alert("4개의 이미지를 한번에 업로드 해주세요")
+			return;
+		}
 		var maxSize = 10485760;
 		var formData = new FormData();
 		
