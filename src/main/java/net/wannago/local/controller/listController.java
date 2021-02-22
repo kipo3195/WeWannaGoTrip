@@ -97,6 +97,63 @@ ResponseEntity<Object> entity = null;
 		return entity;
 	}
 	
+	//가격검색
+	@GetMapping("local/orderByPrice")
+	public ResponseEntity<Object> getPrice(
+		@RequestParam("price")String price){
+		ResponseEntity<Object> entity = null;
+		
+		System.out.println(price);
+		
+		 List<HotelVO> vo = ls.orderByPrice();
+		 try {
+			entity = new ResponseEntity<>(vo, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}
+	
+	// 등록순 검색
+		@GetMapping("local/orderByReg")
+		public ResponseEntity<Object> getReg(
+			@RequestParam("reg")String reg){
+			ResponseEntity<Object> entity = null;
+			
+			System.out.println(reg);
+			
+			 List<HotelVO> vo = ls.orderByReg();
+			 try {
+				entity = new ResponseEntity<>(vo, HttpStatus.OK);
+			} catch (Exception e) {
+				e.printStackTrace();
+				entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+			}
+			
+			return entity;
+		}
+		
+		// 좋아요 순 검색
+				@GetMapping("local/orderByLike")
+				public ResponseEntity<Object> getLike(
+					@RequestParam("like")String like){
+					ResponseEntity<Object> entity = null;
+					
+					System.out.println(like);
+					
+					 List<HotelVO> vo = ls.orderByLike();
+					 try {
+						entity = new ResponseEntity<>(vo, HttpStatus.OK);
+					} catch (Exception e) {
+						e.printStackTrace();
+						entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+					}
+					
+					return entity;
+				}
+	
 	  
 	 
 

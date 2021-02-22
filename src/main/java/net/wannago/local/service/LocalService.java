@@ -32,6 +32,12 @@ public interface LocalService {
 
 	Map<String,Object> likeCnt(int hno, int mno);
 
+	List<HotelVO> orderByPrice();
+
+	List<HotelVO> orderByReg();
+
+	List<HotelVO> orderByLike();
+
 
 
 	

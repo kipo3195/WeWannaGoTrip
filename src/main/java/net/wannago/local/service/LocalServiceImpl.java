@@ -35,7 +35,7 @@ public class LocalServiceImpl implements LocalService {
 
 	@Override
 	public PageMaker getPageMaker(int page) {
-		Criteria cri = new Criteria(page, 3);
+		Criteria cri = new Criteria(page, 20);
 		int totalCount = dao.listCount();
 		PageMaker pageMaker = new PageMaker();
 		pageMaker.setCri(cri);
@@ -257,6 +257,26 @@ public class LocalServiceImpl implements LocalService {
 		map.put("likecnt", likecnt);
 		
 		return map;
+	}
+
+	@Override
+	public List<HotelVO> orderByPrice() {
+		List<HotelVO> VO = dao.orderByPrice();
+		
+		
+		return VO;
+	}
+
+	@Override
+	public List<HotelVO> orderByReg() {
+		List<HotelVO> VO = dao.orderByReg();
+		return VO;
+	}
+
+	@Override
+	public List<HotelVO> orderByLike() {
+		List<HotelVO> VO = dao.orderByLike();
+		return VO;
 	}
 
 }
