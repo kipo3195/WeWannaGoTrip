@@ -100,6 +100,46 @@ input[type=checkbox] {
 	background: #fff;
 	color: #ababab;
 }
+
+/*모달*/
+.close {
+	width: 100%;
+	color: black;
+	background-color: white;
+	line-height: 50px;
+	font-weight: bold;
+}
+.close:hover{
+	cursor:pointer;
+}
+.textWrap {
+	padding: 15px;
+	height: 120px;
+	line-height: 120px;
+}
+.contentWrap {
+	border: 1px solid white;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
+	position: absolute;
+	width: 410px;
+	height: 200px;
+	top: 50%;
+	left: 50%;
+	margin-top: -100px;
+	margin-left: -205px;
+	color: white;
+}
+.alertDiv {
+	display: none;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.8);
+	top: 0;
+	left: 0;
+	text-align: center;
+}
 </style>
 
 
@@ -119,9 +159,7 @@ input[type=checkbox] {
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active"><a href="${pageContext.request.contextPath}/adminSignin">
-			관리자 로그인
-			</a></li>
+			<li class="breadcrumb-item active">Sign In</li>
 		</ol>
 
 
@@ -130,13 +168,13 @@ input[type=checkbox] {
 			action="signInPost" method="POST">
 			<div class="input-groups">
 				<label class="label" for="mid">ID</label> 
-				<input type="text" class="input" 
+				<input type="text" class="input" autocomplete="off"
 				       placeholder="「아이디」" name="mid" autofocus="autofocus"
 					   required />
 			</div>
 			<div class="input-groups">
 				<label class="label" for="mpw">Password</label> 
-				<input type="password" class="input" 
+				<input type="password" class="input" autocomplete="off"
 				       placeholder="「비밀번호」" name="mpw"
 					    required />
 			</div>
@@ -155,6 +193,16 @@ input[type=checkbox] {
 					   class="find" type="button" value="비밀번호 찾기" />
 			</div>
 		</form>
+		
+		<div class="alertDiv">
+		<div class="contentWrap">
+			<div class="textWrap">
+				<span id="message"></span><br /> <span id="time"></span>
+			</div>
+			<div id="closeBtn" class="close">닫기</div>
+		</div>
+	</div>
+		
 	</div>
 	<!-- /.container -->
 
@@ -167,9 +215,40 @@ input[type=checkbox] {
 		});
 
 		var message = '${message}';
+		var time = '${time}';
+		var interval;
+		var alertDiv = document.getElementsByClassName("alertDiv")[0];
 	 	if(message != null && message != '') {
-	 		alert(message);
-	 	}
+	 		console.log(message + " : " + time);
+			alertDiv.style.display = "block";
+			document.getElementById("message").innerHTML = message;
+			if(time != null && time != ''){
+				document.getElementsByClassName("textWrap")[0].style.lineHeight = "60px";
+				time = Number(time);
+				interval = setInterval(getTime,1000);
+			}
+	 	}	
+			document.getElementById("closeBtn").onclick = stop;
+			function stop(){
+				clearInterval(interval);
+				alertDiv.style.display = "none";
+			}
+			
+			function getTime(){
+				time -= 1000;
+				
+				if(time < 0) stop();
+				
+				var date = new Date(time);
+				var min = date.getMinutes();
+				var second = date.getSeconds();
+				
+				min = 10 > min ? "0"+min : min;
+				second = 10 > second ? "0"+second : second;
+				var timeStr = min+":"+second;
+				console.log(timeStr);
+				document.getElementById("time").innerHTML = "남은시간 -"+timeStr;
+			}
 	</script>
 
 

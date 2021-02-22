@@ -62,7 +62,7 @@
                 alt="Card image cap" style="height:350px;">
           <div class="card-body">
             <h2 class="card-title">나만 알고 싶은 제주 여행 정보</h2>
-            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+            <p class="card-text">다양한 제주의 세계로 같이 떠나보실래요?</p>
             <a href="${pageContext.request.contextPath}/local/jejuInfo" class="btn btn-primary">Read More &rarr;</a>
           </div>
           <div class="card-footer text-muted">

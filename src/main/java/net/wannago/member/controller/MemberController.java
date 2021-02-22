@@ -7,8 +7,10 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CookieValue;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -106,8 +108,68 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	    //회원수정 페이지
+		@GetMapping("/memberUpdateView")
+		public String registerUpdateView() throws Exception{
+			
+			return "member/memberUpdateView";
+		}
+
+		//회원수정
+		@PostMapping("/memberUpdate")
+		public String registerUpdate(MemberVO vo, HttpSession session) throws Exception{
+			
+			
+			int result = ms.MemberUpdate(vo);
+			if(result == 1) {
+				 session.setAttribute("memberInfo", vo);
+			}
+			
+			System.out.println(vo);
+			
+			
+			return "redirect:/";
+	     }
+		
+		// 회원 탈퇴 get
+		@GetMapping("/memberDeleteView")
+		public String memberDeleteView() throws Exception{
+			
+			return "member/memberDeleteView";
+		}
+		
+		
+		// 회원 탈퇴 post
+		@PostMapping("memberDelete")
+		public String memberDelete(MemberVO vo, HttpSession session, RedirectAttributes rttr) throws Exception{
+			
+			    // 세션에 있는 member를 가져와 member변수에 넣기.
+			       MemberVO member = (MemberVO)session.getAttribute("memberInfo"); 
+			   // 세션에있는 비밀번호 
+			       String sessionPass = member.getMpw(); 
+			   // vo로 들어오는 비밀번호 
+		           String voPass = vo.getMpw();
+			
+			 if(!(sessionPass.equals(voPass))) { 
+				 rttr.addFlashAttribute("msg", false);
+				 
+				 return "redirect:/member/memberDeleteView";
+			 }
+			 
+			ms.MemberDelete(vo);
+			
+			return "redirect:/member/signOut";
+		}
+		
+		
+		
+	
+		
+		
+	}
+
 	
 	
 	
-	
-}
+
+

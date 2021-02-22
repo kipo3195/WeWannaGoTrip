@@ -7,6 +7,13 @@
  <%@ include file="../common/header.jsp" %>
 
 
+<style>
+	.selected{
+		color : red;
+	}
+</style>
+
+
 <body>
 
   <!-- Navigation -->
@@ -16,7 +23,7 @@
   <div class="container">
 
 	 <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">공지사항
+    <h1 class="mt-4 mb-3">자유게시판
       &nbsp;  <small>Board List</small>
     </h1>
 
@@ -56,11 +63,46 @@
   	<a href="write">  글쓰기 </a>
   	</div>
   	
-  	<div>
-  		<c:forEach var="i" begin="1" end="${totalPage}">
-  			<a href="?page=${i}">${ i } </a>
-  		</c:forEach>
-  	</div>
+ <!-- Pagination -->
+    <ul class="pagination justify-content-center">
+    
+     <!-- 처음 페이지로 이동버튼이 노출 될 필요가 있는지 여부 -->
+  	 <c:set var="goFirstBtnNeedToShow" 
+  	 		value="${page > pageMenuArmSize + 1}"/>
+  	 
+  	 <!-- 마지막 페이지로 이동버튼이 노출될 필요가 있는지 여부 --> 
+  	 <c:set var="goLastBtnNeedToShow" value="true"/> <!-- 가장마지막페이지 true 보여줌 -->
+    
+    <c:if test="${goFirstBtnNeedToShow}">
+      <li class="page-item">
+        <a class="page-link" href="?page=1" aria-label="Previous">
+          <span aria-hidden="true">&laquo;</span>
+        </a>
+      </li>
+     </c:if>
+    
+      <c:forEach var="i" begin="${pageMenuStart}" end="${pageMenuEnd}">
+      	<li class="page-item">
+      		<c:set var="className" value="${i == page ? 'selected' : ''}" />
+        	<a class="page-link ${className}"  href="?page=${i}">${ i }</a>
+        	
+        	<!-- 방금 노출된 페이지 번호가 마지막 페이지의 번호였다면, 마지막으로 이동하는 버튼이 노출되지않는다 -->
+  			<c:if test="${i == totalPage}"> 	
+  				<c:set var="goLastBtnNeedToShow" value="false"/>
+  			</c:if>
+      	</li>
+      </c:forEach>	
+      
+      
+     <!-- 마지막페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
+  	<c:if test="${goLastBtnNeedToShow}">
+      <li class="page-item">
+        <a class="page-link" href="?page=${totalPage}" aria-label="Next">
+          <span aria-hidden="true">&raquo;</span>
+         </a>
+      </li>
+     </c:if>
+    </ul>
   	
   	 </div>
   	  </div>
