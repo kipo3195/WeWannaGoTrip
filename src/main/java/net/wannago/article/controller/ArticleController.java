@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import net.wannago.article.service.ArticleService;
+import net.wannago.article.util.Util;
 import net.wannago.article.vo.ArticleDTO;
 
 @Controller
@@ -34,6 +35,19 @@ public class ArticleController {
 		int totalCount = articleService.getTotalCount();	
 		int itemsCountInAPage = 10;
 		int totalPage = (int)Math.ceil( totalCount / (double)itemsCountInAPage); //올림
+		int pageMenuArmSize = 5;
+		
+		int page= Util.getAsInt(param.get("page"),1); //현재 페이지
+		
+		//페이지 시작
+		int pageMenuStart = page - pageMenuArmSize;
+			if(pageMenuStart < 1) {
+				pageMenuStart =1;   }
+				
+		//페이지 마지막
+		 int pageMenuEnd = page + pageMenuArmSize ;
+			if(pageMenuEnd > totalPage) {
+				pageMenuEnd = totalPage; }
 		
 		param.put("itemsCountInAPage", itemsCountInAPage);
 		
@@ -42,6 +56,10 @@ public class ArticleController {
 		model.addAttribute("articles",articles); //articles 라는 KEY이름으로 접근가능
 		model.addAttribute("totalCount",totalCount);
 		model.addAttribute("totalPage",totalPage);
+		model.addAttribute("pageMenuArmSize",pageMenuArmSize);
+		model.addAttribute("pageMenuStart",pageMenuStart);
+		model.addAttribute("pageMenuEnd",pageMenuEnd);
+		model.addAttribute("page",page);
 	
 		return "article/list";
 	}

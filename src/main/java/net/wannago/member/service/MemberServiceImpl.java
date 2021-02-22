@@ -42,6 +42,23 @@ public class MemberServiceImpl implements MemberService{
 		return dao.getMemberById(mid);
 	}
 
+	//회원 수정
+	@Override
+	public int MemberUpdate(MemberVO vo) throws Exception {
+		
+			return dao.memberUpdate(vo);
+			//int member = dao.memberUpdate(vo);
+			//System.out.println(member);
+		}
+
+	// 회원탈퇴
+	@Override
+	public int MemberDelete(MemberVO vo) throws Exception {
+			  
+		return dao.memberDelete(vo);
+	}
+	
+	
 	@Override
 	public Map<String, String> regIntHotel(int hno, int mno) {
 		
