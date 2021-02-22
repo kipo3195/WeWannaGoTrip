@@ -17,7 +17,7 @@ public class ArticleService {
 	private ArticleDAO articleDao;
 
 	// 게시물 리스트    
-	//
+	////
 	public List<ArticleDTO> getArticles(Map<String, Object> param)  throws Exception{
 		
 		int page = Util.getAsInt(param.get("page"),1); // 외부에서 입력안되면 1페이지
