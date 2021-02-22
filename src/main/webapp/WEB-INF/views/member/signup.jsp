@@ -111,8 +111,8 @@ label {
 				<label for="mpw">Password</label> 
 				<input type="password" id="mpw" name="mpw"
 					   placeholder="「비밀번호」"  required
-					    pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{6,15}$" />
-					    <div class="result">영문 대소문자, 숫자, 특수문자 포함 6~15자리</div>
+					    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" />
+					    <div class="result">영문 대소문자, 숫자, 특수문자 포함 최소 8자리</div>
 			</div>
 			
 			<div class="input-groups">
