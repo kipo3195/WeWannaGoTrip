@@ -253,7 +253,6 @@
 			let date = new Date(hregdate);
 			fmtdate = getFormatDate(date);
 			
-			str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 		    str += " <div class='card mb-4'>"; 
 			str += " <div class='card-body'> ";
 			str += " <div class='row'> ";  
@@ -269,6 +268,7 @@
 	        str += " <p>"+hprice+"원<br/>";
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
+			str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 	        str += " 평균 평점:"+hscore+" <br/>";
 	        str += "<div class=likediv ani_type='scale'>";
 	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
@@ -359,7 +359,6 @@
 			let date = new Date(hregdate);
 			fmtdate = getFormatDate(date);
 			
-		    str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 		    str += " <div class='card mb-4'>"; 
 			str += " <div class='card-body'> ";
 			str += " <div class='row'> ";  
@@ -376,6 +375,7 @@
 	        str += " 체크인:"+hcheckin+" 체크아웃 : "+hcheckout+" <br>"
 	        str += " "+hgrade+" <br>";
 	        str += " 평균 평점:"+hscore+" <br/>";
+	        str += " <input type='hidden' name='hno' id='hno' value="+hno+"/>";
 	        str += "<div class=likediv>";
 	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>"+hlikecnt+"<br/> "; 
 	        str += "</div>";
@@ -387,8 +387,6 @@
 	        str += " </div> ";
 	        str += " </div> ";
 	        str += " </div> ";
-	        
-	        
 		});
 		$(".hotellist").html(str);
 	}
@@ -401,8 +399,7 @@
 		//로그인됬는지 안됬는지 유무+로그인 된 회원번호
 		var boolLogin= $("#boolLogin").val();
 		//호텔 번호
-		var hno = $("#hno").val();
-		
+		var hno = $(this).closest(".card").find("#hno").val();
 		console.log(hno);
 		
 		if(boolLogin === ''){
@@ -432,6 +429,7 @@
 					}
 					var sstr = "찜 하기 <img class=likeimg src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+likecnt+"<br/> "; 
 					$(".likediv").html(sstr);
+					//해당되는 요소 부분
 				
 				}
 			});
