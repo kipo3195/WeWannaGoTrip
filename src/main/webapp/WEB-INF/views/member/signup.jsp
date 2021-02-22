@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,15 +11,14 @@
 <style>
 /* form */
 form {
-	
-	padding: 28px;
+	height: 650px;
+	padding: 30px;
 }
 
 /* input style */
 .input-groups {
-	text-align : center;
 	width: 400px;
-	margin: 20px auto;
+	margin: 40px auto;
 	position: relative; /*기준*/
 }
 
@@ -38,7 +38,7 @@ input:focus {
 	transition: 0.5s;
 }
 
-.label {
+label {
 	position: absolute; /*label이 input 바로 위에 위치*/
 	color: #aaa;
 	left: 0;
@@ -73,26 +73,6 @@ input:focus {
 	background: #fff;
 	color: #48f;
 }
-
-input[type=checkbox] {
-	-ms-transform: scale(1.5);
-	-moz-transform: scale(1.5);
-	-webkit-transform: scale(1.5);
-	-o-transform: scale(1.5);
-
-}
-
-/*table*/
-table{
-	max-width:600px;
-	margin: 0 auto;
-}
-table td {
-	text-align:center;
-	margin : auto;
-}
-	
-
 </style>
 
 
@@ -115,96 +95,53 @@ table td {
 			<li class="breadcrumb-item active">Sign Up</li>
 		</ol>
 
-<form onsubmit="submitJoinForm(this); return false;"
-	  action="signUpPost" method="POST">
-	<table>
-		<tr>
-			<td>
+
+
+		<form onsubmit="submitJoinForm(this); return false;"
+			action="signUpPost" method="POST">
 			<div class="input-groups">
-				<label for="mid" class="label">ID</label> 
+				<label for="mid">ID</label> 
 				<input type="text" id="mid" name="mid"
-					   placeholder="「아이디」" autocomplete="off" autofocus="autofocus"  />
+					   placeholder="「아이디」"  autocomplete="off" autofocus="autofocus" required 
+					  pattern="^([a-z0-9_]){6,12}$"/>
+					  <div class="result">영소문자, 숫자포함 6~12자리</div>
 			</div>
-			<div class="result"></div>	
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<div class="input-groups">
-				<label for="mpw" class="label">Password</label> 
-				<input type="password" id="mpw" name="mpw"
-					   placeholder="「비밀번호」"  autocomplete="off" />
-			</div>
-			<div class="result"></div>
-			</td>
-			<td>
-			<div class="input-groups">
-				<label for="rePw" class="label">Confirm Password</label> 
-				<input type="password"  id="rePw" name="repw"
-				        placeholder="「비밀번호 확인」" />
-			</div>
-			<div class="result"></div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<div class="input-groups">
-				<label for="mname" class="label">Name</label> 
-				<input type="text" id="mname" name="mname"
-					   placeholder="「이름」" autocomplete="off" />
-			</div>
-			<div class="result"></div>
-			</td>
-		</tr>
-		<tr>
-			<td>
-			<div class="input-groups">
-				<label for="mbirth" class="label">Birthday</label> 
-				<input type="text"  id="mbirth" name="mbirth"
-				        placeholder="「생년월일」" />
-			</div>
-			<div class="result"></div>
-			</td>
-		</tr>	
-		<tr>	
-			<td>
-			<div class="input-groups">
-				<label for="mphone" class="label">Phone</label> 
-				<input type="text" id="mphone" name="mphone"
-					   placeholder="「핸드폰」" autocomplete="off" />
-			</div>
-			<div class="result"></div> <br/><br/><br/>	
-			</td>
-		</tr>	
-		<tr>
-			<td colspan=2>
-				<h4>개인정보 이용 동의</h4>
-				<textarea readonly cols=100 rows=5>㈜We Wanna Go Trip(이하 ‘회사’)는 고객의 개인정보보호와 정보주체자의 권익보장을 위해 최선의 노력을 다하고 있습니다.
-회사는 『개인정보보호법』 관련조항과 『정보통신망 이용촉진 및 정보보호에 관한 법률』의 기준에 따라 ‘개인정보처리방침’을 수립하여 이를 준수하고 있습니다. 
-고객의 개인정보가 어떠한 목적과 절차로 수집, 이용되고 있으며 개인정보보호를 위해 어떠한 조치가 취해지고 있는지 다음과 같이 알려드립니다.   본 개인정보처리방침을 개정하는 경우에는 회사 웹사이트를 통하여 사전에 고지하겠습니다.</textarea>
-	       </td>
 			
-		</tr>
-		<tr>
-			<td colspan="2">
-			   <label>	
-				<input type="checkbox" name="minfo" id="minfo" value="Y"/>
-				개인정보  동의
-			    </label>
-			</td>
-		</tr>
-		<tr>
-			<td colspan="2">
 			<div class="input-groups">
-				<input class="button" type="submit" value="회원가입" />
+				<label for="mpw">Password</label> 
+				<input type="password" id="mpw" name="mpw"
+					   placeholder="「비밀번호」"  required
+					    pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$" />
+					    <div class="result">영문 대소문자, 숫자, 특수문자 포함 최소 8자리</div>
+			</div>
+			
+			<div class="input-groups">
+				<label for="rePw">Confirm Password</label> 
+				<input type="password"  id="rePw" 
+				        placeholder="「비밀번호 확인」" name="repw" required />
+			</div>
+			<div class="result"></div>
+			
+			<div class="input-groups">
+				<label for="mname">Name</label> 
+				<input type="text" id="mname"
+					   placeholder="「이름」" name="mname" autocomplete="off" required />
+			</div>
+			<div class="result"></div>
+			
+			<div class="input-groups">
+				<label for="email">E-Mail</label> 
+				<input type="email" id="email" name="memail"
+					   placeholder="「이메일」"  autocomplete="off" required />
+			</div>
+			<div class="result"></div>
+			
+			<div class="input-groups">
+				<input class="button" id="signup" type="submit" value="회원가입" />
 				<input class="button" type="button" 
 					   onclick="location.href='signin';" value="로그인"/> 
 			</div>
-			</td>
-		</tr>
-	</table>
-</form>
-
+		</form>
 	</div>
 	<!-- /.container -->
 
@@ -222,11 +159,14 @@ table td {
 	 	if(message != null && message != '') {
 	 		alert(message);
 	 	}
+	 	
 	</script>
 
 
 	<!-- footer -->
 	<%@ include file="../common/footer.jsp"%>
+
+
 
 </body>
 

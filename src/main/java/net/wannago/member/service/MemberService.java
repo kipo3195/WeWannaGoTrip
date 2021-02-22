@@ -17,9 +17,17 @@ public interface MemberService {
 	// 아이디 정보로 사용자 정보 확인
 	MemberVO getMemberById(String mid) throws Exception;
 
+	//회원정보 수정
+	int MemberUpdate(MemberVO vo) throws Exception;
+			
+	//회원탈퇴
+	int MemberDelete(MemberVO vo) throws Exception;
+	
+	
 	//관심 호텔 등록
 	Map<String,String> regIntHotel(int hno, int mno);
 
+	
 	//관심등록한 호텔 정보 불러오기
 	Map<String,Object> getIntHotelList(int mno);
 

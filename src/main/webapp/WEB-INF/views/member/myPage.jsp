@@ -35,7 +35,7 @@
         <div class="list-group">
           <a href="#" class="list-group-item">내 예약 확인 하기</a>
           <a href="membersLikeHotel" class="list-group-item">내가 찜한 여행 정보 확인</a>
-          <a href="#" class="list-group-item">내 정보 수정</a>
+          <a href="${pageContext.request.contextPath}/member/memberUpdateView" class="list-group-item">내 정보 수정</a>
           
           
           <!-- TODO I WISH.... PLEASE...
@@ -45,7 +45,7 @@
           <a href="#" class="list-group-item">필요한 용도에 따라 사용</a>
           <a href="#" class="list-group-item">필요한 용도에 따라 사용</a> 
           -->
-          <a href="#" class="list-group-item" style="color:red; ">회원 탈퇴</a>
+           <a href="${pageContext.request.contextPath}/member/memberDeleteView" class="list-group-item" style="color:red; ">회원 탈퇴</a>
         </div>
       </div>
       <!-- Content Column -->

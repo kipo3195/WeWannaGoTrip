@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.hotel.vo.interHotelVO;
@@ -29,6 +30,17 @@ public interface MemberDAO {
 	MemberVO getMemberById(String mid) throws Exception;
 
 
+	//회원수정
+	@Update("UPDATE pro_member SET mpw = #{mpw}, mname=#{mname}, memail=#{memail} WHERE mid = #{mid}")
+	int memberUpdate(MemberVO vo) throws Exception;
+		
+	//회원탈퇴
+	@Delete("DELETE FROM pro_member WHERE mid = #{mid} AND mpw=#{mpw}")
+	//MemberVO memberDelete(MemberVO vo) throws Exception;
+	int memberDelete(MemberVO vo) throws Exception;
+	
+	
+	
 	//관심 등록 여부 - 훈
 	@Select("SELECT count(*) from pro_interestedHotel WHERE mno = ${mno} AND hno=${hno}")
 	int searchAlready(@Param("mno")int mno,@Param("hno") int hno);
