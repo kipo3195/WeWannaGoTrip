@@ -199,7 +199,7 @@
 	 			</td>
 	 			<td>
 	 				 <select id="hgradeOption" size="1" onChange="setValues();" >
-	 					<option value="등급선택">등급선택</option>				
+	 					<option value="">등급선택</option>				
 	 					<option value="6성급">6성급</option>				
 		 				<option value="5성급">5성급</option>				
 		 				<option value="4성급">4성급</option>				
@@ -240,7 +240,7 @@
 						놀이 시설
 					</div>
 					<div>
-	 					<select id="func1">
+	 					<select id="func1select" onchange="play();">
 	 						<option>수영장</option>				
 		 					<option>오락시설</option>				
 		 					<option>노래방</option>				
@@ -352,6 +352,13 @@
 		var selected = document.getElementById("hgradeOption");
 		var sv = selected.options[selected.selectedIndex].value;
 		
+		if(sv == ""){
+			
+			
+			$("#hgrade").val("");
+			return alert("호텔 등급을 설정해 주세요 ");
+			
+		}
 		$("#hgrade").val(sv);
 	}
 	
@@ -652,6 +659,13 @@
 		
 		
 	
+			
+			
+			
+			
+			
+			////시설 스크립트
+			function play
 	
 	</script>
 
