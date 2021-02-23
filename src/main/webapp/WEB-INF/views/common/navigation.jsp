@@ -82,8 +82,9 @@
              	커뮤니티
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/">공지사항</a>
-               <a class="dropdown-item" href="${pageContext.request.contextPath}/article/list">자유게시판</a>
+             <a class="dropdown-item" href="${pageContext.request.contextPath}/board/listReply">공지사항</a>
+             <a class="dropdown-item" href="${pageContext.request.contextPath}/article/list">자유게시판</a>
+            	
             </div>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
