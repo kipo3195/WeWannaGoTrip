@@ -422,3 +422,24 @@ select * from pro_ban_ip;
 INSERT INTO ban_ip(ip, cnt)
 VALUES('0:0:0:0:0:0:0:1',5);
  
+ #게시판
+CREATE TABLE pro_board(
+	bno INT PRIMARY KEY auto_increment,              #게시글 번호
+    title varchar(200) not null,                     #제목
+    content text not null,                           #내용
+    writer varchar(200) not null,                    #작성자
+    origin int not null default 0,                   #원본 글 번호
+    depth int not null default 0,                    #답변글일때의 표현
+    seq int not null default 0,                      #답변글 정렬
+    regdate timestamp not null default now(),        #등록시간
+    updatedate timestamp null default now(),         #수정시간
+    viewcnt int default 0,                           #조회수
+    showboard varchar(10) null default 'Y',          #게시물 삭제 여부 'Y''노출' , 'N' 
+    uno int not null,                                #작성자 정보(사용자 번호)
+    constraint fx_pro_board_uno foreign key(uno) references pro_member(mno)   #사용자번호 외래키
+ );
+ 
+ select * from pro_board;
+ 
+ 
+ 
