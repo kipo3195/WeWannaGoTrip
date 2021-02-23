@@ -2,6 +2,7 @@ package net.wannago.member.service;
 
 import java.util.Map;
 
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
@@ -36,5 +37,8 @@ public interface MemberService {
 
 	//관심등록 삭제
 	String deleteInterHotel(int ino);
+	
+	//호텔 댓글등록
+	String addComment(HCommentVO vo);
 	
 }

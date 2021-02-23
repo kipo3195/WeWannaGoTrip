@@ -16,6 +16,7 @@ import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
 import net.wannago.hotel.dao.HotelDAO;
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelPriceVO;
 import net.wannago.hotel.vo.HotelRoomVO;
 import net.wannago.hotel.vo.HotelVO;
@@ -277,6 +278,16 @@ public class LocalServiceImpl implements LocalService {
 	public List<HotelVO> orderByLike() {
 		List<HotelVO> VO = dao.orderByLike();
 		return VO;
+	}
+
+	@Override
+	public List<HCommentVO> getComment(int hno) {
+		
+		List<HCommentVO> list = dao.getComment(hno);
+		
+		
+		
+		return list;
 	}
 
 }

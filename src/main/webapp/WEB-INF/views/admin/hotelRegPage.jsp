@@ -240,23 +240,25 @@
 						놀이 시설
 					</div>
 					<div>
-	 					<select id="func1select" onchange="play();">
+	 					<select id="func1" onchange="play()">
 	 						<option>수영장</option>				
 		 					<option>오락시설</option>				
 		 					<option>노래방</option>				
 		 					<option>카지노</option>	
 	 					</select>
+	 					<input type="hidden" value="수영장" name="func1">
 	 				</div>
 	 				<div style="margin-top:36px;">
 						라운지 & 식사
 					</div>
 					<div>
-	 					<select id="func2">
+	 					<select id="func2" onchange="rou()">
 	 						<option>조식가능</option>				
 		 					<option>레스토랑</option>				
-		 					<option>바  & 펍</option>				
+		 					<option>바  n 펍</option>				
 		 					<option>무료라운지</option>	
 	 					</select>
+	 					<input type="hidden" value="조식가능" name="func2">
 	 				</div>	
 				</td>
 				<td>
@@ -264,23 +266,25 @@
 						서비스
 					</div>
 					<div>
-	 					<select id="func3">
+	 					<select id="func3" onchange="serv()">
 	 						<option>연박할인</option>				
 		 					<option>공항셔틀</option>				
 		 					<option>lundery</option>				
 		 					<option>룸서비스</option>	
 	 					</select>
+	 					<input type="hidden" value="연박할인" name="func3">
 					</div>
-					<div id="func44" style="margin-top:36px;">
-						주요 기능 4
+					<div style="margin-top:36px;">
+						여가 기능
 					</div>
 					<div >	
-	 					<select id="func4" name="func4" onchange="changeSelect()">
-	 						<option>수영장</option>				
+	 					<select id="func4" onchange="extra()">
+	 						<option>스파</option>				
 		 					<option>노래방</option>				
 		 					<option>카지노</option>	
-		 					<option value="enter">직접입력</option>				
+		 					<option>인피니티 풀</option>	
 	 					</select>
+	 					<input type="hidden" value="스파" name="func4">
 	 				</div>
 				
 				</td>
@@ -658,14 +662,32 @@
 		
 		
 		
-	
-			
-			
-			
-			
-			
 			////시설 스크립트
-			function play
+			 function play(){
+				 var playSelected = document.getElementById("func1");
+				 var ps = playSelected.options[playSelected.selectedIndex].value;
+				 console.log(ps);
+				 $("#func1").val(ps);
+			}
+			 function rou(){
+				 var rouSelected = document.getElementById("func2");
+				 var rou = rouSelected.options[rouSelected.selectedIndex].value;
+				 console.log(rou);
+				 $("#func2").val(rou);
+			}
+			 function serv(){
+				 var servSelected = document.getElementById("func3");
+				 var serv = servSelected.options[servSelected.selectedIndex].value;
+				 console.log(serv);
+				 $("#func3").val(serv);
+			}
+			 function extra(){
+				 var extraSelected = document.getElementById("func4");
+				 var extra = extraSelected.options[extraSelected.selectedIndex].value;
+				 console.log(extra);
+				 $("#func4").val(extra);
+			}
+			
 	
 	</script>
 

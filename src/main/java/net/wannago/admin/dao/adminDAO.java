@@ -25,8 +25,8 @@ public interface adminDAO {
 	 */
 	
 	
-	@Insert("INSERT INTO pro_hotel(hname, hinfo, haddress, htel, hemail, hcheckin,hcheckout, hgooglemap, hgrade, hprimaryprice,hmainimg,hfacility,hwedo,hkyungdo) "
-			+ "values(#{hname},#{hinfo},#{haddress},#{htel},#{hemail},#{hcheckin},#{hcheckout},#{hgooglemap},#{hgrade},#{hprimaryprice},#{hmainimg},#{hfacility},${hwedo},${hkyungdo})"
+	@Insert("INSERT INTO pro_hotel(hname, hinfo, haddress, htel, hemail, hcheckin,hcheckout, hgooglemap, hgrade, hprimaryprice,hmainimg,hfacility,hwedo,hkyungdo,func1,func2,func3,func4) "
+			+ "values(#{hname},#{hinfo},#{haddress},#{htel},#{hemail},#{hcheckin},#{hcheckout},#{hgooglemap},#{hgrade},#{hprimaryprice},#{hmainimg},#{hfacility},${hwedo},${hkyungdo},#{func1},#{func2},#{func3},#{func4})"
 	 ) int hotelReg(HotelVO vo);
 
 	@Select("select hno from pro_hotel order by hregdate desc limit 1; ")
