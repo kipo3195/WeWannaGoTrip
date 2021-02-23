@@ -79,6 +79,12 @@
 			</div>
 		</section>
 	</div>
-</body>
 	
+	
+	<!-- footer -->
+	<%@ include file="../common/footer.jsp"%>
+	
+</body>
+
+
 </html>

@@ -26,7 +26,7 @@ public class SignUpInterceptor extends HandlerInterceptorAdapter{
 		// 확인1 :  비밀번호가 넘어오는지 확인
 		
         String mpw = request.getParameter("mpw");
-        String repw = request.getParameter("repw");
+        String repw = request.getParameter("rePw");
         
         RequestDispatcher rd = request.getRequestDispatcher("/member/signup");
         String message = "";
