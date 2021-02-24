@@ -1,5 +1,6 @@
 package net.wannago.member.dao;
 
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Delete;
@@ -10,6 +11,7 @@ import org.apache.ibatis.annotations.Update;
 
 import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
+import net.wannago.hotel.vo.HotelreservationVO;
 import net.wannago.hotel.vo.interHotelVO;
 import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
@@ -77,6 +79,18 @@ public interface MemberDAO {
 
 	@Select("SELECT count(*) FROM pro_hcomment WHERE mno =${mno} AND hno =${hno}")
 	int getComment(@Param("mno") int mno,@Param("hno") int hno);
+
+
+	@Select("SELECT * from pro_hotelreservation1 WHERE mno = ${mno}")
+	List<HotelreservationVO> getMyReservation(int mno);
+
+
+	@Select("SELECT rdate from pro_hotelreservation1 WHERE rnumber = ${rnumber}")
+	Date getReservationDate(int rnumber);
+
+	@Delete("DELETE from pro_hotelreservation1 WHERE rnumber = ${rnumber}")
+	int cancelSuccess(int rnumber);
+	
 
 
 

@@ -1,6 +1,8 @@
 package net.wannago.member.service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
+import net.wannago.hotel.vo.HotelreservationVO;
 import net.wannago.hotel.vo.interHotelVO;
 import net.wannago.member.dao.MemberDAO;
 import net.wannago.member.vo.LoginDTO;
@@ -185,6 +188,50 @@ public class MemberServiceImpl implements MemberService{
 		}
 		
 		return "fail";
+	}
+
+	@Override
+	public List<HotelreservationVO> getMyReservation(int mno) {
+		List<HotelreservationVO> list = dao.getMyReservation(mno);
+		
+		return list;
+	}
+	
+	//
+	@Override
+	public String cancelReservation(int rnumber, int mno) {
+		
+	
+	 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	 Date rdate = dao.getReservationDate(rnumber);
+	 System.out.println("rdate : "+rdate);
+	 Date current = new Date();
+	 System.out.println("current : "+current);
+	 
+	 String today = sdf.format(current);
+	 String rd = sdf.format(rdate);
+	 
+	 System.out.println("today : "+ today);
+	 System.out.println("rd :"+rd);
+	 
+	 int compare = today.compareTo(rd);
+	 
+	 System.out.println("compare : "+compare);
+	 
+	 long calDate = rdate.getTime() - current.getTime();
+	 long calDateDays = calDate/ (24*60*60*1000);
+	 System.out.println("계산된 날짜"+(calDateDays));
+	 
+	 //3일 전까지 취소 가능하게 함
+	 if(calDateDays < 2) {
+		 return "fail";
+	 }else {
+		 int result = dao.cancelSuccess(rnumber);
+		 if(result == 1) {
+			 return "success";
+		 }
+		return "fail";
+	 }
 	}
 
 	

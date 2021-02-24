@@ -41,7 +41,7 @@
           <div class="card-body">
             <h2 class="card-title">제주 호텔 미리보기</h2>
             <p class="card-text">천혜 경관 제주에 어울리는 품격있는 호텔을 찾아 숙박해 보세요.</p>
-            <a href="${pageContext.request.contextPath}/local/jejuhotel" class="btn btn-primary">Read More &rarr;</a>
+            <a href="${pageContext.request.contextPath}/local/jejuhotel" class="btn btn-primary">호텔리스트보기 &rarr;</a>
           </div>
         </div>
 
@@ -133,12 +133,7 @@
         </div>
 
         <!-- Side Widget -->
-        <div class="card my-4">
-          <h5 class="card-header">Side Widget</h5>
-          <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-          </div>
-        </div>
+      
 
       </div>
 

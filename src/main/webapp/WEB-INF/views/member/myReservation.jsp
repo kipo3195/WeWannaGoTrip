@@ -23,58 +23,44 @@
   <div class="container">
 
 	 <!-- Page Heading/Breadcrumbs -->
-    <h1 class="mt-4 mb-3">자유게시판
-      &nbsp;  <small>Board List</small>
+    <h1 class="mt-4 mb-3">내 예약 확인하기
+      &nbsp;  <small></small>
     </h1>
 
     <ol class="breadcrumb">
       <li class="breadcrumb-item">
-        <a href="${pageContext.request.contextPath}">Home</a>
       </li>
-      <li class="breadcrumb-item active"> List  </li>
-      <li class="breadcrumb-item active"> 총 게시물 수 : ${totalCount}  </li>
+      <li class="breadcrumb-item active"> 총 예약 수 :   </li>
     </ol>
 
     <div class="accordion">
+	<c:choose>
+		<c:when test="${!empty list}">
+			<c:forEach items="${list}" var="list">
+				<div>
+			  	예약번호 :  H${list.rnumber}
+		  		<br/> 
+		  		호텔이름 :   
+		  		<br/>
+		  		 등급 :    ${list.grade} 
+		  		<br/>
+		  		 일정 :    ${list.rdate}
+		  		<br/>
+		  		 예약 일시 : ${list.resregdate}
+		  		<br/>
+					<div>
+				  		<a  onclick="if ( confirm('취소하시겠습니까?') == false ) return false;" href="${pageContext.request.contextPath}/member/cancelHotel?rnumber=${list.rnumber}"> 예약취소하기 </a> 
+				  	</div>	
+		  	</div>
+		  	<hr/>
+			</c:forEach>	
+		</c:when>
+		<c:otherwise>
+			예약 정보가 존재하지 않습니다.
+		</c:otherwise>
+	</c:choose>
   
-
-  
-   <c:forEach items="${articles}" var="article">
-   <div>
-  		<%-- 번호 : ${articles[0].id} --%> <!-- controller에서의 key값  -->
-	  	글번호 : <a href="detail?id=${article.id}"> ${article.id}</a>
-  		<br/>
-  		제목 : <a href="detail?id=${article.id}"> ${article.title}</a>
-  		<br/>
-  		내용 : <a href="detail?id=${article.id}"> ${article.body}</a>
-  		<br/>
-  		작성 날짜 : ${article.regDate}
-  		<br/>
-  		 <%-- 갱신 날짜 : ${article.updateDate}
-  		<br/> --%>
-  		<%--list에선 내용빼자 내용 : ${article.body} --%>
-  		<br/>
-  		<!-- prevent default -->
-  		
-  	<c:choose>
-		<c:when test="${!empty admin}">
-			<div>
-		  		<a  onclick="if ( confirm('삭제하시겠습니까?') == false ) return false;" href="doDelete?id=${article.id}"> 삭제 </a> 
-		  		<a href="modify?id=${article.id}">  수정 </a>
-		  	</div>	
-		</c:when>  	
-  	</c:choose>
-  		
-  	</div>
-  	<hr/>
-  	</c:forEach>
-  	<c:choose>
-		<c:when test="${!empty admin}">
-			<div>
-		  	<a href="write">  글쓰기 </a>
-		  	</div>	
-		</c:when>  	
-  	</c:choose>
+  	
  <!-- Pagination -->
     <ul class="pagination justify-content-center">
     
@@ -127,5 +113,13 @@
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
   <script src="${pageContext.request.contextPath}/resources/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 	
+	<script>
+		var message ="${message}";
+		if(message=="fail"){
+			alert("최소 3일 이전의 예약만 취소 가능합니다");
+		}else{
+			alert("예약이 취소 되었습니다.");
+		}
+	</script>
 </body>
 </html>

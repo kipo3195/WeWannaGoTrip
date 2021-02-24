@@ -1,9 +1,11 @@
 package net.wannago.member.service;
 
+import java.util.List;
 import java.util.Map;
 
 import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
+import net.wannago.hotel.vo.HotelreservationVO;
 import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
 
@@ -40,5 +42,12 @@ public interface MemberService {
 	
 	//호텔 댓글등록
 	String addComment(HCommentVO vo);
+
+	//호텔 예약 정보 가져오기
+	List<HotelreservationVO> getMyReservation(int mno);
+	
+	//호텔 예약 삭제 
+	String cancelReservation(int rnumber, int mno);
+	
 	
 }
