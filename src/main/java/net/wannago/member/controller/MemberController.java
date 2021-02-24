@@ -1,5 +1,6 @@
 package net.wannago.member.controller;
 
+import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -16,12 +17,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import net.wannago.hotel.vo.HCommentVO;
+import net.wannago.hotel.vo.HotelreservationVO;
 import net.wannago.member.service.MemberService;
 import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
@@ -277,11 +280,35 @@ public class MemberController {
 	
 	//내 예약 리스트
 	@GetMapping("/myReservation")
-	public String myReservation() {
+	public ModelAndView myReservation(HttpSession session) {
+		ModelAndView mav = new ModelAndView();
+		MemberVO vo = (MemberVO) session.getAttribute("memberInfo");
+		int mno = vo.getMno();
+		List<HotelreservationVO> list= ms.getMyReservation(mno);
+		System.out.println("여기 리스트 출력"+list);
 		
+		mav.addObject("list", list);
+		mav.setViewName("member/myReservation");
 		
-		return "member/myReservation";
+		return mav;
 	}
+	
+	@GetMapping("cancelHotel")
+	public ModelAndView main(
+			@RequestParam("rnumber") int rnumber,
+			HttpSession session,
+			RedirectAttributes rttr) {
+		ModelAndView mav = new ModelAndView();
+		 MemberVO vo = (MemberVO) session.getAttribute("memberInfo");
+		 int mno = vo.getMno();
+		String message = ms.cancelReservation(rnumber,mno);
+		System.out.println("result : "+message);
+		rttr.addFlashAttribute("message", message);
+		mav.setViewName("redirect:/member/myReservation");
+		return mav;
+	
+	}
+	
 	
 	
 	////훈
