@@ -9,6 +9,12 @@
 <!-- Head -->
 <%@ include file="../common/header.jsp"%>
 
+<style>
+	table{
+		margin : auto;
+	}
+</style>
+
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
@@ -22,39 +28,37 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회원게시판 &nbsp;<small>Notice</small>
+			글 수정하기 &nbsp;<small>글 번호 - ${board.bno}</small>
 		</h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active">회원</li>
+			<li class="breadcrumb-item active">회원님, 글 수정 부탁드립니다.</li>
 		</ol>
-		${pageContext.request.contextPath}
-		<h1>
-			<a href="${pageContext.request.contextPath}">HOME</a>
-		</h1>
-		<h3>MODIFY BOARD - ${board.bno}</h3>
+		
+		<h3></h3>
 		<!-- /board/register -->
+		<section id="container">
 		<form action="modifyPage" method="post">
-			<table>
+			<table class="table table-hover">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" value="${board.title}"
+					<td><input type="text" name="title" size="50" value="${board.title}"
 						required /></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" name="writer"
+					<td><input type="text" name="writer" size="50"
 						value="${memberInfo.mname}" readonly /></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" cols="50" rows="30">${board.content}</textarea>
+					<td><textarea name="content" cols="50" rows="15">${board.content}</textarea>
 					</td>
 				</tr>
 				<tr>
-					<td colspan=2><input type="submit" value="수정완료" /></td>
+					<td colspan=2><input type="submit" class="replyWriteBtn btn btn-secondary" value="수정완료" /></td>
 				</tr>
 			</table>
 			<%-- <input type="hidden" name="bno" value="${board.bno}"/>
@@ -65,7 +69,7 @@
 				type="hidden" name="searchType" value="${cri.searchType}" /> <input
 				type="hidden" name="keyword" value="${cri.keyword}" />
 		</form>
-
+	  </section>
 	</div>
 	
 	<!-- footer -->

@@ -8,6 +8,23 @@
 
 <!-- Head -->
 <%@ include file="../common/header.jsp"%>
+<style>
+table{
+	margin : auto;
+}
+.a {
+	width : 300px;
+	text-align:center;
+}
+
+td { 
+	text-align : left;
+}
+
+/* th {
+	text-align : center;
+} */
+</style>
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,47 +39,53 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회원게시판 &nbsp;<small>Notice</small>
+			글 상세보기 &nbsp;<small>Board</small>
 		</h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active">회원</li>
+			<li class="breadcrumb-item active">회원만 답변글 작성 가능합니다.</li>
 		</ol>
-		<h1>
+		<%-- <h1>
 			<a href="${pageContext.request.contextPath}">HOME</a>
-		</h1>
-		<h3>READ PAGE</h3>
-		<table border=1>
+		</h1> --%>
+		
+		<section id="container">
+		<table class="table table-hover">
+		
 			<tr>
-				<td>제목</td>
+			
+				<td class="a">제목</td>
+				
 				<td><c:out value="${board.title}" /></td>
+				
+			</tr>
+			
+			<tr>
+				<td class="a">작성자</td>
+				<td ><c:out value="${board.writer}" /></td>
 			</tr>
 			<tr>
-				<td>작성자</td>
-				<td><c:out value="${board.writer}" /></td>
-			</tr>
-			<tr>
-				<td>내용</td>
-				<td><pre>
-						<c:out value="${board.content}" />
-					</pre>
+				<td class="a">내용</td>
+				<td><pre style="font-size:15px; font-weight:bold;" ><c:out value="${board.content}"/></pre> 
 					<!-- <pre> 저장한 문자열 줄바꿈을 그대로 표현 --></td>
 			</tr>
+			
 			<tr>
 				<td colspan="2"><c:if test="${!empty memberInfo }">
 						<c:if test="${memberInfo.mno eq board.uno}">
 							<!-- 작성 게시자와 로그인한 작성자가 같을때 -->
-							<input type="button" id="modifyBtn" value="MODIFY" />
-							<input type="button" id="removeBtn" value="REMOVE" />
+							<input type="button" id="modifyBtn" class="replyUpdateBtn btn btn-warning" value="MODIFY" />
+							<input type="button" id="removeBtn" class="replyDeleteBtn btn btn-danger" value="REMOVE" />
 						</c:if>
 						<!-- 로그인 완료한 사용자 -->
-						<input type="button" id="replyBtn" value="REPLY" />
-					</c:if> <!-- 전체 사용자 --> <input type="button" id="listBtn" value="LIST" />
+						<input type="button" id="replyBtn" class="replyWriteBtn btn btn-success" value="REPLY" />
+					</c:if> <!-- 전체 사용자 --> <input type="button" class="replyWriteBtn btn btn-primary" id="listBtn" value="LIST" />
 				</td>
 			</tr>
 		</table>
+	</section>	
 		<form id="readForm">
 			<input type="hidden" name="bno" value="${board.bno}" /> <input
 				type="hidden" name="page" value="${cri.page}" /> <input
