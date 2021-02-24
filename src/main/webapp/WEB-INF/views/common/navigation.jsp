@@ -77,16 +77,7 @@
             <a class="nav-link" href="${pageContext.request.contextPath}/services">기획전</a>
             <!-- 훈 -->
           </li>
-         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-             	커뮤니티
-            </a>
-            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
-             <a class="dropdown-item" href="${pageContext.request.contextPath}/board/listReply">공지사항</a>
-             <a class="dropdown-item" href="${pageContext.request.contextPath}/article/list">자유게시판</a>
-            	
-            </div>
-          <li class="nav-item dropdown">
+           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
              	국내여행
             </a>
@@ -100,7 +91,19 @@
               <a class="dropdown-item" href="#">충청</a>
             </div>
           </li>
-          <li class="nav-item dropdown">
+          
+          
+         <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownPortfolio" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+             	커뮤니티
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPortfolio">
+             <a class="dropdown-item" href="${pageContext.request.contextPath}/article/list">공지사항</a>
+             <a class="dropdown-item" href="${pageContext.request.contextPath}/board/listReply">자유게시판</a>
+            	
+            </div>
+         
+         <%--  <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}" id="navbarDropdownBlog" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               Blog
             </a>
@@ -109,18 +112,15 @@
               <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-home-2 ">Blog Home 2</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/blog-post ">Blog Post</a>
             </div>
-          </li>
+          </li> --%>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}" id="navbarDropdownPages" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              Other Pages
+              	소개
             </a>
             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownPages">
               <a class="dropdown-item" href="${pageContext.request.contextPath}/about">회사소개</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/contact">오시는 길</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/full-width">Full Width Page</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/sidebar">Sidebar Page</a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/faq">FAQ</a>
-              <a class="dropdown-item" href="${pageContext.request.contextPath}/pricing">Pricing Table</a>
             </div>
           </li>
         </ul>

@@ -87,12 +87,11 @@
 
         <!-- Search Widget -->
         <div class="card mb-4">
-          <h5 class="card-header">Search</h5>
+          <h5 class="card-header">상단 광고</h5>
           <div class="card-body">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search for...">
               <span class="input-group-append">
-                <button class="btn btn-secondary" type="button">Go!</button>
+                 가장 돈을 많이 받은 광고 노출
               </span>
             </div>
           </div>

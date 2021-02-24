@@ -554,8 +554,8 @@ if(test1 != ""){
   </div>
   <!-- /.container -->
 
-  <!-- Footer -->
-   <%@ include file="../common/footer.jsp" %>
+ <%--  <!-- Footer -->
+   <%@ include file="../common/footer.jsp" %> --%>
 
    <!-- Bootstrap core JavaScript -->
   <script src="${pageContext.request.contextPath}/resources/vendor/jquery/jquery.min.js"></script>
