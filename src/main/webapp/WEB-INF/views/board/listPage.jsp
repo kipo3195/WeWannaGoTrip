@@ -13,6 +13,10 @@ table {
 	margin: auto;
 	text-align: center;
 }
+th{
+	border-bottom : 1px solid #ccc;
+	padding : 15px;
+}
 
 td {
 	padding: 12px;
@@ -33,13 +37,13 @@ td {
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회원게시판 &nbsp;<small>Notice</small>
+			문의 하기 &nbsp;<small>Board</small>
 		</h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active">회원</li>
+			<li class="breadcrumb-item active">회원님, 궁금하신점은 언제든지 물어보세요. </li>
 		</ol>
 
 		<c:set var="root" value="${pageContext.request.contextPath}" />
@@ -61,14 +65,14 @@ td {
 			</select> <input type="text" name="keyword" id="keyword" /> <input
 				type="button" id="searchBtn" value="SEARCH" />
 
-			<c:if test="${!empty memberInfo}">
+			<%-- <c:if test="${!empty memberInfo}">
 				<a href="register">WRITE BOARD</a>
-			</c:if>
+			</c:if> --%>
 		</div>
 
 		<br />
 
-		<table>
+		<table >
 			<tr>
 				<th>글번호</th>
 				<th style="width: 300px;">제목</th>
@@ -76,6 +80,7 @@ td {
 				<th style="width: 280px;">Update Date</th>
 				<th>조회수</th>
 			</tr>
+			
 			<!-- 게시글 목록  ${list} -->
 			<c:choose>
 				<c:when test="${!empty list}">
@@ -97,7 +102,6 @@ td {
 									   τ
 									</c:if> <c:out value="${board.title}" />
 									</a></td>
-									<%-- <td>${board.title}</td> --%>
 									<td>${board.writer}</td>
 									<td>${board.updatedate}</td>
 									<td>${board.viewcnt}</td>

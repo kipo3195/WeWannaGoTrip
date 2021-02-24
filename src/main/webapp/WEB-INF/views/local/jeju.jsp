@@ -132,9 +132,6 @@
           </div>
         </div>
 
-        <!-- Side Widget -->
-      
-
       </div>
 
     </div>
