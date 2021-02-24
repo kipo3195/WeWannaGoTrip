@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.hotel.vo.interHotelVO;
 import net.wannago.member.vo.LoginDTO;
@@ -67,6 +68,15 @@ public interface MemberDAO {
 
 	@Delete("DELETE FROM pro_interestedHotel WHERE ino = ${ino}")
 	int delete(int ino);
+
+	@Select("select count(*) FROM pro_HotelReservation1 where mno =${mno} AND hno = ${hno} ")
+	int getReserVation(@Param("mno") int mno,@Param("hno") int hno);
+
+	@Insert("INSERT INTO pro_hcomment(ctext,mno,hno,mname) VALUES (#{ctext},${mno},${hno},#{mname})")
+	void registComment(HCommentVO vo);
+
+	@Select("SELECT count(*) FROM pro_hcomment WHERE mno =${mno} AND hno =${hno}")
+	int getComment(@Param("mno") int mno,@Param("hno") int hno);
 
 
 

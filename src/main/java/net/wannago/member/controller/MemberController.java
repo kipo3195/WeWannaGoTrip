@@ -14,13 +14,14 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttribute;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.member.service.MemberService;
 import net.wannago.member.vo.LoginDTO;
 import net.wannago.member.vo.MemberVO;
@@ -250,6 +251,27 @@ public class MemberController {
 		}
 		
 		return entity;
+		
+	}
+	
+	@PostMapping("/addComment")
+	public ResponseEntity<String> addComment(
+			@RequestBody HCommentVO vo
+			){
+		ResponseEntity<String> entity = null;
+		System.out.println(vo);
+		
+		String result = ms.addComment(vo);
+		
+		try {
+			entity = new ResponseEntity<>(result,HttpStatus.OK);
+		} catch (Exception e) {
+			entity = new ResponseEntity<>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		
+		return entity;
+		
 		
 	}
 	

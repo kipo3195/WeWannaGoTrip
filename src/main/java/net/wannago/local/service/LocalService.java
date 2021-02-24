@@ -6,7 +6,7 @@ import java.util.Map;
 import net.koreate.util.Criteria;
 import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
-import net.wannago.cafRes.vo.CaResVO;
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelRoomVO;
 import net.wannago.hotel.vo.HotelVO;
 
@@ -37,6 +37,8 @@ public interface LocalService {
 	List<HotelVO> orderByReg();
 
 	List<HotelVO> orderByLike();
+
+	List<HCommentVO> getComment(int hno);
 
 
 

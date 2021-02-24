@@ -17,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import net.koreate.util.PageMaker;
 import net.wannago.admin.vo.SearchVO;
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.local.service.LocalService;
 
@@ -51,8 +52,12 @@ public class listController {
 		
 		HotelVO vo = ls.getHotelVO(hno);
 		List<String> list = ls.getHotelDetailImg(hno);
+		List<HCommentVO> clist = ls.getComment(hno);
+		
 		mav.addObject("hotel", vo);
 		mav.addObject("list",list);
+		mav.addObject("clist", clist);
+		
 		mav.setViewName("/local/hotel/detail/jejuHotelDetail");
 		return mav;
 		

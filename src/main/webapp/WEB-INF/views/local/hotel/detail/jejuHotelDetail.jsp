@@ -3,11 +3,15 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <!DOCTYPE html>
+<style>
+#modDiv{
+		display:none;
+	}
+</style>
 <html lang="en">
 
  <!-- Head -->
  <%@ include file="../../../common/header.jsp" %>
-
 <body>
 
   <!-- Navigation -->
@@ -45,14 +49,14 @@
         <p>${hotel.hgrade}</p>
         <h3 class="my-3">부대시설</h3>
         <ul>
-          <li>사용 편의 시설 1</li>
-          <li>사용 편의 시설 2</li>
-          <li>사용 편의 시설 3</li>
-          <li>사용 편의 시설 4</li>
+          <li style="list-style: none;">${hotel.func1}</li>
+          <li style="list-style: none;">${hotel.func2}</li>
+          <li style="list-style: none;">${hotel.func3}</li>
+          <li style="list-style: none;">${hotel.func4}</li>
         </ul>
         <!-- 세션 정보(관리자, 이용자)에 따른  -->
         
-          
+          <input type="hidden" value="${memberInfo.mname}" id="mname"/>
 		<c:choose>
 			<c:when test="${ not empty memberInfo}">
 			  <a href="${pageContext.request.contextPath}/local/jejuHotel/reservation?hno=${hotel.hno}" class="btn btn-primary">예약하러가기</a>
@@ -78,7 +82,7 @@
 				            </div>
 		         	  </td>
 		         	  <td>
-		         	  	<input type="hidden" value="${hotel.hno}" name="hno">
+		         	  	<input type="hidden" value="${hotel.hno}" name="hno" id="hno">
 		         	  </td>
 		            </tr>
 	            </table>
@@ -136,14 +140,59 @@
  --%>
     </div>
     <!-- /.row -->
+ 
    
        <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">실제 예약하신 고객님의 생생한 후기입니다</h5>
+          <h5 class="card-header">실제 예약하신 고객님의 생생한 후기입니다  <input type="button" onclick="addReplyWindow()" value="댓글 작성"></h5>
+             <div id="modDiv">
+			<h3>호텔 후기 댓글 남기기</h3>
+			<!-- 댓글 번호 -->
+			<div class="mod-title"></div>
+			<!-- 댓글 내용 -->
+			<div>
+				<input type="text" id="modCommentText"  width="100"/>
+				<input type="button" id="addHotelReview" value="후기 남기기" onclick="addHotelReview()">
+			</div>
+		</div>
           <div class="card-body">
-         	 <h5 class="mt-0">예약자 명</h5>
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
-         	<!-- 사용자 닉네임 추가 -->
+         	<table>
+         		<tr>	
+ 					<td>
+ 					작성내용
+ 					</td>
+ 					<td>
+ 					이름
+ 					</td>
+ 					<td>
+ 					등록일
+ 					</td>
+ 				</tr>
+         	</table>
+         	 <h5 class="mt-0">
+         	 <c:choose>
+         	 	<c:when test="${!empty clist}">
+         	 		<c:forEach var="c" items="${clist}">
+         	 			<table>
+         	 				<tr>	
+         	 					<td>
+         	 					${c.ctext}
+         	 					</td>
+         	 					<td>
+         	 					${c.mname}
+         	 					</td>
+         	 					<td>
+         	 					${c.regDate}
+         	 					</td>
+         	 				</tr>
+         	 			</table>
+         	 		</c:forEach>
+         	 	</c:when>
+         	 	<c:otherwise>
+         	 		등록된 후기가 존재하지 않습니다.
+         	 	</c:otherwise>
+         	 </c:choose>
+         	  </h5>
           </div>
         </div>
 
@@ -243,6 +292,76 @@
     	 }
     	 
     });
+    
+    
+    
+    //댓글창
+    function addReplyWindow(){
+    	$("#modDiv").toggle("slow");
+    	
+    	
+    	
+    	
+    	var str = "실제 예약하신 고객님의 생생한 후기입니다 <input type='button' value='작성취소' id='cencelBtn'>";
+    	$(".card-header").html(str);
+    }
+    
+    
+    
+    // 취소
+    $(".card-header").on("click","#cencelBtn",function(){
+    	
+    	var html ="실제 예약하신 고객님의 생생한 후기입니다 <input type='button' onclick='addReplyWindow()' value='댓글 작성'>";
+    	$(".card-header").html(html);
+    	
+    	$("#modDiv").hide("slow");
+    	
+    	
+    });
+    
+    //후기 등록 버튼
+    
+    function addHotelReview(){
+    	
+    	var mno = "${memberInfo.mno}";
+		var hno = $("#hno").val();
+		var mname = $("#mname").val();
+		var ctext =$("#modCommentText").val();
+		
+		if(mno == ""){
+    		alert("로그인 후에 사용해 주세요");
+    	}
+		
+		$.ajax({
+			type:"POST",
+			url : "${pageContext.request.contextPath}/member/addComment",
+			headers : {
+				"Content-Type" : "application/json"
+			},data : JSON.stringify({
+				mno : mno,
+				hno : hno,
+				ctext : ctext,
+				mname : mname
+			}),
+			dataType : "text",
+			success : function(result){
+				console.log(result);
+				if(result == "fail"){
+					alert("예약정보가 존재하는 회원만 후기를 남길 수 있습니다.");
+					$("#modCommentText").val("");
+				}else if(result == "notadd"){
+					alert("후기를 2개 이상 작성 하실수 없습니다.");
+				}
+					else{
+					alert("등록완료");
+					history.go();
+				}
+			}
+			
+			
+		});
+		
+    };
     
 
     

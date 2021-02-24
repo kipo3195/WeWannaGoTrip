@@ -9,6 +9,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import net.koreate.util.Criteria;
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelPriceVO;
 import net.wannago.hotel.vo.HotelVO;
 
@@ -85,6 +86,10 @@ public interface HotelDAO {
 	//좋아요순
 	@Select("select * from pro_hotel order by hlikecnt desc")
 	public List<HotelVO> orderByLike();
+
+	//댓글 검색 3개
+	@Select("SELECT * FROM pro_hcomment WHERE hno =${hno} limit 5 ")
+	public List<HCommentVO> getComment(int hno);
 
 
 

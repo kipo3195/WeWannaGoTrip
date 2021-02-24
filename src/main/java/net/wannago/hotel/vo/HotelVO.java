@@ -29,6 +29,10 @@ public class HotelVO {
 	private String hfacility;
 	private double hwedo;
 	private double hkyungdo;
+	private String func1;
+	private String func2;
+	private String func3;
+	private String func4;
 	
 	private List<String> file;
 	

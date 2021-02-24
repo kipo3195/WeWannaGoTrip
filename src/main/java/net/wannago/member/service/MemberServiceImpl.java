@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import net.wannago.hotel.vo.HCommentVO;
 import net.wannago.hotel.vo.HotelVO;
 import net.wannago.hotel.vo.interHotelVO;
 import net.wannago.member.dao.MemberDAO;
@@ -165,6 +166,25 @@ public class MemberServiceImpl implements MemberService{
 			}
 			
 		return "Success";
+	}
+
+	//댓글 등록
+	@Override
+	public String addComment(HCommentVO vo) {
+		
+		int count = dao.getReserVation(vo.getMno(),vo.getHno());
+		int resCount = dao.getComment(vo.getMno(),vo.getHno());
+		
+		if(resCount > 1) {
+			return "notadd";
+		}
+		if(count != 0) {
+			System.out.println("호텔 예약 정보 존재");
+			dao.registComment(vo);
+			return "success";
+		}
+		
+		return "fail";
 	}
 
 	
