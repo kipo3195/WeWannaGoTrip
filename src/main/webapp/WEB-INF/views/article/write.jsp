@@ -7,6 +7,22 @@
 <!-- Head -->
 <%@ include file="../common/header.jsp"%>
 
+<style>
+table{
+	margin : auto;
+}
+.a {
+	width : 300px;
+	text-align:center;
+}
+
+td { 
+	text-align : left;
+}
+
+</style>
+
+
 <body>
 	<!-- Navigation -->
 	<%@ include file="../common/navigation.jsp"%>
@@ -16,7 +32,7 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			게시글 작성 &nbsp; <small>Board Write</small>
+			공지글 작성 &nbsp; <small>Notice Write</small>
 		</h1>
 
 		<ol class="breadcrumb">
@@ -24,26 +40,40 @@
 				href="${pageContext.request.contextPath}">Home</a></li>
 		</ol>
 
+<section id="container">
 		<!-- action  : URL의 물음표 전의 내용
   			              /article/Write 에서 /article/doWrite로 이동	 -->
 		<form action="doWrite" method="POST">
-			<div>
-				<!-- name값 중요 -->
-				제목 : <input type="text" maxlength="30" placeholder="제목을 입력해주세요."
-							name="title" />
-			</div>
-			<div>
-				내용 : <input type="text" maxlength="30" placeholder="내용을 입력해주세요."
-							name="body" />
-			</div>
-			<div>
-				제출 : <input type="submit" value="작성" />
-			</div>
+			<table class="table table-hover">
+			<tr>
+		  		<td class="a">
+		  			제목
+		  		</td>
+		  		<td>
+		  			<input type="text" name="title" size="40" value="${article.title}"
+						required />
+		  		</td>	
+		  	</tr>
+		  	<tr>
+		  		<td class="a">
+		  			내용
+		  		</td>
+		  		<td>
+		  			<textarea name="body" cols="40" rows="10">${article.body}</textarea>
+		  		</td>	
+		  	</tr>
+		  	<tr>
+		  		<td colspan=2>
+		  			<input type="submit" class="replyWriteBtn btn btn-secondary" value="작성완료" />
+		  			<a href="list" class="replyWriteBtn btn btn-primary" >리스트</a>
+		  		</td>
+		  		
+		  	</tr>
+			</table>
 		</form>
-		<div>
-			<a href="list">리스트</a>
-		</div>
+		
 
+</section>
 	</div>
 
 	<!-- Footer -->

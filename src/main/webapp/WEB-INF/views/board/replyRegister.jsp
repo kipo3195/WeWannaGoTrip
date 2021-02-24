@@ -8,6 +8,11 @@
 
 <!-- Head -->
 <%@ include file="../common/header.jsp"%>
+<style>
+	table{
+		margin : auto;
+	}
+</style>
 
 <script
 	src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -22,34 +27,34 @@
 
 		<!-- Page Heading/Breadcrumbs -->
 		<h1 class="mt-4 mb-3">
-			회원게시판 &nbsp;<small>Notice</small>
+			답변글작성 &nbsp;<small>Reply</small>
 		</h1>
 
 		<ol class="breadcrumb">
 			<li class="breadcrumb-item"><a
 				href="${pageContext.request.contextPath}">Home</a></li>
-			<li class="breadcrumb-item active">회원</li>
+			<li class="breadcrumb-item active">답변글 작성하는 공간입니다.</li>
 		</ol>
 
 
-		<h3>Reply REGISTER PAGE</h3>
+		<section id="container">
 		<form action="replyRegister" method="post">
-			<table border=1>
+			<table class="table table-hover">
 				<tr>
 					<td>제목</td>
-					<td><input type="text" name="title" required /></td>
+					<td><input type="text" name="title" size="50" required /></td>
 				</tr>
 				<tr>
 					<td>작성자</td>
-					<td><input type="text" name="writer"
+					<td><input type="text" name="writer" size="50"
 						value="${memberInfo.mname}" readonly /></td>
 				</tr>
 				<tr>
 					<td>내용</td>
-					<td><textarea name="content" cols="50" rows="30"></textarea></td>
+					<td><textarea name="content" cols="50" rows="15"></textarea></td>
 				</tr>
 				<tr>
-					<td colspan=2><input type="submit" value="작성완료" /></td>
+					<td colspan=2><input type="submit" class="replyWriteBtn btn btn-secondary" value="작성완료" /></td>
 				</tr>
 			</table>
 			<input type="hidden" name="uno" value="${memberInfo.mno}" />
@@ -65,6 +70,7 @@
 				type="hidden" name="searchType" value="${cri.searchType}" /> <input
 				type="hidden" name="keyword" value="${cri.keyword}" />
 		</form>
+	</section>	
 	</div>
 	
 	
