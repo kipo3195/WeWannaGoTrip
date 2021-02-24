@@ -46,6 +46,8 @@
   		<br/>
   		제목 : <a href="detail?id=${article.id}"> ${article.title}</a>
   		<br/>
+  		내용 : <a href="detail?id=${article.id}"> ${article.body}</a>
+  		<br/>
   		작성 날짜 : ${article.regDate}
   		<br/>
   		 <%-- 갱신 날짜 : ${article.updateDate}

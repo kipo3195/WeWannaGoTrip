@@ -33,7 +33,7 @@
       <!-- Sidebar Column -->
       <div class="col-lg-3 mb-4">
         <div class="list-group">
-          <a href="#" class="list-group-item">내 예약 확인 하기</a>
+          <a href="${pageContext.request.contextPath}/member/myReservation" class="list-group-item">내 예약 확인 하기</a>
           <a href="membersLikeHotel" class="list-group-item">내가 찜한 여행 정보 확인</a>
           <a href="${pageContext.request.contextPath}/member/memberUpdateView" class="list-group-item">내 정보 수정</a>
           

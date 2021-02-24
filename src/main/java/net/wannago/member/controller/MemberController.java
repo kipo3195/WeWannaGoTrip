@@ -275,6 +275,13 @@ public class MemberController {
 		
 	}
 	
+	//내 예약 리스트
+	@GetMapping("/myReservation")
+	public String myReservation() {
+		
+		
+		return "member/myReservation";
+	}
 	
 	
 	////훈
