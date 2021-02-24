@@ -101,7 +101,6 @@
 
 
     <!-- Related Projects Row -->
-    <h3 class="my-4">Related Projects</h3>
 
     <div class="row">
     
@@ -151,7 +150,7 @@
 			<div class="mod-title"></div>
 			<!-- 댓글 내용 -->
 			<div>
-				<input type="text" id="modCommentText"  width="100"/>
+				<input type="text" id="modCommentText"  size="100"/>
 				<input type="button" id="addHotelReview" value="후기 남기기" onclick="addHotelReview()">
 			</div>
 		</div>

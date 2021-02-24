@@ -108,6 +108,7 @@
 							<input type="hidden" name="hno" value="${hno}"/>
 							<input type="hidden" name="mno" value="${memberInfo.mno}"/>
 							<input type="hidden" name="totalin" value="${totalin}"/>
+							<input type="hidden" name="hname" value="${hname}"/>
 							<input type="hidden" name="totalout" value="${totalout}"/>
 							<input type="hidden" name="price" value="${price}"/>
 							<input type="hidden" name="room" value="${room}"/>

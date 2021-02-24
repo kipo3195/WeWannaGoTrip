@@ -410,7 +410,7 @@ if(test1 != ""){
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[0].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6" >
+          <div class="col-lg-6" style="margin-left: 1px;" >
             <h2 class="card-title">${map.HotelList[0].hname}</h2>
             <p class="card-text">${map.HotelList[0].hinfo}</p>
             <p class="card-text">${map.HotelList[0].haddress}</p>
@@ -440,7 +440,7 @@ if(test1 != ""){
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[1].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6" >
+          <div class="col-lg-6" style="margin-left: 1px;" >
             <h2 class="card-title">${map.HotelList[1].hname}</h2>
             <p class="card-text">${map.HotelList[1].hinfo}</p>
             <p class="card-text">${map.HotelList[1].haddress}</p>
@@ -468,7 +468,7 @@ if(test1 != ""){
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[2].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6" >
+          <div class="col-lg-6" style="margin-left: 1px;" >
             <h2 class="card-title">${map.HotelList[2].hname}</h2>
             <p class="card-text">${map.HotelList[2].hinfo}</p>
             <p class="card-text">${map.HotelList[2].haddress}</p>
@@ -496,7 +496,7 @@ if(test1 != ""){
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[3].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6" >
+          <div class="col-lg-6" style="margin-left: 1px;" >
             <h2 class="card-title">${map.HotelList[3].hname}</h2>
             <p class="card-text">${map.HotelList[3].hinfo}</p>
             <p class="card-text">${map.HotelList[3].haddress}</p>
@@ -524,7 +524,7 @@ if(test1 != ""){
           <div class="col-lg-6">
             <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${map.HotelList[4].hmainimg}" alt=""/>
           </div>
-          <div class="col-lg-6">
+          <div class="col-lg-6" style="margin-left: 1px;">
             <h2 class="card-title">${map.HotelList[4].hname}</h2>
             <p class="card-text">${map.HotelList[4].hinfo}</p>
             <p class="card-text">${map.HotelList[4].haddress}</p>
