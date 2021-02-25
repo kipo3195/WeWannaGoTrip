@@ -85,7 +85,15 @@ public class adminServiceImpl implements adminService {
 	@Override
 	public String deleteHotel(int hno, String hname) {
 		String resultMessage = null;
+
+		//외래키 
+		dao.deleteDetailImg(hno); 			// 상세 이미지 삭제
+		dao.deleteinterestedHotel(hno);     // 사용자 관심호텔 삭제
+		dao.deletehotelreservation(hno);    // 예약된 호텔 삭제 
+		dao.deletelikemember(hno); 			// 좋아요 삭제
+		dao.deletecomment(hno);				// 댓글 삭제
 		
+		//호텔 삭제 
 		dao.deleteDetail(hno);
 		
 		int result= dao.deleteHotel(hno,hname);

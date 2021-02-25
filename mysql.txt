@@ -1,0 +1,209 @@
+ #멤버
+ CREATE TABLE pro_member(
+	mno INT PRIMARY KEY auto_increment,
+    mid VARCHAR(50) NOT NULL UNIQUE,
+    mpw VARCHAR(50) NOT NULL,
+    mname VARCHAR(50) NOT NULL,
+    memail VARCHAR(50) NOT NULL,
+    regdate TIMESTAMP default now(),
+    updatedate TIMESTAMP default now()
+ );
+
+#호텔
+ create table pro_hotel(
+hno int PRIMARY KEY auto_increment, #호텔 구분자
+hname VARCHAR(50) UNIQUE NOT NULL, #호텔 이름
+hinfo text not null, #호텔 정보
+haddress VARCHAR(50) NOT NULL, #호텔 주소
+htel VARCHAR(50) NOT NULL, #호텔 전화번호
+hemail VARCHAR(50) NOT NULL, #호텔 메일
+hcheckin varchar(10) NOT NULL,
+hcheckout varchar(10) NOT NULL,
+hgooglemap text, #호텔 구글맵 정보
+hlikecnt int default 0, #호텔 좋아요 수
+hregdate TIMESTAMP default now(), #호텔 등록일
+hupdatedate TIMESTAMP default now(), #호텔 정보 수정일
+hgrade VARCHAR(20) NOT NULL, #호텔 등급
+hscore double, #호텔 평점
+hprice int, #호텔 가격
+hprimaryprice int not null, #호텔 기본가격 계산용
+hmainimg varchar(50), #리스트에서 호텔 메인이미지
+hdetailimg varchar(200), #호텔 상세 이미지
+hfacility varchar(50), #호텔 편의시설
+hwedo double, #호텔 위도 
+hkyungdo double, #호텔 경도
+func1 varchar(20), #세부 기능1
+func2 varchar(20), #세부 기능2
+func3 varchar(20), #세부 기능3
+func4 varchar(20)  #세부 기능4
+);
+
+#호텔 댓글 
+create table pro_hcomment(
+cno int primary key auto_increment,
+ctext varchar(200) not null,
+mno int,
+hno int,
+mname varchar(20),
+regdate timestamp default now()
+);
+# hno, mno 외래키 걸어야함
+
+
+# 호텔 좋아요 
+create table pro_likeMemberHotel (
+hno int,
+mno int,
+regdate timestamp default now()
+);
+# hno, mno 외래키 걸어야함
+
+
+# 호텔 예약
+ create table pro_HotelReservation1(
+ RNumber int auto_increment primary key,
+ hno int,
+ mno int,
+ hname varchar(20),
+ grade varchar(30),
+ Rdate varchar(30),
+ ResRegdate timestamp default now()
+ );
+# hno, mno 외래키 걸어야함
+
+#호텔 상세이미지
+  CREATE TABLE pro_hotelDetail(
+    hdeimg text,
+    hno int not null
+    );
+# hno 외래키 걸어아햠 
+
+
+#호텔 관심등록
+create table pro_interestedHotel(
+ino int primary key  auto_increment,
+hno int,
+mno int,
+regdate timestamp default now()
+);
+# hno, mno 외래키 걸어야함
+
+
+#카페, 레스토랑
+create table pro_caRes (
+crno int PRIMARY KEY auto_increment,
+crname varchar(50) unique not null,
+crRecmenu varchar(50) not null,
+craddress varchar(50) not null,
+crtel varchar(20) not null,
+cremail varchar(30) not null,
+cropentoclose varchar(50),
+crgooglemap varchar(50), 
+crregdate timestamp default now(),
+crupdatedate timestamp default now(),
+crlikecnt int default 0,
+CorR varchar(10) not null,
+mainimg varchar(50) not
+null
+); 
+
+
+#호텔 룸
+create table pro_hotelRoom(
+ hgrade varchar(10),
+ hpriprice int,
+ luxury int,
+ delux double,
+ doubler double,
+ business int
+ );
+ 
+ 
+insert into pro_hotelrprice(hgrade,priprice, luxury, delux,single, business)
+values (5,100000,3,2,1.5,1);
+insert into pro_hotelrprice(hgrade,priprice, luxury, delux,single, business)
+values (4,80000,2.5,2,1.5,1);
+insert into pro_hotelrprice(hgrade,priprice, luxury, delux,single, business)
+values (3,50000,2,1.8,1.5,1);
+insert into pro_hotelrprice(hgrade,priprice, luxury, delux,single, business)
+values (2,40000,2,1.7,1.5,1);
+ 
+ 
+ 
+ 
+
+# 관리자
+create table pro_admin (
+ano int primary key auto_increment,
+aid varchar(10) unique not null,
+apw varchar(20) not null,
+aname varchar(10) default '관리자',
+regDate timestamp default now()
+); 
+
+
+# banip
+CREATE TABLE pro_ban_ip(
+	ip VARCHAR(50) PRIMARY KEY,
+	cnt INT default 1,
+	bandate TIMESTAMP default now()
+);
+
+#게시판
+CREATE TABLE pro_board(
+   bno INT PRIMARY KEY auto_increment,              #게시글 번호
+    title varchar(200) not null,                     #제목
+    content text not null,                           #내용
+    writer varchar(200) not null,                    #작성자
+    origin int not null default 0,                   #원본 글 번호
+    depth int not null default 0,                    #답변글일때의 표현
+    seq int not null default 0,                      #답변글 정렬
+    regdate timestamp not null default now(),        #등록시간
+    updatedate timestamp null default now(),         #수정시간
+    viewcnt int default 0,                           #조회수
+    showboard varchar(10) null default 'Y',          #게시물 삭제 여부 'Y''노출' , 'N' 
+    uno int not null,                                #작성자 정보(사용자 번호)
+    constraint fx_pro_board_uno foreign key(uno) references pro_member(mno)   #사용자번호 외래키
+ );
+ 
+ 
+ #관광지
+CREATE TABLE pro_place(
+pno int PRIMARY KEY auto_increment,
+pname varchar(50) unique not null,
+paddress varchar(50) not null,
+ptel varchar(20) not null,
+popentoclose varchar(50),
+pgooglemap varchar(50), 
+pregdate timestamp default now(),
+pupdatedate timestamp default now(),
+plikecnt int default 0,
+pmainimg varchar(50) not null
+);
+
+#공지사항
+ CREATE TABLE pro_article(
+ id int primary key auto_increment,
+ regdate TIMESTAMP NULL default now(),
+ updatedate TIMESTAMP NULL default now(),
+ title varchar(100) not null,
+ body text not null
+ );
+ insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주1','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주2','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주3','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주4','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주5','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주6','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주7','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
+insert into pro_caRes(crname, crRecmenu,craddress,crtel,cremail,cropentoclose,CorR,mainimg)
+VALUES ('그리울땐 제주8','아메리카노','제주도 제주동 제주리','012-234-4567','jeju@hotel.com','10:00 ~ 18:00','C','missing');
