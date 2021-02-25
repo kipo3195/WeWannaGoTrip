@@ -7,9 +7,9 @@ public interface creditDAO {
 
 	
 	
-	@Insert("INSERT INTO pro_HotelReservation1 (hno,mno,Rdate,grade) "
-			+ " VALUES (${hno},${mno},#{date},#{room})")
+	@Insert("INSERT INTO pro_HotelReservation1 (hno,mno,Rdate,grade,hname) "
+			+ " VALUES (${hno},${mno},#{date},#{room},#{hname})")
 	void registReservation(@Param("date") String RegDate,
-		@Param("hno") int hno,@Param("mno") int mno,@Param("room") String room);
+		@Param("hno") int hno,@Param("mno") int mno,@Param("room") String room,@Param("hname") String hname);
 
 }

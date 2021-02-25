@@ -60,9 +60,10 @@ public class creditController {
 			@RequestParam("totalin") String totalin,
 			@RequestParam("totalout")String totalout,
 			@RequestParam("price")int price,
-			@RequestParam("room")String room) {
+			@RequestParam("room")String room,
+			@RequestParam("hname")String hname) {
 		
-		cs.registReservation(totalin,totalout,hno,mno,room); 
+		cs.registReservation(totalin,totalout,hno,mno,room,hname); 
 		
 		return "redirect:/";
 	}

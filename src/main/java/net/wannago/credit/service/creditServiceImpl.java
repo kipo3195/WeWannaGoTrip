@@ -23,7 +23,7 @@ public class creditServiceImpl implements creditService {
 		return sdf.format(date);
 	}
 	@Override
-	public void registReservation(String totalin, String totalout, int hno, int mno,String room) {
+	public void registReservation(String totalin, String totalout, int hno, int mno,String room,String hname) {
 		
 		int iyyyy = Integer.parseInt(totalin.substring(0, 4));
 		int imm = Integer.parseInt(totalin.substring(5, 7));
@@ -34,17 +34,17 @@ public class creditServiceImpl implements creditService {
 		String odd = totalout.substring(8, 10);
 		
 		String endDate = oyyyy+omm+odd;
-	
+		System.out.println("endDate : "+endDate);
 		Calendar cal = Calendar.getInstance();
-		
+		System.out.println(cal);
 		cal.set(iyyyy, imm - 1, idd);
 		
 		while (true) {
 			
 			System.out.println("예약시 저장될 시간: "+getDateByString(cal.getTime()));
 			System.out.println("ENDDATE : "+Integer.parseInt(endDate));
+			dao.registReservation(getDateByString(cal.getTime()),hno,mno,room,hname);
 			cal.add(Calendar.DATE, 1);
-			dao.registReservation(getDateByString(cal.getTime()),hno,mno,room);
 			if (getDateByInteger(cal.getTime()) > (Integer.parseInt(endDate) - 1)) {
 				break;
 			}

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="f"%>
 <!DOCTYPE html>
 <html>
 <!-- Head -->
@@ -27,12 +28,6 @@
       &nbsp;  <small></small>
     </h1>
 
-    <ol class="breadcrumb">
-      <li class="breadcrumb-item">
-      </li>
-      <li class="breadcrumb-item active"> 총 예약 수 :   </li>
-    </ol>
-
     <div class="accordion">
 	<c:choose>
 		<c:when test="${!empty list}">
@@ -40,13 +35,15 @@
 				<div>
 			  	예약번호 :  H${list.rnumber}
 		  		<br/> 
-		  		호텔이름 :   
+		  		호텔이름 :   ${list.hname}
 		  		<br/>
 		  		 등급 :    ${list.grade} 
 		  		<br/>
-		  		 일정 :    ${list.rdate}
+		  		 일정 :   
+		  		 <f:formatDate value="${list.rdate}" type="date"/>
 		  		<br/>
-		  		 예약 일시 : ${list.resregdate}
+		  		 예약 일시 :
+		  		  <f:formatDate value="${list.resregdate}" type="date"/>
 		  		<br/>
 					<div>
 				  		<a  onclick="if ( confirm('취소하시겠습니까?') == false ) return false;" href="${pageContext.request.contextPath}/member/cancelHotel?rnumber=${list.rnumber}"> 예약취소하기 </a> 
@@ -62,7 +59,7 @@
   
   	
  <!-- Pagination -->
-    <ul class="pagination justify-content-center">
+<%--     <ul class="pagination justify-content-center">
     
      <!-- 처음 페이지로 이동버튼이 노출 될 필요가 있는지 여부 -->
   	 <c:set var="goFirstBtnNeedToShow" 
@@ -89,7 +86,7 @@
   				<c:set var="goLastBtnNeedToShow" value="false"/>
   			</c:if>
       	</li>
-      </c:forEach>	
+      </c:forEach>	 --%>
       
       
      <!-- 마지막페이지로 이동버튼이 노출될 필요가 있다면 노출 -->
@@ -117,7 +114,7 @@
 		var message ="${message}";
 		if(message=="fail"){
 			alert("최소 3일 이전의 예약만 취소 가능합니다");
-		}else{
+		}else if(message == "success"){
 			alert("예약이 취소 되었습니다.");
 		}
 	</script>
