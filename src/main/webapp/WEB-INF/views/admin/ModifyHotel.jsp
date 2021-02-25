@@ -296,7 +296,7 @@
 					</td>
 					<td>
 						<div id="hotelMainImg">
-							<input type="text" value="${hotel.hmainimg}" style="width: 300px;" disabled>
+							<input type="text" value="${hotel.hmainimg}" name="hmainimg" style="width: 300px;" readonly>
 						</div>
 					</td>
 					<td>
@@ -306,6 +306,7 @@
 						<input id="ChangeCancelBtn" type="button" value="취소">
 					</td>
 				</tr>
+				
 			</table>
 		</form>
   	</div>
@@ -315,6 +316,7 @@
           <div class="card-body">
             <div class="input-group" id="changedImage">
               <img src="${pageContext.request.contextPath}/resources/img/jejuhotel/upload${hotel.hmainimg}"/>
+           		
             </div>
           </div>
         </div>

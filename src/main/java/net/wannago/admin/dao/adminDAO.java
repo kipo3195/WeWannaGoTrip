@@ -72,6 +72,22 @@ public interface adminDAO {
 	void deleteDetail(int hno);
 
 	
+	@Delete("DELETE FROM pro_hotelDetail WHERE hno=#{hno}")
+	void deleteDetailImg(int hno);
+	
+	@Delete("DELETE FROM pro_interestedHotel WHERE hno=#{hno}")
+	void deleteinterestedHotel(int hno);
+	
+	@Delete("DELETE FROM pro_HotelReservation1 WHERE hno=#{hno}")
+	void deletehotelreservation(int hno);
+	
+	@Delete("DELETE FROM pro_likeMemberHotel WHERE hno=#{hno}")
+	void deletelikemember(int hno);
+	
+	@Delete("DELETE FROM pro_hcomment WHERE hno=#{hno}")
+	void deletecomment(int hno);
+
+	
 	
 	
 	
