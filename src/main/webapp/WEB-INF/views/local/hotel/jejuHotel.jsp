@@ -268,7 +268,7 @@
 	        str += " "+hgrade+" <br>";
 			str += " <input type='hidden' name='hno' id='hno' value="+hno+"> ";
 	        str += " 평균 평점:"+hscore+" <br/>";
-	        str += "<div class=likediv ani_type='scale'>";
+	        str += "<div id='likediv' ani_type='scale'>";
 	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+hlikecnt+"<br/> "; 
 	        str += "</div>";
         	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
@@ -374,7 +374,7 @@
 	        str += " "+hgrade+" <br>";
 	        str += " 평균 평점:"+hscore+" <br/>";
 	        str += " <input type='hidden' name='hno' id='hno' value="+hno+">";
-	        str += "<div class=likediv>";
+	        str += "<div id='likediv'>";
 	        str += "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/>"+hlikecnt+"<br/> "; 
 	        str += "</div>";
         	str += " 호텔 등록일자 : "+fmtdate+"<br/></p>"
@@ -399,6 +399,9 @@
 		//호텔 번호
 		var hno = $(this).closest(".card").find("#hno").val();
 		console.log(hno);
+		
+		var parent = $(this).parent();
+		console.log(parent);
 		
 		if(boolLogin === ''){
 		alert("해당 기능은 로그인 후 사용 가능합니다.");
@@ -428,11 +431,12 @@
 					
 					
 					
-					var sstr = "찜 하기 <img class=likeimg src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+likecnt+"<br/> "; 
-					$(".likediv").html(sstr);
+					var sstr = "찜 하기 <img class='likeimg' src='${pageContext.request.contextPath}/resources/img/etc/like.png'/> "+likecnt+"<br/> "; 
+					parent.html(sstr);
 					//해당되는 요소 부분
 					console.log(hno);
-					history.go(0);
+					/* history.go(0); */
+					
 					
 				}
 			});
